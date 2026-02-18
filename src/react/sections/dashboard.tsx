@@ -1,6 +1,12 @@
 import { JobCard } from "../components/card";
+import { useState } from "react";
+import type { cardProps } from "../components/card"
 
 export function Dashboard() {
+const [cardsArray , changeCardArray] = useState<cardProps[]>([]);
+
+const addCard = () => {changeCardArray(prev => [...prev , {idTime :  new Date(),companyName : "fdfdsaaaafd" ,position : " dffdf" }])}
+
   return (
     <main className="grid grid-cols-3 gap-6 mt-5 mx-5">
       <section className=" flex flex-col gap-y-2">
@@ -9,8 +15,6 @@ export function Dashboard() {
         </div>
 
         <div className="flex gap-4">
-          <JobCard></JobCard>
-          <JobCard></JobCard>
         </div>
       </section>
 

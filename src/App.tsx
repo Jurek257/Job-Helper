@@ -8,9 +8,12 @@ function App() {
   const [isPopupShowed, setPopupShowed] = useState(false);
   return (
     <>
-      <Header setPopupShowed={setPopupShowed}/>
+      <Header setPopupShowed={setPopupShowed} />
       <Dashboard />
-      <AddAplicationPopup isPopupShowed={isPopupShowed} setPopupShowed={setPopupShowed}/>
+      <AddAplicationPopup
+        isPopupShowed={isPopupShowed}
+        setPopupShowed={setPopupShowed}
+      />
     </>
   );
 }

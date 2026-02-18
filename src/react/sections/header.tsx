@@ -1,6 +1,10 @@
 import IconLogo from "../../assets/puzzle-jigsaw-svgrepo-com.svg?react";
 
-export function Header({setPopupShowed} : {setPopupShowed : (state : boolean) => void }) {
+export function Header({
+  setPopupShowed,
+}: {
+  setPopupShowed: (state: boolean) => void;
+}) {
   return (
     <header className="flex place-content-between px-10 items-center py-3 bg-[#FFFFFF] drop-shadow-lg">
       <div className="flex items-center gap-4">
@@ -10,7 +14,10 @@ export function Header({setPopupShowed} : {setPopupShowed : (state : boolean) =>
         </h1>
       </div>
 
-      <button onClick={() => setPopupShowed(true) } className="text-blue-800 font-bold text-[26px] transiton-500 hover:underline hover:text-blue-500 cursor-pointer">
+      <button
+        onClick={() => setPopupShowed(true)}
+        className="text-blue-800 font-bold text-[26px] transiton-500 hover:underline hover:text-blue-500 cursor-pointer"
+      >
         <img src="" alt="" />
         Add new Aplication
       </button>
