@@ -1,14 +1,7 @@
-import { useState } from "react";
 
-export function AddAplicationPopup() {
-  const [isPopupShowed, setPopupShowed] = useState(false);
-  setPopupShowed;
-  isPopupShowed;
 
-  const hidePopup = () => {
-setPopupShowed(false);
-} 
-const showPopup = () => {setPopupShowed(true);}
+export function AddAplicationPopup({isPopupShowed ,setPopupShowed} : {isPopupShowed: boolean, setPopupShowed : (state : boolean) => void }) {
+
 
   if (isPopupShowed)  return (
     <div className="fixed inset-0 bg-black/50 z-2">
@@ -48,7 +41,7 @@ const showPopup = () => {setPopupShowed(true);}
           <div className="flex m-3 self-end gap-3">
             <button
               type="button"
-              onClick={hidePopup}
+              onClick={() => setPopupShowed(false)}
               className="bg-gray-500 text-white px-6 py-2 rounded-lg"
             >
               Cancel
