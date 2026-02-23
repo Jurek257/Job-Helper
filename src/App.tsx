@@ -5,6 +5,7 @@ import { Dashboard } from "./react/sections/dashboard";
 import { AddAplicationPopup } from "./react/components/addAplicationPopup";
 import type { cardProps } from "./types/types";
 
+export  type Action = "cancel" | "submit";
 function App() {
   const [isPopupShowed, setPopupShowed] = useState(false);
   const [cardDataArr, AddCardDataArr] = useState<cardProps[]>([]);
@@ -18,6 +19,7 @@ function App() {
     const newCard = { idTime: new Date(), ...formJSObject } as cardProps;
 
     AddCardDataArr((prev) => [...prev, newCard]);
+    setPopupShowed(false);
   };
 
   return (

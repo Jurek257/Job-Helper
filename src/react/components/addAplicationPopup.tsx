@@ -1,13 +1,14 @@
+interface PopupProps {
+  isPopupShowed: boolean;
+  setPopupShowed: (state: boolean) => void;
+  handleForm: (e: React.SyntheticEvent<HTMLFormElement>) => void;
+}
+
 export function AddAplicationPopup({
   isPopupShowed,
   setPopupShowed,
   handleForm,
-  /*  addCard */
-}: {
-  isPopupShowed: boolean;
-  setPopupShowed: (state: boolean) => void;
-  handleForm: (e: React.SyntheticEvent<HTMLFormElement>) => void;
-}) {
+}: PopupProps) {
   if (isPopupShowed)
     return (
       <div className="fixed inset-0 bg-black/50 z-2">
