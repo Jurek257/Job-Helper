@@ -1,13 +1,10 @@
-export interface cardProps {
-  idTime : Date;
-  companyName: string;
-  position?: string;
-};
+import type { cardProps } from "../../types/types";
 
 export function JobCard({
   idTime,
   companyName,
   position = "position no data",
+  //email : string,
 }: cardProps) {
   return (
     <div className="flex flex-col w-1/2 pt-3 h-50 bg-[#FFFFFF] rounded-md drop-shadow-md">

@@ -1,24 +1,13 @@
 export function AddAplicationPopup({
   isPopupShowed,
   setPopupShowed,
+  handleForm,
+  /*  addCard */
 }: {
   isPopupShowed: boolean;
   setPopupShowed: (state: boolean) => void;
+  handleForm: (e: React.SyntheticEvent<HTMLFormElement>) => void;
 }) {
-  const handleForm = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
-    const companyName = formData.get("companyName") as string;
-    const position = formData.get("position") as string;
-    const email = formData.get("email") as string;
-    const jobDescription = formData.get("jobDescription") as string;
-
-    console.log("====================================");
-    console.log(companyName, position, email, jobDescription);
-    console.log("====================================");
-  };
-
   if (isPopupShowed)
     return (
       <div className="fixed inset-0 bg-black/50 z-2">
