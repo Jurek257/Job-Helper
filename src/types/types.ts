@@ -3,4 +3,5 @@ export interface cardProps {
   companyName: string;
   position?: string;
   email?: string;
+  DeleteCardFunc: (idTimeToDelete: Date) => void;
 }
