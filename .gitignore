@@ -26,3 +26,6 @@ dist-ssr
 
 src/playground/
 src/playground/*
+
+#Secret info
+*.env
