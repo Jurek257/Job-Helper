@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Header } from "./react/sections/header";
 import { Dashboard } from "./react/sections/dashboard";
 import { AddAplicationPopup } from "./react/components/addAplicationPopup";
+import { SignUpPage } from "./react/pages/SignUpPage";
 import type { cardProps, CardStatus as CardStatus } from "./types/types";
 
 function App() {
@@ -11,6 +12,11 @@ function App() {
 
   const [draggedCardTimeId, setDraggedCardTimeId] = useState<Date>();
 
+  const [isUserSignedUp, setUserSignedUp] = useState<boolean>(false);
+
+  // ===================================
+  //Loging
+  // ===================================
   useEffect(() => {
     CardDataArr.find((item) =>
       item.idTime === draggedCardTimeId ? console.log(item.status) : undefined,
@@ -23,6 +29,7 @@ function App() {
   useEffect(() => {
     console.log(CardDataArr);
   }, [CardDataArr]);
+  // ===================================
 
   const AddNewJobCard = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -63,7 +70,7 @@ function App() {
     );
   };
 
-  return (
+  return isUserSignedUp ? (
     <>
       <Header setPopupShowed={setPopupShowed} />
       <Dashboard
@@ -79,6 +86,8 @@ function App() {
         handleForm={AddNewJobCard}
       />
     </>
+  ) : (
+    <SignUpPage />
   );
 }
 export default App;
