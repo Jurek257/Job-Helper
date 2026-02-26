@@ -1,9 +1,11 @@
 import "./App.css";
 import { useState, useEffect } from "react";
+import { supabaseClient } from "./supabase";
 import { Header } from "./react/sections/header";
 import { Dashboard } from "./react/sections/dashboard";
 import { AddAplicationPopup } from "./react/components/addAplicationPopup";
 import { SignUpPage } from "./react/pages/SignUpPage";
+import type { User } from "@supabase/supabase-js";
 import type { cardProps, CardStatus as CardStatus } from "./types/types";
 
 function App() {
@@ -12,7 +14,16 @@ function App() {
 
   const [draggedCardTimeId, setDraggedCardTimeId] = useState<Date>();
 
-  const [isUserSignedUp, setUserSignedUp] = useState<boolean>(false);
+  const [user, setUser] = useState<User>();
+
+  useEffect(() => {
+    supabaseClient.auth.onAuthStateChange((event, session) => {
+      if (session) {setUser(session.user); console.log(`user ${session.user.email} was logged in`)}
+      else {
+        setUser(undefined);
+      }
+    });
+  }, []);
 
   // ===================================
   //Loging
@@ -70,7 +81,7 @@ function App() {
     );
   };
 
-  return isUserSignedUp ? (
+  return user ? (
     <>
       <Header setPopupShowed={setPopupShowed} />
       <Dashboard
