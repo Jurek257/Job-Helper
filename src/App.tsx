@@ -1,4 +1,5 @@
 import "./App.css";
+import toast, { Toaster } from "react-hot-toast";
 import { useState, useEffect } from "react";
 import { supabaseClient } from "./supabase";
 import { Header } from "./react/sections/header";
@@ -6,11 +7,11 @@ import { Dashboard } from "./react/sections/dashboard";
 import { AddAplicationPopup } from "./react/components/addAplicationPopup";
 import { SignUpPage } from "./react/pages/SignUpPage";
 import type { User } from "@supabase/supabase-js";
-import type { cardProps, CardStatus as CardStatus } from "./types/types";
+import type { CardValue, CardStatus as CardStatus } from "./types/types";
 
 function App() {
   const [isPopupShowed, setPopupShowed] = useState(false);
-  const [CardDataArr, HandleCardDataArr] = useState<cardProps[]>([]);
+  const [CardDataArr, HandleCardDataArr] = useState<CardValue[]>([]);
 
   const [draggedCardTimeId, setDraggedCardTimeId] = useState<Date>();
 
@@ -18,19 +19,54 @@ function App() {
 
   useEffect(() => {
     supabaseClient.auth.onAuthStateChange((event, session) => {
-      if (session) {setUser(session.user); console.log(`user ${session.user.email} was logged in`)}
-      else {
+      if (session) {
+        setUser(session.user);
+        console.log(`user ${session.user.email} was logged in`);
+      } else {
         setUser(undefined);
       }
     });
   }, []);
+
+  useEffect(() => {
+if (!user) return;
+    fetchCards();
+  }, [user]);
+
+  const fetchCards = async () => {
+    try {
+      const { data, error } = await supabaseClient
+        .from("job-helper-cards-database")
+        .select("*")
+        .eq("user_id", user?.id);
+
+      if (error) {
+        toast(error.message);
+        console.warn(error.message);
+        return;
+      }
+
+      console.log("data from database",  data);
+    } catch (error) {
+      toast(
+        error instanceof Error
+          ? error.message
+          : "Error during loading cards from database : App.tsx useEffect",
+      );
+      console.warn(
+        error instanceof Error
+          ? error.message
+          : "Error during loading cards from database : App.tsx useEffect",
+      );
+    }
+  };
 
   // ===================================
   //Loging
   // ===================================
   useEffect(() => {
     CardDataArr.find((item) =>
-      item.idTime === draggedCardTimeId ? console.log(item.status) : undefined,
+      item.id_time === draggedCardTimeId ? console.log(item.status) : undefined,
     );
 
     console.log(`draggedCardTimeId :${draggedCardTimeId}`);
@@ -42,25 +78,49 @@ function App() {
   }, [CardDataArr]);
   // ===================================
 
-  const AddNewJobCard = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const AddNewJobCard = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
-    const formJSObject = Object.fromEntries(formData);
-    const status: CardStatus = "applied"; //temporary default value
-    const newCard = {
-      idTime: new Date(),
-      status: status,
-      ...formJSObject,
-    } as cardProps;
+      const formData = new FormData(e.currentTarget);
+      const formJSObject = Object.fromEntries(formData);
+      const status: CardStatus = "applied"; //temporary default value
+      const newCard = {
+        id_time: new Date(),
+        status: status,
+        ...formJSObject,
+      } as CardValue;
 
-    HandleCardDataArr((prev) => [...prev, newCard]);
-    setPopupShowed(false);
+      const { error } = await supabaseClient
+        .from("job-helper-cards-database")
+        .insert({ ...newCard, user_id: user?.id });
+
+      if (error) {
+        toast(error.message);
+
+        console.error({ error });
+        return;
+      }
+
+      HandleCardDataArr((prev) => [...prev, newCard]);
+      setPopupShowed(false);
+    } catch (error) {
+      toast(
+        error instanceof Error
+          ? error.message
+          : "Error during insert card to database : App.tsx AddNewJobCard()",
+      );
+      console.error(
+        error instanceof Error
+          ? error.message
+          : "Error during insert card to database : App.tsx AddNewJobCard()",
+      );
+    }
   };
 
   const DeleteJobCard = (idTimeToDelete: Date) => {
     HandleCardDataArr((prev) =>
-      prev.filter((item) => item.idTime !== idTimeToDelete),
+      prev.filter((item) => item.id_time !== idTimeToDelete),
     );
   };
 
@@ -76,13 +136,16 @@ function App() {
 
     HandleCardDataArr((prev) =>
       prev.map((item) =>
-        item.idTime === targetIdTime ? { ...item, status: targetStatus } : item,
+        item.id_time === targetIdTime
+          ? { ...item, status: targetStatus }
+          : item,
       ),
     );
   };
 
   return user ? (
     <>
+      <Toaster />
       <Header setPopupShowed={setPopupShowed} />
       <Dashboard
         jobJSdataArr={CardDataArr}

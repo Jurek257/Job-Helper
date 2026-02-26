@@ -23,7 +23,7 @@ export function AddAplicationPopup({
                 <span className="">Company name*</span>
                 <input
                   type="text"
-                  name="companyName"
+                  name="company_name"
                   required
                   className="border rounded-md border-gray-500 h-10 pl-3"
                 />
@@ -49,7 +49,7 @@ export function AddAplicationPopup({
             <label className="flex flex-col px-5 py-2 w-full" htmlFor="">
               <span className="">Short Job Description</span>
               <textarea
-                name="jobDescription"
+                name="job_description"
                 id=""
                 className="border rounded-md border-gray-500 pl-3 h-22"
               ></textarea>
