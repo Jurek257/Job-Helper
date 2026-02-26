@@ -47,6 +47,9 @@ if (!user) return;
       }
 
       console.log("data from database",  data);
+      HandleCardDataArr(data.map((item) => ({...item , id_time : new Date(item.id_time)})) as CardValue[]);
+      console.log(CardDataArr);
+
     } catch (error) {
       toast(
         error instanceof Error
