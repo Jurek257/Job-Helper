@@ -29,7 +29,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-if (!user) return;
+    if (!user) return;
     fetchCards();
   }, [user]);
 
@@ -46,10 +46,14 @@ if (!user) return;
         return;
       }
 
-      console.log("data from database",  data);
-      HandleCardDataArr(data.map((item) => ({...item , id_time : new Date(item.id_time)})) as CardValue[]);
+      console.log("data from database", data);
+      HandleCardDataArr(
+        data.map((item) => ({
+          ...item,
+          id_time: new Date(item.id_time),
+        })) as CardValue[],
+      );
       console.log(CardDataArr);
-
     } catch (error) {
       toast(
         error instanceof Error
