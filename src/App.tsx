@@ -11,6 +11,7 @@ import type { CardValue, CardStatus as CardStatus } from "./types/types";
 
 function App() {
   const [isPopupShowed, setPopupShowed] = useState(false);
+  const [isFormLoading, setFormLoading] = useState<boolean>(false);
   const [CardDataArr, HandleCardDataArr] = useState<CardValue[]>([]);
 
   const [draggedCardTimeId, setDraggedCardTimeId] = useState<Date>();
@@ -51,6 +52,7 @@ function App() {
         data.map((item) => ({
           ...item,
           id_time: new Date(item.id_time),
+          card_id:(item.card_id),
         })) as CardValue[],
       );
       console.log(CardDataArr);
@@ -88,6 +90,8 @@ function App() {
   const AddNewJobCard = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
+      setFormLoading(true);
+      console.log("Submit works");
 
       const formData = new FormData(e.currentTarget);
       const formJSObject = Object.fromEntries(formData);
@@ -110,6 +114,7 @@ function App() {
       }
 
       HandleCardDataArr((prev) => [...prev, newCard]);
+      setFormLoading(false);
       setPopupShowed(false);
     } catch (error) {
       toast(
@@ -165,6 +170,7 @@ function App() {
         isPopupShowed={isPopupShowed}
         setPopupShowed={setPopupShowed}
         handleForm={AddNewJobCard}
+        isFormLoading={isFormLoading}
       />
     </>
   ) : (

@@ -4,6 +4,7 @@ export interface CardValue {
   company_name: string;
   position?: string;
   email?: string;
+card_id: string;
 }
 
 export interface CardProps {
