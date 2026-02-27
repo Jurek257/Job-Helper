@@ -1,9 +1,12 @@
-export interface cardProps {
-  idTime: Date;
+export interface CardValue {
+  id_time: Date;
   status: CardStatus;
-  companyName: string;
+  company_name: string;
   position?: string;
   email?: string;
+}
+
+export interface CardProps {
   DeleteCardFunc: (idTimeToDelete: Date) => void;
   setDraggedCardTimeId: (dateId: Date) => void;
 }

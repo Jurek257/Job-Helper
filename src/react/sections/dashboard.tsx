@@ -1,8 +1,8 @@
 import { JobCard } from "../components/card";
-import type { cardProps, CardStatus } from "../../types/types";
+import type { CardValue, CardStatus } from "../../types/types";
 
 interface DashboardProps {
-  jobJSdataArr: cardProps[];
+  jobJSdataArr: CardValue[];
   DeleteCardFunc: (idTimeToDelete: Date) => void;
   setDraggedCardTimeId: (dateId: Date) => void;
   changeCardstatus: (
@@ -42,9 +42,9 @@ export function Dashboard({
             .filter((item) => item.status === "applied")
             .map((item) => (
               <JobCard
-                idTime={item.idTime}
+                id_time={item.id_time}
                 status={item.status}
-                companyName={item.companyName}
+                company_name={item.company_name}
                 position={item.position}
                 DeleteCardFunc={DeleteCardFunc}
                 setDraggedCardTimeId={setDraggedCardTimeId}
@@ -74,9 +74,9 @@ export function Dashboard({
             .filter((item) => item.status === "rejected")
             .map((item) => (
               <JobCard
-                idTime={item.idTime}
+                id_time={item.id_time}
                 status={item.status}
-                companyName={item.companyName}
+                company_name={item.company_name}
                 position={item.position}
                 DeleteCardFunc={DeleteCardFunc}
                 setDraggedCardTimeId={setDraggedCardTimeId}
@@ -106,23 +106,14 @@ export function Dashboard({
             .filter((item) => item.status === "interview")
             .map((item) => (
               <JobCard
-                idTime={item.idTime}
+                id_time={item.id_time}
                 status={item.status}
-                companyName={item.companyName}
+                company_name={item.company_name}
                 position={item.position}
                 DeleteCardFunc={DeleteCardFunc}
                 setDraggedCardTimeId={setDraggedCardTimeId}
               />
             ))}
-
-          {/* <JobCard
-                idTime={new Date()}
-                status='applied'
-                companyName='Hmax'
-                position='Director'
-                DeleteCardFunc={DeleteCardFunc}
-                setDraggedCardTimeId={setDraggedCardTimeId}
-              /> */}
         </div>
       </section>
     </main>

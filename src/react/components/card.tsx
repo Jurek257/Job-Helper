@@ -1,13 +1,13 @@
-import type { cardProps } from "../../types/types";
+import type { CardValue, CardProps } from "../../types/types";
 
 export function JobCard({
-  idTime,
-  companyName,
+  id_time: idTime,
+  company_name: companyName,
   position = "position no data",
   //email : string,
   DeleteCardFunc,
   setDraggedCardTimeId,
-}: cardProps) {
+}: CardValue & CardProps) {
   return (
     <div
       draggable={true}
