@@ -7,14 +7,14 @@ export function JobCard({
   card_id,
   //email : string,
   DeleteCardFunc,
-  setDraggedCardTimeId,
+  setDraggedCardId,
 }: CardValue & CardProps) {
   const id_timeDateObject = new Date(id_time);
   return (
     <div
       draggable={true}
       onDragStart={() => {
-        setDraggedCardTimeId(id_timeDateObject);
+        setDraggedCardId(card_id);
         console.log("onDragStart");
       }}
       onDragOver={(e) => {
