@@ -11,11 +11,28 @@ import type { CardValue, CardStatus as CardStatus } from "./types/types";
 
 function App() {
   const [isPopupShowed, setPopupShowed] = useState(false);
+  const [isFormLoading, setFormLoading] = useState<boolean>(false);
   const [CardDataArr, HandleCardDataArr] = useState<CardValue[]>([]);
 
   const [draggedCardTimeId, setDraggedCardTimeId] = useState<Date>();
 
   const [user, setUser] = useState<User>();
+
+  // ===================================
+  //Loging
+  // ===================================
+  useEffect(() => {
+    CardDataArr.find((item) =>
+      item.id_time === draggedCardTimeId ? console.log(item.status) : undefined,
+    );
+
+    console.log(`draggedCardTimeId :${draggedCardTimeId}`);
+  }, [draggedCardTimeId]);
+
+  useEffect(() => {
+    console.log("date array of cards in app :", CardDataArr);
+  }, [CardDataArr]);
+  // ===================================
 
   useEffect(() => {
     supabaseClient.auth.onAuthStateChange((_event, session) => {
@@ -46,14 +63,14 @@ function App() {
         return;
       }
 
-      console.log("data from database", data);
+      console.log("fetch data from database", data);
       HandleCardDataArr(
         data.map((item) => ({
           ...item,
           id_time: new Date(item.id_time),
+          card_id: item.card_id,
         })) as CardValue[],
       );
-      console.log(CardDataArr);
     } catch (error) {
       toast(
         error instanceof Error
@@ -68,26 +85,10 @@ function App() {
     }
   };
 
-  // ===================================
-  //Loging
-  // ===================================
-  useEffect(() => {
-    CardDataArr.find((item) =>
-      item.id_time === draggedCardTimeId ? console.log(item.status) : undefined,
-    );
-
-    console.log(`draggedCardTimeId :${draggedCardTimeId}`);
-    console.log();
-  }, [draggedCardTimeId]);
-
-  useEffect(() => {
-    console.log(CardDataArr);
-  }, [CardDataArr]);
-  // ===================================
-
   const AddNewJobCard = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
+      setFormLoading(true);
 
       const formData = new FormData(e.currentTarget);
       const formJSObject = Object.fromEntries(formData);
@@ -98,9 +99,11 @@ function App() {
         ...formJSObject,
       } as CardValue;
 
-      const { error } = await supabaseClient
+      const { data, error } = await supabaseClient
         .from("job-helper-cards-database")
-        .insert({ ...newCard, user_id: user?.id });
+        .insert({ ...newCard, user_id: user?.id })
+        .select()
+        .single();
 
       if (error) {
         toast(error.message);
@@ -108,8 +111,9 @@ function App() {
         console.error({ error });
         return;
       }
-
-      HandleCardDataArr((prev) => [...prev, newCard]);
+      console.log("data return", data);
+      HandleCardDataArr((prev) => [...prev, data as CardValue]);
+      setFormLoading(false);
       setPopupShowed(false);
     } catch (error) {
       toast(
@@ -125,10 +129,28 @@ function App() {
     }
   };
 
-  const DeleteJobCard = (idTimeToDelete: Date) => {
-    HandleCardDataArr((prev) =>
-      prev.filter((item) => item.id_time !== idTimeToDelete),
-    );
+  const DeleteJobCard = async (card_id: string) => {
+    try {
+      await supabaseClient
+        .from("job-helper-cards-database")
+        .delete()
+        .eq("card_id", card_id);
+
+      HandleCardDataArr((prev) =>
+        prev.filter((item) => item.card_id !== card_id),
+      );
+    } catch (error) {
+      toast(
+        error instanceof Error
+          ? error.message
+          : "Error during deleting card from database : App.tsx DeleteJobCard()",
+      );
+      console.error(
+        error instanceof Error
+          ? error.message
+          : "Error during deleting card from database : App.tsx DeleteJobCard()",
+      );
+    }
   };
 
   const changeCardstatus = (
@@ -165,6 +187,7 @@ function App() {
         isPopupShowed={isPopupShowed}
         setPopupShowed={setPopupShowed}
         handleForm={AddNewJobCard}
+        isFormLoading={isFormLoading}
       />
     </>
   ) : (

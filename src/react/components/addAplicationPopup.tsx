@@ -1,13 +1,16 @@
+import { LoadingButton } from "./loading";
 interface PopupProps {
   isPopupShowed: boolean;
   setPopupShowed: (state: boolean) => void;
   handleForm: (e: React.SyntheticEvent<HTMLFormElement>) => void;
+  isFormLoading: boolean;
 }
 
 export function AddAplicationPopup({
   isPopupShowed,
   setPopupShowed,
   handleForm,
+  isFormLoading,
 }: PopupProps) {
   if (isPopupShowed)
     return (
@@ -55,19 +58,25 @@ export function AddAplicationPopup({
               ></textarea>
             </label>
             <div className="flex m-3 self-end gap-3">
-              <button
-                type="button"
-                onClick={() => setPopupShowed(false)}
-                className="bg-gray-500 text-white px-6 py-2 rounded-lg"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                className="bg-blue-700 text-white px-6 py-2 rounded-lg"
-              >
-                Submit
-              </button>
+              {isFormLoading ? (
+                <LoadingButton />
+              ) : (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => setPopupShowed(false)}
+                    className="bg-gray-500 text-white px-6 py-2 rounded-lg"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="bg-blue-700 text-white px-6 py-2 rounded-lg"
+                  >
+                    Submit
+                  </button>
+                </>
+              )}
             </div>
           </form>
         </div>

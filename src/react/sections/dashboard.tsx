@@ -3,7 +3,7 @@ import type { CardValue, CardStatus } from "../../types/types";
 
 interface DashboardProps {
   jobJSdataArr: CardValue[];
-  DeleteCardFunc: (idTimeToDelete: Date) => void;
+  DeleteCardFunc: (card_id: string) => void;
   setDraggedCardTimeId: (dateId: Date) => void;
   changeCardstatus: (
     targetIdTime: Date | undefined,
@@ -43,6 +43,7 @@ export function Dashboard({
             .map((item) => (
               <JobCard
                 id_time={item.id_time}
+                card_id={item.card_id}
                 status={item.status}
                 company_name={item.company_name}
                 position={item.position}
@@ -75,6 +76,7 @@ export function Dashboard({
             .map((item) => (
               <JobCard
                 id_time={item.id_time}
+                card_id={item.card_id}
                 status={item.status}
                 company_name={item.company_name}
                 position={item.position}
@@ -107,6 +109,7 @@ export function Dashboard({
             .map((item) => (
               <JobCard
                 id_time={item.id_time}
+                card_id={item.card_id}
                 status={item.status}
                 company_name={item.company_name}
                 position={item.position}
