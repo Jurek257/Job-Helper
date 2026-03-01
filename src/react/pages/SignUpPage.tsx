@@ -1,6 +1,7 @@
 import { supabaseClient } from "../../supabase";
 import IconLogo from "../../../public/puzzle-jigsaw-svgrepo-com.svg?react";
 import Briefcase from "../../../public/briefcase-svgrepo-com.svg?react";
+import GoogleIcon from "../../assets/google-icon-logo-svgrepo-com.svg?react";
 
 export function SignUpPage() {
   const handelGoogleSignIn = async () => {
@@ -82,8 +83,7 @@ export function SignUpPage() {
 
       <div className="flex flex-col justify-center items-center gap-6 pt-5 px-[5%]">
         {" "}
-
-<div className="flex items-center gap-4 sm:hidden">
+        <div className="flex items-center gap-4 sm:hidden">
           <IconLogo></IconLogo>
           <h1 className="text-[28px] text-white font-bold">
             Job<span className="text-[#2563EB]">Helper</span>
@@ -98,15 +98,9 @@ export function SignUpPage() {
         </p>
         <button
           onClick={handelGoogleSignIn}
-          className="flex py-2 px-15 bg-[var(--surface-color)] outline-none font-bold border border-[var(--border-color)] rounded-md cursor-pointer transition duration-300 hover:scale-102"
+          className="flex py-2 px-15 bg-[var(--surface-color)] items-center outline-none font-bold border border-[var(--border-color)] rounded-md cursor-pointer transition duration-300 hover:scale-102"
         >
-          <img
-            className="pe-2"
-            width={32}
-            height={32}
-            src="src/assets/google-icon-logo-svgrepo-com.svg"
-            alt="google img"
-          />
+          <GoogleIcon width={32} height={32} className="pe-2" />
           Continue with Google
         </button>
         <p className="text-white/50 text-[14px]">
