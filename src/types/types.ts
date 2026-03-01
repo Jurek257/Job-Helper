@@ -4,11 +4,11 @@ export interface CardValue {
   company_name: string;
   position?: string;
   email?: string;
-card_id: string;
+  card_id: string;
 }
 
 export interface CardProps {
-  DeleteCardFunc: (idTimeToDelete: Date) => void;
+  DeleteCardFunc: (card_id: string) => void;
   setDraggedCardTimeId: (dateId: Date) => void;
 }
 

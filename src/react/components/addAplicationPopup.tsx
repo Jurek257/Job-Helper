@@ -1,4 +1,4 @@
-import { Loading } from "./loading";
+import { LoadingButton } from "./loading";
 interface PopupProps {
   isPopupShowed: boolean;
   setPopupShowed: (state: boolean) => void;
@@ -59,7 +59,7 @@ export function AddAplicationPopup({
             </label>
             <div className="flex m-3 self-end gap-3">
               {isFormLoading ? (
-                <Loading />
+                <LoadingButton />
               ) : (
                 <>
                   <button
