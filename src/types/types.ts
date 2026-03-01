@@ -9,7 +9,7 @@ export interface CardValue {
 
 export interface CardProps {
   DeleteCardFunc: (card_id: string) => void;
-  setDraggedCardTimeId: (dateId: Date) => void;
+  setDraggedCardId: (card_id: string) => void;
 }
 
 export type CardStatus = "applied" | "rejected" | "interview";

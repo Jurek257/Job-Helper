@@ -14,7 +14,7 @@ function App() {
   const [isFormLoading, setFormLoading] = useState<boolean>(false);
   const [CardDataArr, HandleCardDataArr] = useState<CardValue[]>([]);
 
-  const [draggedCardTimeId, setDraggedCardTimeId] = useState<Date>();
+  const [draggedCardId, setDraggedCardId] = useState<string>();
 
   const [user, setUser] = useState<User>();
 
@@ -23,11 +23,11 @@ function App() {
   // ===================================
   useEffect(() => {
     CardDataArr.find((item) =>
-      item.id_time === draggedCardTimeId ? console.log(item.status) : undefined,
+      item.card_id === draggedCardId ? console.log(item.status) : undefined,
     );
 
-    console.log(`draggedCardTimeId :${draggedCardTimeId}`);
-  }, [draggedCardTimeId]);
+    console.log(`draggedCardTimeId :${draggedCardId}`);
+  }, [draggedCardId]);
 
   useEffect(() => {
     console.log("date array of cards in app :", CardDataArr);
@@ -153,23 +153,40 @@ function App() {
     }
   };
 
-  const changeCardstatus = (
-    targetIdTime: Date | undefined,
+  const changeCardstatus = async (
+    targetCardId: string,
     targetStatus: CardStatus,
   ) => {
     console.log("changeCardstatus func working");
-    if (!targetIdTime) {
-      console.log("idDate of drag card undefined");
+    if (!targetCardId) {
+      console.log("idCard of drag card undefined");
       return;
     }
 
-    HandleCardDataArr((prev) =>
-      prev.map((item) =>
-        item.id_time === targetIdTime
-          ? { ...item, status: targetStatus }
-          : item,
-      ),
-    );
+    try {
+      await supabaseClient
+        .from("job-helper-cards-database")
+        .update({ status: targetStatus })
+        .eq("card_id", targetCardId);
+      HandleCardDataArr((prev) =>
+        prev.map((item) =>
+          item.card_id === targetCardId
+            ? { ...item, status: targetStatus }
+            : item,
+        ),
+      );
+    } catch (error) {
+      toast(
+        error instanceof Error
+          ? error.message
+          : "Error during card drop allign  : App.tsx changeCardstatus()",
+      );
+      console.error(
+        error instanceof Error
+          ? error.message
+          : "Error during card drop allign  : App.tsx changeCardstatus()",
+      );
+    }
   };
 
   return user ? (
@@ -179,9 +196,9 @@ function App() {
       <Dashboard
         jobJSdataArr={CardDataArr}
         DeleteCardFunc={DeleteJobCard}
-        setDraggedCardTimeId={setDraggedCardTimeId}
+        setDraggedCardId={setDraggedCardId}
         changeCardstatus={changeCardstatus}
-        draggedCardTimeId={draggedCardTimeId}
+        draggedCardId={draggedCardId!}
       />
       <AddAplicationPopup
         isPopupShowed={isPopupShowed}

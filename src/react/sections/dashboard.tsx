@@ -4,20 +4,17 @@ import type { CardValue, CardStatus } from "../../types/types";
 interface DashboardProps {
   jobJSdataArr: CardValue[];
   DeleteCardFunc: (card_id: string) => void;
-  setDraggedCardTimeId: (dateId: Date) => void;
-  changeCardstatus: (
-    targetIdTime: Date | undefined,
-    targetStatus: CardStatus,
-  ) => void;
-  draggedCardTimeId: Date | undefined;
+  setDraggedCardId: (card_id: string) => void;
+  changeCardstatus: (targetIdCard: string, targetStatus: CardStatus) => void;
+  draggedCardId: string;
 }
 
 export function Dashboard({
   jobJSdataArr,
   DeleteCardFunc,
-  setDraggedCardTimeId,
+  setDraggedCardId: setDraggedCardTimeId,
   changeCardstatus,
-  draggedCardTimeId,
+  draggedCardId: draggedCardTimeId,
 }: DashboardProps) {
   return (
     <main className="grid grid-cols-3 grid-cols-[2fr_2fr_1fr] gap-6 mt-5 mx-5">
@@ -48,7 +45,7 @@ export function Dashboard({
                 company_name={item.company_name}
                 position={item.position}
                 DeleteCardFunc={DeleteCardFunc}
-                setDraggedCardTimeId={setDraggedCardTimeId}
+                setDraggedCardId={setDraggedCardTimeId}
               />
             ))}
         </div>
@@ -81,7 +78,7 @@ export function Dashboard({
                 company_name={item.company_name}
                 position={item.position}
                 DeleteCardFunc={DeleteCardFunc}
-                setDraggedCardTimeId={setDraggedCardTimeId}
+                setDraggedCardId={setDraggedCardTimeId}
               />
             ))}
         </div>
@@ -114,7 +111,7 @@ export function Dashboard({
                 company_name={item.company_name}
                 position={item.position}
                 DeleteCardFunc={DeleteCardFunc}
-                setDraggedCardTimeId={setDraggedCardTimeId}
+                setDraggedCardId={setDraggedCardTimeId}
               />
             ))}
         </div>
