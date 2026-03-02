@@ -190,7 +190,7 @@ function App() {
   };
 
   return user ? (
-    <>
+    <div className="">
       <Toaster />
       <Header setPopupShowed={setPopupShowed} />
       <Dashboard
@@ -206,7 +206,7 @@ function App() {
         handleForm={AddNewJobCard}
         isFormLoading={isFormLoading}
       />
-    </>
+    </div>
   ) : (
     <SignUpPage />
   );

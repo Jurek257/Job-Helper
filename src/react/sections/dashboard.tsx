@@ -17,7 +17,7 @@ export function Dashboard({
   draggedCardId: draggedCardTimeId,
 }: DashboardProps) {
   return (
-    <main className="grid grid-cols-3 grid-cols-[2fr_2fr_1fr] gap-6 mt-5 mx-5">
+    <main className="grid grid-cols-3 divide-x divide-[var(--border-color)] min-h-screen">
       <section
         onDragOver={(e) => {
           e.preventDefault();
@@ -29,12 +29,19 @@ export function Dashboard({
         }}
         className=" flex flex-col max-w-full gap-y-2"
       >
-        <div className="flex bg-blue-800 justify-center rounded-md px-6 py-3 ">
-          <p className="text-[#FFFFFF] text-[16px] font-bold">Applied</p>
+        <div className="flex items-center border-b border-b-[var(--border-color)]  justify-between rounded-md px-6 py-3">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-blue-500 shadow-[0_0_10px_8px_rgba(59,130,246,0.5)] rounded-full"></div>
+            <p className="text-[#FFFFFF] text-[16px] font-bold">Applied</p>
+          </div>
+
+          <div className="w-6 h-6 bg-[var(--surface-color)] rounded-md text-center text-white/50 border border-[var(--border-color)]">
+            7
+          </div>
         </div>
         <div className="flex gap-4"></div>
 
-        <div className="grid gap-2 grid-cols-[repeat(auto-fill,minmax(150px,1fr))] ">
+        <div className="grid gap-2">
           {jobJSdataArr
             .filter((item) => item.status === "applied")
             .map((item) => (
@@ -62,12 +69,23 @@ export function Dashboard({
         }}
         className=" flex flex-col max-w-full gap-y-2"
       >
-        <div className="flex bg-red-800 justify-center rounded-md px-6 py-3 ">
+        {/* <div className="flex  justify-center items-center border-b border-b-[var(--border-color)] gap-2 rounded-md px-6 py-3">
+          <div className="w-3 h-3 bg-red-500 shadow-[0_0_10px_8px_rgba(239,68,68,0.5)] rounded-full"></div>
           <p className="text-[#FFFFFF] text-[16px] font-bold">Rejected</p>
+        </div> */}
+        <div className="flex items-center border-b border-b-[var(--border-color)]  justify-between rounded-md px-6 py-3">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-red-500 shadow-[0_0_10px_8px_rgba(239,68,68,0.5)] rounded-full"></div>
+            <p className="text-[#FFFFFF] text-[16px] font-bold">Rejected</p>
+          </div>
+
+          <div className="w-6 h-6 bg-[var(--surface-color)] rounded-md text-center text-white/50 border border-[var(--border-color)]">
+            7
+          </div>
         </div>
         <div className="flex gap-4"></div>
 
-        <div className="grid gap-2 grid-cols-[repeat(auto-fill,minmax(150px,1fr))] ">
+        <div className="grid gap-2">
           {jobJSdataArr
             .filter((item) => item.status === "rejected")
             .map((item) => (
@@ -95,12 +113,23 @@ export function Dashboard({
         }}
         className=" flex flex-col max-w-full gap-y-2"
       >
-        <div className="flex bg-green-800 justify-center rounded-md px-6 py-3 ">
+        {/* <div className="flex  justify-center items-center border-b border-b-[var(--border-color)] gap-2 rounded-md px-6 py-3">
+          <div className="w-3 h-3 bg-green-500 shadow-[0_0_10px_8px_rgba(34,197,94,0.5)] rounded-full"></div>
           <p className="text-[#FFFFFF] text-[16px] font-bold">Interview</p>
+        </div> */}
+        <div className="flex items-center border-b border-b-[var(--border-color)]  justify-between rounded-md px-6 py-3">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-green-500 shadow-[0_0_10px_8px_rgba(34,197,94,0.5)] rounded-full"></div>
+            <p className="text-[#FFFFFF] text-[16px] font-bold">Interview</p>
+          </div>
+
+          <div className="w-6 h-6 bg-[var(--surface-color)] rounded-md text-center text-white/50 border border-[var(--border-color)]">
+            7
+          </div>
         </div>
         <div className="flex gap-4"></div>
 
-        <div className="grid gap-2 grid-cols-[repeat(auto-fill,minmax(150px,1fr))] ">
+        <div className="grid gap-2">
           {jobJSdataArr
             .filter((item) => item.status === "interview")
             .map((item) => (
