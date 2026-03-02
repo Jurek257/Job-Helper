@@ -10,6 +10,7 @@ export function JobCard({
   setDraggedCardId,
 }: CardValue & CardProps) {
   const id_timeDateObject = new Date(id_time);
+  DeleteCardFunc;
   return (
     <div
       draggable={true}
