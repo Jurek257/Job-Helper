@@ -9,7 +9,7 @@ setShowedColumn;
   return (
     <div className="grid grid-cols-3">
 
-<div className="flex flex-col sm:flex-row  items-center border border-[var(--border-color)]  justify-between px-6 py-3">
+<div onClick={() => setShowedColumn('applied')} className="flex flex-col sm:flex-row  items-center border border-[var(--border-color)]  justify-between px-6 py-3">
             <div className="flex items-center gap-2">
               <div className="hidden sm:flex w-3 h-3 bg-blue-500 shadow-[0_0_10px_8px_rgba(59,130,246,0.5)] rounded-full"></div>
               <p className="text-[#FFFFFF] text-[16px] font-bold">Applied</p>
@@ -20,7 +20,7 @@ setShowedColumn;
             </div>
           </div>
 
-<div className="flex flex-col sm:flex-row items-center border border-[var(--border-color)]  justify-between px-6 py-3">
+<div onClick={() => setShowedColumn('rejected')} className="flex flex-col sm:flex-row items-center border border-[var(--border-color)]  justify-between px-6 py-3">
             <div className="flex items-center gap-2">
               <div className="hidden sm:flex w-3 h-3 bg-red-500 shadow-[0_0_10px_8px_rgba(239,68,68,0.5)] rounded-full"></div>
               <p className="text-[#FFFFFF] text-[16px] font-bold">Rejected</p>
@@ -31,7 +31,7 @@ setShowedColumn;
             </div>
           </div>  
 
- <div className="flex flex-col sm:flex-row items-center border border-[var(--border-color)]  justify-between px-6 py-3">
+ <div onClick={() => setShowedColumn('interview')} className="flex flex-col sm:flex-row items-center border border-[var(--border-color)]  justify-between px-6 py-3">
             <div className="flex items-center gap-2">
               <div className="hidden sm:flex w-3 h-3 bg-green-500 shadow-[0_0_10px_8px_rgba(34,197,94,0.5)] rounded-full"></div>
               <p className="text-[#FFFFFF] text-[16px] font-bold">Interview</p>
