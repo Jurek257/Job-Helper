@@ -23,7 +23,7 @@ export function Dashboard({
   return (
     <>
       <Tabs showedColumn={showedColumn} setShowedColumn={setShowedColumn} />
- 
+
       <main className="grid grid-cols-1 sm:grid-cols-3 divide-x divide-[var(--border-color)] min-h-screen">
         <section
           onDragOver={(e) => {
@@ -36,7 +36,6 @@ export function Dashboard({
           }}
           className={`sm:flex flex-col max-w-full gap-y-2 ${showedColumn === "applied" ? "flex" : "hidden"}`}
         >
-         
           <div className="flex gap-4"></div>
 
           <div className="grid gap-2">
@@ -67,7 +66,6 @@ export function Dashboard({
           }}
           className={`sm:flex flex-col max-w-full gap-y-2 ${showedColumn === "rejected" ? "flex" : "hidden"}`}
         >
-          
           <div className="flex gap-4"></div>
 
           <div className="grid gap-2">
@@ -98,7 +96,6 @@ export function Dashboard({
           }}
           className={` sm:flex flex-col max-w-full gap-y-2 ${showedColumn === "interview" ? "flex" : "hidden"}`}
         >
-         
           <div className="flex gap-4"></div>
 
           <div className="grid gap-2">
