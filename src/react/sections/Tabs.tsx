@@ -1,15 +1,15 @@
 import type { CardStatus } from "../../types/types";
 
 interface TabsProps {
+showedColumn : CardStatus;
   setShowedColumn: (state: CardStatus) => void;
 }
 
-export function Tabs({ setShowedColumn }: TabsProps) {
-setShowedColumn;
+export function Tabs({showedColumn, setShowedColumn }: TabsProps) {
   return (
     <div className="grid grid-cols-3">
 
-<div onClick={() => setShowedColumn('applied')} className="flex flex-col sm:flex-row  items-center border border-[var(--border-color)]  justify-between px-6 py-3">
+<div onClick={() => setShowedColumn('applied')} className={`flex flex-col sm:flex-row  items-center border border-[var(--border-color)] ${showedColumn === 'applied' ? 'bg-blue-500/50 sm:bg-none' : 'bg-none'} justify-between px-6 py-3`}>
             <div className="flex items-center gap-2">
               <div className="hidden sm:flex w-3 h-3 bg-blue-500 shadow-[0_0_10px_8px_rgba(59,130,246,0.5)] rounded-full"></div>
               <p className="text-[#FFFFFF] text-[16px] font-bold">Applied</p>
@@ -42,17 +42,6 @@ setShowedColumn;
             </div>
           </div>
 
-
-      {/* <div className="flex flex-col w-full h-20 justify-center items-center rounded-xl border border-[var(--border-color)]">
-        <span className="text-[22px]">4</span>
-        <span className="text-white/50 font-bold">Applied</span>
-      </div><div className="flex flex-col w-full h-20 justify-center items-center rounded-xl border border-[var(--border-color)]">
-        <span className="text-[22px]">4</span>
-        <span className="text-white/50 font-bold">Applied</span>
-      </div><div className="flex flex-col w-full h-20 justify-center items-center rounded-xl border border-[var(--border-color)]">
-        <span className="text-[22px]">4</span>
-        <span className="text-white/50 font-bold">Applied</span>
-      </div> */}
     </div>
   );
 }

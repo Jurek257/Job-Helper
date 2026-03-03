@@ -22,7 +22,7 @@ export function Dashboard({
 
   return (
     <>
-      <Tabs setShowedColumn={setShowedColumn} />
+      <Tabs showedColumn={showedColumn} setShowedColumn={setShowedColumn} />
  
       <main className="grid grid-cols-1 sm:grid-cols-3 divide-x divide-[var(--border-color)] min-h-screen">
         <section
