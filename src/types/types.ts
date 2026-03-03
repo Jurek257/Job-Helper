@@ -8,6 +8,7 @@ export interface CardValue {
 }
 
 export interface CardProps {
+  className: string;
   DeleteCardFunc: (card_id: string) => void;
   setDraggedCardId: (card_id: string) => void;
 }

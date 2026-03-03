@@ -43,6 +43,7 @@ export function Dashboard({
               .filter((item) => item.status === "applied")
               .map((item) => (
                 <JobCard
+                  className="border-t-blue-500"
                   id_time={item.id_time}
                   card_id={item.card_id}
                   status={item.status}
@@ -73,6 +74,7 @@ export function Dashboard({
               .filter((item) => item.status === "rejected")
               .map((item) => (
                 <JobCard
+                  className="border-t-red-500"
                   id_time={item.id_time}
                   card_id={item.card_id}
                   status={item.status}
@@ -103,6 +105,7 @@ export function Dashboard({
               .filter((item) => item.status === "interview")
               .map((item) => (
                 <JobCard
+                  className="border-t-green-500"
                   id_time={item.id_time}
                   card_id={item.card_id}
                   status={item.status}
