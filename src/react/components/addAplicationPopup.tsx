@@ -15,7 +15,7 @@ export function AddAplicationPopup({
   if (isPopupShowed)
     return (
       <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-2">
-        <div className=" w-[800px] h-auto bg-[var(--surface-color)]  border border-[var(--border-color)] border-t-3 border-t-blue-500 rounded-2xl drop-shadow-x1 z-5">
+        <div className="w-full sm:w-[800px] h-auto bg-[var(--surface-color)]  border border-[var(--border-color)] border-t-3 border-t-blue-500 rounded-2xl drop-shadow-x1 z-5">
           <div className="bg-blue-500/20 px-5 py-5 rounded-t-2xl border-b-3 border-b-[var(--border-color)]">
             <h2 className="text-[28px] font-bold">Add Job Aplication</h2>
             <p className="text-white/50">
