@@ -1,24 +1,12 @@
 import { JobCard } from "../components/card";
 import { Tabs } from "./Tabs";
-import type { CardValue, CardStatus } from "../../types/types";
+import type { CardStatus } from "../../types/types";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
 import { useCardActions } from "../../hooks/useCardActions";
 
-interface DashboardProps {
-  //CardsArr: CardValue[];
-  // deleteJobCard: (card_id: string) => void;
-  //changeCardstatus: (targetIdCard: string, targetStatus: CardStatus) => void;
-}
-
-export function Dashboard(
-  {
-    //CardsArr: jobJSdataArr,
-    // deleteJobCard: deleteJobCard,
-    //changeCardstatus,
-  }: DashboardProps,
-) {
+export function Dashboard() {
   const { deleteJobCard, changeCardstatus } = useCardActions();
   const CardsArr = useSelector((state: RootState) => state.Cards.cardDataArr);
 
@@ -87,7 +75,6 @@ export function Dashboard(
                   company_name={item.company_name}
                   position={item.position}
                   DeleteCardFunc={deleteJobCard}
-                  /*    setDraggedCardId={setDraggedCardTimeId} */
                 />
               ),
             )}
@@ -119,7 +106,6 @@ export function Dashboard(
                   company_name={item.company_name}
                   position={item.position}
                   DeleteCardFunc={deleteJobCard}
-                  /*   setDraggedCardId={setDraggedCardTimeId} */
                 />
               ),
             )}

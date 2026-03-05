@@ -1,5 +1,5 @@
 import type { CardValue, CardProps } from "../../types/types";
-//import { CardDropDownButton } from "./CardDropDownButton";
+import { CardDropDownButton } from "./CardDropDownButton";
 import { useDispatch } from "react-redux";
 import { setDraggedCardId } from "../../store/draggedCardIdSlice";
 
@@ -42,7 +42,7 @@ export function JobCard({
         </div>
       </div>
 
-      {/*  <CardDropDownButton /> */}
+       <CardDropDownButton card_id={card_id}/>
       {/*  <button
         onClick={() => DeleteCardFunc(card_id)}
         className="mt-auto w-full py-2 border-t-2 cursor-pointer duration-300 hover:bg-red-800  border-gray-200"
