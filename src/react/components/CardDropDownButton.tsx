@@ -2,10 +2,10 @@ import { MoreHorizontal } from "lucide-react";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/react";
 //import type { CardStatus } from "../../types/types";
 import { useCardActions } from "../../hooks/useCardActions";
-import  TrashLogo  from '../../assets/trash-can-svgrepo-com.svg?react'
+import TrashLogo from "../../assets/trash-can-svgrepo-com.svg?react";
 
-export function CardDropDownButton({card_id} :{card_id : string}) {
-const { changeCardstatus , deleteJobCard } = useCardActions();
+export function CardDropDownButton({ card_id }: { card_id: string }) {
+  const { changeCardstatus, deleteJobCard } = useCardActions();
 
   return (
     <div className="flex flex-col relative ">
@@ -21,29 +21,46 @@ const { changeCardstatus , deleteJobCard } = useCardActions();
         >
           <MenuItem>
             <button
-              className="flex justify-center items-center data-focus:bg-[radial-gradient(circle_at_center,_#3b82f6,_transparent)]  h-full text-center "
-              onClick={() => {changeCardstatus(card_id,'applied')}}
+              className="flex justify-center items-center data-focus:bg-[radial-gradient(circle_at_center,_#3b82f6,_transparent)] hover:bg-[radial-gradient(circle_at_center,_#3b82f6,_transparent)] h-full text-center "
+              onClick={() => {
+                changeCardstatus(card_id, "applied");
+              }}
             >
               <div className="flex w-2 h-2 bg-blue-500 mr-2 shadow-[0_0_10px_8px_rgba(59,130,246,0.5)] rounded-full"></div>
               Applied
             </button>
           </MenuItem>
           <MenuItem>
-            <button onClick={() => {changeCardstatus(card_id,'rejected')}} className="flex justify-center items-center data-focus:bg-[radial-gradient(circle_at_center,_#ef4444,_transparent)] h-full text-center ">
+            <button
+              onClick={() => {
+                changeCardstatus(card_id, "rejected");
+              }}
+              className="flex justify-center items-center data-focus:bg-[radial-gradient(circle_at_center,_#ef4444,_transparent)] hover:bg-[radial-gradient(circle_at_center,_#ef4444,_transparent)] h-full text-center "
+            >
               <div className="flex w-2 h-2 bg-red-500 mr-2 shadow-[0_0_10px_8px_rgba(239,68,68,0.5)] rounded-full"></div>
               Rejected
             </button>
           </MenuItem>
           <MenuItem>
-            <button onClick={() => {changeCardstatus(card_id,'interview')}} className="flex justify-center items-center data-focus:bg-[radial-gradient(circle_at_center,_#22c55e,_transparent)] h-full text-center ">
+            <button
+              onClick={() => {
+                changeCardstatus(card_id, "interview");
+              }}
+              className="flex justify-center items-center data-focus:bg-[radial-gradient(circle_at_center,_#22c55e,_transparent)] hover:bg-[radial-gradient(circle_at_center,_#22c55e,_transparent)] h-full text-center "
+            >
               <div className="flex w-2 h-2 bg-green-500 mr-2 shadow-[0_0_10px_8px_rgba(34,197,94,0.5)] rounded-full"></div>
               Interview
             </button>
           </MenuItem>
- <MenuItem>
-            <button onClick={() => {deleteJobCard(card_id)}} className="flex justify-center items-center data-focus:bg-red-500/50 h-full text-center ">
-<TrashLogo width={22} height={22} />             
- Delete
+          <MenuItem>
+            <button
+              onClick={() => {
+                deleteJobCard(card_id);
+              }}
+              className="flex justify-center items-center data-focus:bg-red-500/50 hover:bg-red-500/50 h-full text-center "
+            >
+              <TrashLogo width={22} height={22} />
+              Delete
             </button>
           </MenuItem>
         </MenuItems>
