@@ -6,11 +6,12 @@ import {
   updateJobStatus,
   deleteCard,
   addCard,
+  setCards,
 } from "../store/jobsCardArraySlice";
 
 export function useCardActions() {
   const dispatch = useDispatch();
- const CardsArr = useSelector((state: RootState) => state.Cards.cardDataArr);
+  //const CardsArr = useSelector((state: RootState) => state.Cards.cardDataArr);
   const user = useSelector((state: RootState) => state.User.user);
 
   const addNewJobCard = async (e: React.SyntheticEvent<HTMLFormElement>) => {
@@ -22,7 +23,7 @@ export function useCardActions() {
       const formJSObject = Object.fromEntries(formData);
       const status: CardStatus = "applied"; //temporary default value
       const newCard = {
-        id_time: new Date(),
+        id_time: new Date().toISOString(),
         status: status,
         ...formJSObject,
       } as CardValue;
@@ -128,5 +129,53 @@ export function useCardActions() {
     }
   };
 
-  return { addNewJobCard , deleteJobCard ,changeCardstatus};
+  const fetchCards = async () => {
+    try {
+      const { data, error } = await supabaseClient
+        .from("job-helper-cards-database")
+        .select("*")
+        .eq("user_id", user.id);
+
+      if (error) {
+        //toast(error.message);
+        console.warn(error.message);
+        return;
+      }
+
+      console.log("fetch data from database", data);
+      if (!data) {
+        return console.error("no data from database");
+      }
+      dispatch(
+        setCards(
+          data.map((item) => ({
+            ...item,
+            //id_time: item.id_time,
+            //card_id: item.card_id,
+          })) as CardValue[],
+        ),
+      );
+
+      /*  HandleCardDataArr(
+        data.map((item) => ({
+          ...item,
+          id_time: new Date(item.id_time),
+          card_id: item.card_id,
+        })) as CardValue[],
+      ); */
+    } catch (error) {
+      /*       toast(
+        error instanceof Error
+          ? error.message
+          : "Error during loading cards from database : App.tsx useEffect",
+      ); */
+      console.warn(
+        error instanceof Error
+          ? error.message
+          : "Error during loading cards from database : App.tsx useEffect",
+      );
+    }
+  };
+
+  return { addNewJobCard, deleteJobCard, changeCardstatus ,fetchCards};
 }

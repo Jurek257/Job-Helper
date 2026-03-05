@@ -7,30 +7,34 @@ import { Dashboard } from "./react/sections/dashboard";
 import { AddAplicationPopup } from "./react/components/addAplicationPopup";
 import { SignUpPage } from "./react/pages/SignUpPage";
 //import type { User } from "@supabase/supabase-js";
-import type { CardValue, CardStatus as CardStatus } from "./types/types";
+//import type { CardValue, CardStatus as CardStatus } from "./types/types";
 
 import { setUser } from "./store/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "./store/store";
+import { useCardActions } from "./hooks/useCardActions";
+
 
 function App() {
   const dispatch = useDispatch();
+const { fetchCards } = useCardActions();
+const CardArr = useSelector((state : RootState) => state.Cards.cardDataArr );
 
   const [isPopupShowed, setPopupShowed] = useState(false);
   const [isFormLoading, setFormLoading] = useState<boolean>(false);
-  const [CardDataArr, HandleCardDataArr] = useState<CardValue[]>([]);
+//  const [CardArr, HandleCardDataArr] = useState<CardValue[]>([]);
 
   const user = useSelector((state: RootState) => state.User.user);
 
   //const [user, setUser] = useState<User>();
 
   // ===================================
-  //Loging
+  //  Loging
   // ===================================
 
   useEffect(() => {
-    console.log("date array of cards in app :", CardDataArr);
-  }, [CardDataArr]);
+    console.log("date array of cards in app :", CardArr);
+  }, [CardArr]);
   // ===================================
 
   useEffect(() => {
@@ -46,12 +50,14 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (user.id) 
-    {fetchCards();}
-else { console.error(" user id not defined")}
+    if (user.id) {
+      fetchCards();
+    } else {
+      console.error(" user id not defined");
+    }
   }, [user]);
 
-  const fetchCards = async () => {
+ /*  const fetchCards = async () => {
     try {
       const { data, error } = await supabaseClient
         .from("job-helper-cards-database")
@@ -65,6 +71,7 @@ else { console.error(" user id not defined")}
       }
 
       console.log("fetch data from database", data);
+
       HandleCardDataArr(
         data.map((item) => ({
           ...item,
@@ -84,8 +91,8 @@ else { console.error(" user id not defined")}
           : "Error during loading cards from database : App.tsx useEffect",
       );
     }
-  };
-/* 
+  }; */
+  /* 
   const addNewJobCard = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
@@ -129,7 +136,7 @@ else { console.error(" user id not defined")}
       );
     }
   }; */
-/* 
+  /* 
   const deleteJobCard = async (card_id: string) => {
     try {
       await supabaseClient
@@ -153,7 +160,7 @@ else { console.error(" user id not defined")}
       );
     }
   };
- *//* 
+ */ /* 
   const changeCardstatus = async (
     targetCardId: string,
     targetStatus: CardStatus,
@@ -195,9 +202,9 @@ else { console.error(" user id not defined")}
       <Toaster />
       <Header setPopupShowed={setPopupShowed} />
       <Dashboard
-        //CardsArr={CardDataArr}
-       // deleteJobCard={deleteJobCard}
-        //changeCardstatus={changeCardstatus}
+      //CardsArr={CardDataArr}
+      // deleteJobCard={deleteJobCard}
+      //changeCardstatus={changeCardstatus}
       />
       <AddAplicationPopup
         isPopupShowed={isPopupShowed}

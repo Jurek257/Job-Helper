@@ -1,5 +1,5 @@
 export interface CardValue {
-  id_time: Date;
+  id_time: string;
   status: CardStatus;
   company_name: string;
   position?: string;

@@ -14,8 +14,7 @@ export function AddAplicationPopup({
   //handleForm,
   isFormLoading,
 }: PopupProps) {
-
-const {addNewJobCard} = useCardActions();
+  const { addNewJobCard } = useCardActions();
 
   if (isPopupShowed)
     return (

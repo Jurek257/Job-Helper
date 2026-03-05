@@ -6,20 +6,21 @@ import { useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
 import { useCardActions } from "../../hooks/useCardActions";
 
-
 interface DashboardProps {
   //CardsArr: CardValue[];
- // deleteJobCard: (card_id: string) => void;
+  // deleteJobCard: (card_id: string) => void;
   //changeCardstatus: (targetIdCard: string, targetStatus: CardStatus) => void;
 }
 
-export function Dashboard({
-  //CardsArr: jobJSdataArr,
- // deleteJobCard: deleteJobCard,
-  //changeCardstatus,
-}: DashboardProps) {
-const {deleteJobCard ,changeCardstatus } = useCardActions();
-const CardsArr = useSelector((state : RootState) => state.Cards.cardDataArr);
+export function Dashboard(
+  {
+    //CardsArr: jobJSdataArr,
+    // deleteJobCard: deleteJobCard,
+    //changeCardstatus,
+  }: DashboardProps,
+) {
+  const { deleteJobCard, changeCardstatus } = useCardActions();
+  const CardsArr = useSelector((state: RootState) => state.Cards.cardDataArr);
 
   const [showedColumn, setShowedColumn] = useState<CardStatus>("applied");
   const draggedCardTimeId = useSelector(
@@ -44,12 +45,10 @@ const CardsArr = useSelector((state : RootState) => state.Cards.cardDataArr);
           <div className="flex gap-4"></div>
 
           <div className="grid gap-2">
-            {CardsArr
-              .filter((item) => item.status === "applied")
-              .map((item) => (
+            {CardsArr.filter((item) => item.status === "applied").map(
+              (item) => (
                 <JobCard
-                key={item.card_id}
-
+                  key={item.card_id}
                   className="border-t-blue-500"
                   id_time={item.id_time}
                   card_id={item.card_id}
@@ -58,7 +57,8 @@ const CardsArr = useSelector((state : RootState) => state.Cards.cardDataArr);
                   position={item.position}
                   DeleteCardFunc={deleteJobCard}
                 />
-              ))}
+              ),
+            )}
           </div>
         </section>
 
@@ -76,12 +76,10 @@ const CardsArr = useSelector((state : RootState) => state.Cards.cardDataArr);
           <div className="flex gap-4"></div>
 
           <div className="grid gap-2">
-            {CardsArr
-              .filter((item) => item.status === "rejected")
-              .map((item) => (
+            {CardsArr.filter((item) => item.status === "rejected").map(
+              (item) => (
                 <JobCard
-                key={item.card_id}
-
+                  key={item.card_id}
                   className="border-t-red-500"
                   id_time={item.id_time}
                   card_id={item.card_id}
@@ -91,7 +89,8 @@ const CardsArr = useSelector((state : RootState) => state.Cards.cardDataArr);
                   DeleteCardFunc={deleteJobCard}
                   /*    setDraggedCardId={setDraggedCardTimeId} */
                 />
-              ))}
+              ),
+            )}
           </div>
         </section>
 
@@ -109,11 +108,10 @@ const CardsArr = useSelector((state : RootState) => state.Cards.cardDataArr);
           <div className="flex gap-4"></div>
 
           <div className="grid gap-2">
-            {CardsArr
-              .filter((item) => item.status === "interview")
-              .map((item) => (
+            {CardsArr.filter((item) => item.status === "interview").map(
+              (item) => (
                 <JobCard
-                key={item.card_id}
+                  key={item.card_id}
                   className="border-t-green-500"
                   id_time={item.id_time}
                   card_id={item.card_id}
@@ -123,7 +121,8 @@ const CardsArr = useSelector((state : RootState) => state.Cards.cardDataArr);
                   DeleteCardFunc={deleteJobCard}
                   /*   setDraggedCardId={setDraggedCardTimeId} */
                 />
-              ))}
+              ),
+            )}
           </div>
         </section>
       </main>
