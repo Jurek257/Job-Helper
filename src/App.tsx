@@ -1,5 +1,5 @@
 import "./App.css";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { useState, useEffect } from "react";
 import { supabaseClient } from "./supabase";
 import { Header } from "./react/sections/header";
@@ -14,15 +14,14 @@ import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "./store/store";
 import { useCardActions } from "./hooks/useCardActions";
 
-
 function App() {
   const dispatch = useDispatch();
-const { fetchCards } = useCardActions();
-const CardArr = useSelector((state : RootState) => state.Cards.cardDataArr );
+  const { fetchCards } = useCardActions();
+  const CardArr = useSelector((state: RootState) => state.Cards.cardDataArr);
 
   const [isPopupShowed, setPopupShowed] = useState(false);
-  const [isFormLoading, setFormLoading] = useState<boolean>(false);
-//  const [CardArr, HandleCardDataArr] = useState<CardValue[]>([]);
+  //const [isFormLoading, setFormLoading] = useState<boolean>(false);
+  //  const [CardArr, HandleCardDataArr] = useState<CardValue[]>([]);
 
   const user = useSelector((state: RootState) => state.User.user);
 
@@ -57,7 +56,7 @@ const CardArr = useSelector((state : RootState) => state.Cards.cardDataArr );
     }
   }, [user]);
 
- /*  const fetchCards = async () => {
+  /*  const fetchCards = async () => {
     try {
       const { data, error } = await supabaseClient
         .from("job-helper-cards-database")
@@ -210,7 +209,7 @@ const CardArr = useSelector((state : RootState) => state.Cards.cardDataArr );
         isPopupShowed={isPopupShowed}
         setPopupShowed={setPopupShowed}
         //handleForm={addNewJobCard}
-        isFormLoading={isFormLoading}
+        //isFormLoading={isFormLoading}
       />
     </div>
   ) : (

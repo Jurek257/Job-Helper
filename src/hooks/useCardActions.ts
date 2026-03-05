@@ -16,7 +16,7 @@ export function useCardActions() {
 
   const addNewJobCard = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     try {
-      e.preventDefault();
+      //e.preventDefault();
       //setFormLoading(true);
 
       const formData = new FormData(e.currentTarget);
@@ -177,5 +177,5 @@ export function useCardActions() {
     }
   };
 
-  return { addNewJobCard, deleteJobCard, changeCardstatus ,fetchCards};
+  return { addNewJobCard, deleteJobCard, changeCardstatus, fetchCards };
 }
