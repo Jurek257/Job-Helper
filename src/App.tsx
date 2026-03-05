@@ -52,8 +52,7 @@ function App() {
     <div className="">
       <Toaster />
       <Header setPopupShowed={setPopupShowed} />
-      <Dashboard
-      />
+      <Dashboard />
       <AddAplicationPopup
         isPopupShowed={isPopupShowed}
         setPopupShowed={setPopupShowed}
