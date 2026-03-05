@@ -10,7 +10,7 @@ export function Tabs({ showedColumn, setShowedColumn }: TabsProps) {
     <div className="grid grid-cols-3">
       <div
         onClick={() => setShowedColumn("applied")}
-        className={`flex flex-col sm:flex-row  items-center border border-[var(--border-color)] ${showedColumn === "applied" ? "bg-blue-500/50" : "bg-none"} sm:bg-none justify-between px-6 py-3`}
+        className={`flex flex-col sm:flex-row  items-center border border-[var(--border-color)] ${showedColumn === "applied" ? "bg-blue-500/50" : "bg-transparent"} sm:bg-transparent justify-between px-6 py-3`}
       >
         <div className="flex items-center gap-2">
           <div className="hidden sm:flex w-3 h-3 bg-blue-500 shadow-[0_0_10px_8px_rgba(59,130,246,0.5)] rounded-full"></div>
@@ -24,7 +24,7 @@ export function Tabs({ showedColumn, setShowedColumn }: TabsProps) {
 
       <div
         onClick={() => setShowedColumn("rejected")}
-        className={`flex flex-col sm:flex-row  items-center border border-[var(--border-color)] ${showedColumn === 'rejected' ? "bg-red-500/50" : "bg-none"} sm:bg-none justify-between px-6 py-3`}
+        className={`flex flex-col sm:flex-row  items-center border border-[var(--border-color)] ${showedColumn === "rejected" ? "bg-red-500/50" : "bg-transparent"} sm:bg-transparent justify-between px-6 py-3`}
       >
         <div className="flex items-center gap-2">
           <div className="hidden sm:flex w-3 h-3 bg-red-500 shadow-[0_0_10px_8px_rgba(239,68,68,0.5)] rounded-full"></div>
@@ -38,7 +38,7 @@ export function Tabs({ showedColumn, setShowedColumn }: TabsProps) {
 
       <div
         onClick={() => setShowedColumn("interview")}
-        className={`flex flex-col sm:flex-row  items-center border border-[var(--border-color)] ${showedColumn === 'interview' ? "bg-green-500/50" : "bg-none"} sm:bg-none justify-between px-6 py-3`}
+        className={`flex flex-col sm:flex-row  items-center border border-[var(--border-color)] ${showedColumn === "interview" ? "bg-green-500/50" : "bg-transparent"} sm:bg-transparent justify-between px-6 py-3`}
       >
         <div className="flex items-center gap-2">
           <div className="hidden sm:flex w-3 h-3 bg-green-500 shadow-[0_0_10px_8px_rgba(34,197,94,0.5)] rounded-full"></div>

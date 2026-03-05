@@ -1,6 +1,6 @@
 import { supabaseClient } from "../../supabase";
-import IconLogo from "../../../public/puzzle-jigsaw-svgrepo-com.svg?react";
-import Briefcase from "../../../public/briefcase-svgrepo-com.svg?react";
+import IconLogo from "../../assets/puzzle-jigsaw-svgrepo-com.svg?react";
+import Briefcase from "../../assets/briefcase-svgrepo-com.svg?react";
 import GoogleIcon from "../../assets/google-icon-logo-svgrepo-com.svg?react";
 
 export function SignUpPage() {

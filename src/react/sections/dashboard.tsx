@@ -1,25 +1,19 @@
 import { JobCard } from "../components/card";
 import { Tabs } from "./Tabs";
-import type { CardValue, CardStatus } from "../../types/types";
+import type { CardStatus } from "../../types/types";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store/store";
+import { useCardActions } from "../../hooks/useCardActions";
 
-interface DashboardProps {
-  jobJSdataArr: CardValue[];
-  DeleteCardFunc: (card_id: string) => void;
-  setDraggedCardId: (card_id: string) => void;
-  changeCardstatus: (targetIdCard: string, targetStatus: CardStatus) => void;
-  draggedCardId: string;
-}
+export function Dashboard() {
+  const { deleteJobCard, changeCardstatus } = useCardActions();
+  const CardsArr = useSelector((state: RootState) => state.Cards.cardDataArr);
 
-export function Dashboard({
-  jobJSdataArr,
-  DeleteCardFunc,
-  setDraggedCardId: setDraggedCardTimeId,
-  changeCardstatus,
-  draggedCardId: draggedCardTimeId,
-}: DashboardProps) {
   const [showedColumn, setShowedColumn] = useState<CardStatus>("applied");
-
+  const draggedCardTimeId = useSelector(
+    (state: RootState) => state.draggedIdCard.draggedCardId,
+  );
   return (
     <>
       <Tabs showedColumn={showedColumn} setShowedColumn={setShowedColumn} />
@@ -31,7 +25,7 @@ export function Dashboard({
             console.log("onDragOver");
           }}
           onDrop={() => {
-            changeCardstatus(draggedCardTimeId, "applied");
+            changeCardstatus(draggedCardTimeId!, "applied");
             console.log("onDrop");
           }}
           className={`sm:flex flex-col max-w-full gap-y-2 ${showedColumn === "applied" ? "flex" : "hidden"}`}
@@ -39,19 +33,20 @@ export function Dashboard({
           <div className="flex gap-4"></div>
 
           <div className="grid gap-2">
-            {jobJSdataArr
-              .filter((item) => item.status === "applied")
-              .map((item) => (
+            {CardsArr.filter((item) => item.status === "applied").map(
+              (item) => (
                 <JobCard
+                  key={item.card_id}
+                  className="border-t-blue-500"
                   id_time={item.id_time}
                   card_id={item.card_id}
                   status={item.status}
                   company_name={item.company_name}
                   position={item.position}
-                  DeleteCardFunc={DeleteCardFunc}
-                  setDraggedCardId={setDraggedCardTimeId}
+                  DeleteCardFunc={deleteJobCard}
                 />
-              ))}
+              ),
+            )}
           </div>
         </section>
 
@@ -61,7 +56,7 @@ export function Dashboard({
             console.log("onDragOver");
           }}
           onDrop={() => {
-            changeCardstatus(draggedCardTimeId, "rejected");
+            changeCardstatus(draggedCardTimeId!, "rejected");
             console.log("onDrop");
           }}
           className={`sm:flex flex-col max-w-full gap-y-2 ${showedColumn === "rejected" ? "flex" : "hidden"}`}
@@ -69,19 +64,20 @@ export function Dashboard({
           <div className="flex gap-4"></div>
 
           <div className="grid gap-2">
-            {jobJSdataArr
-              .filter((item) => item.status === "rejected")
-              .map((item) => (
+            {CardsArr.filter((item) => item.status === "rejected").map(
+              (item) => (
                 <JobCard
+                  key={item.card_id}
+                  className="border-t-red-500"
                   id_time={item.id_time}
                   card_id={item.card_id}
                   status={item.status}
                   company_name={item.company_name}
                   position={item.position}
-                  DeleteCardFunc={DeleteCardFunc}
-                  setDraggedCardId={setDraggedCardTimeId}
+                  DeleteCardFunc={deleteJobCard}
                 />
-              ))}
+              ),
+            )}
           </div>
         </section>
 
@@ -91,7 +87,7 @@ export function Dashboard({
             console.log("onDragOver");
           }}
           onDrop={() => {
-            changeCardstatus(draggedCardTimeId, "interview");
+            changeCardstatus(draggedCardTimeId!, "interview");
             console.log("onDrop");
           }}
           className={` sm:flex flex-col max-w-full gap-y-2 ${showedColumn === "interview" ? "flex" : "hidden"}`}
@@ -99,19 +95,20 @@ export function Dashboard({
           <div className="flex gap-4"></div>
 
           <div className="grid gap-2">
-            {jobJSdataArr
-              .filter((item) => item.status === "interview")
-              .map((item) => (
+            {CardsArr.filter((item) => item.status === "interview").map(
+              (item) => (
                 <JobCard
+                  key={item.card_id}
+                  className="border-t-green-500"
                   id_time={item.id_time}
                   card_id={item.card_id}
                   status={item.status}
                   company_name={item.company_name}
                   position={item.position}
-                  DeleteCardFunc={DeleteCardFunc}
-                  setDraggedCardId={setDraggedCardTimeId}
+                  DeleteCardFunc={deleteJobCard}
                 />
-              ))}
+              ),
+            )}
           </div>
         </section>
       </main>
