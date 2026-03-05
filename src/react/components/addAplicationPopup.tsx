@@ -1,17 +1,22 @@
 import { LoadingButton } from "./loading";
+import { useCardActions } from "../../hooks/useCardActions";
+
 interface PopupProps {
   isPopupShowed: boolean;
   setPopupShowed: (state: boolean) => void;
-  handleForm: (e: React.SyntheticEvent<HTMLFormElement>) => void;
+  //handleForm: (e: React.SyntheticEvent<HTMLFormElement>) => void;
   isFormLoading: boolean;
 }
 
 export function AddAplicationPopup({
   isPopupShowed,
   setPopupShowed,
-  handleForm,
+  //handleForm,
   isFormLoading,
 }: PopupProps) {
+
+const {addNewJobCard} = useCardActions();
+
   if (isPopupShowed)
     return (
       <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-2">
@@ -24,7 +29,7 @@ export function AddAplicationPopup({
           </div>
 
           <form
-            onSubmit={handleForm}
+            onSubmit={addNewJobCard}
             className="w-full h-full flex flex-col justify-between"
             action=""
           >

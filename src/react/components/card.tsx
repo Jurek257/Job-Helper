@@ -1,5 +1,7 @@
 import type { CardValue, CardProps } from "../../types/types";
-import { CardDropDownButton } from "./CardDropDownButton";
+//import { CardDropDownButton } from "./CardDropDownButton";
+import { useDispatch } from "react-redux";
+import { setDraggedCardId } from "../../store/draggedCardIdSlice";
 
 export function JobCard({
   id_time,
@@ -9,15 +11,19 @@ export function JobCard({
   //email : string,
   className,
   DeleteCardFunc,
-  setDraggedCardId,
 }: CardValue & CardProps) {
+  const dispatch = useDispatch();
+
+  const handleDraggedCardId = () => {
+    dispatch(setDraggedCardId(card_id));
+  };
   const id_timeDateObject = new Date(id_time);
   DeleteCardFunc;
   return (
     <div
       draggable={true}
       onDragStart={() => {
-        setDraggedCardId(card_id);
+        handleDraggedCardId();
         console.log("onDragStart");
       }}
       onDragOver={(e) => {
@@ -36,7 +42,7 @@ export function JobCard({
         </div>
       </div>
 
-      <CardDropDownButton />
+      {/*  <CardDropDownButton /> */}
       {/*  <button
         onClick={() => DeleteCardFunc(card_id)}
         className="mt-auto w-full py-2 border-t-2 cursor-pointer duration-300 hover:bg-red-800  border-gray-200"

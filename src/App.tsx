@@ -6,28 +6,27 @@ import { Header } from "./react/sections/header";
 import { Dashboard } from "./react/sections/dashboard";
 import { AddAplicationPopup } from "./react/components/addAplicationPopup";
 import { SignUpPage } from "./react/pages/SignUpPage";
-import type { User } from "@supabase/supabase-js";
+//import type { User } from "@supabase/supabase-js";
 import type { CardValue, CardStatus as CardStatus } from "./types/types";
 
+import { setUser } from "./store/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "./store/store";
+
 function App() {
+  const dispatch = useDispatch();
+
   const [isPopupShowed, setPopupShowed] = useState(false);
   const [isFormLoading, setFormLoading] = useState<boolean>(false);
   const [CardDataArr, HandleCardDataArr] = useState<CardValue[]>([]);
 
-  const [draggedCardId, setDraggedCardId] = useState<string>();
+  const user = useSelector((state: RootState) => state.User.user);
 
-  const [user, setUser] = useState<User>();
+  //const [user, setUser] = useState<User>();
 
   // ===================================
   //Loging
   // ===================================
-  useEffect(() => {
-    CardDataArr.find((item) =>
-      item.card_id === draggedCardId ? console.log(item.status) : undefined,
-    );
-
-    console.log(`draggedCardTimeId :${draggedCardId}`);
-  }, [draggedCardId]);
 
   useEffect(() => {
     console.log("date array of cards in app :", CardDataArr);
@@ -37,17 +36,19 @@ function App() {
   useEffect(() => {
     supabaseClient.auth.onAuthStateChange((_event, session) => {
       if (session) {
-        setUser(session.user);
+        dispatch(setUser(session.user));
+        //setUser(session.user);
         console.log(`user ${session.user.email} was logged in`);
       } else {
-        setUser(undefined);
+        console.error("user is not defined");
       }
     });
   }, []);
 
   useEffect(() => {
-    if (!user) return;
-    fetchCards();
+    if (user.id) 
+    {fetchCards();}
+else { console.error(" user id not defined")}
   }, [user]);
 
   const fetchCards = async () => {
@@ -55,7 +56,7 @@ function App() {
       const { data, error } = await supabaseClient
         .from("job-helper-cards-database")
         .select("*")
-        .eq("user_id", user?.id);
+        .eq("user_id", user.id);
 
       if (error) {
         toast(error.message);
@@ -84,8 +85,8 @@ function App() {
       );
     }
   };
-
-  const AddNewJobCard = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+/* 
+  const addNewJobCard = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
       setFormLoading(true);
@@ -127,9 +128,9 @@ function App() {
           : "Error during insert card to database : App.tsx AddNewJobCard()",
       );
     }
-  };
-
-  const DeleteJobCard = async (card_id: string) => {
+  }; */
+/* 
+  const deleteJobCard = async (card_id: string) => {
     try {
       await supabaseClient
         .from("job-helper-cards-database")
@@ -152,7 +153,7 @@ function App() {
       );
     }
   };
-
+ *//* 
   const changeCardstatus = async (
     targetCardId: string,
     targetStatus: CardStatus,
@@ -188,22 +189,20 @@ function App() {
       );
     }
   };
-
-  return user ? (
+ */
+  return user.id ? (
     <div className="">
       <Toaster />
       <Header setPopupShowed={setPopupShowed} />
       <Dashboard
-        jobJSdataArr={CardDataArr}
-        DeleteCardFunc={DeleteJobCard}
-        setDraggedCardId={setDraggedCardId}
-        changeCardstatus={changeCardstatus}
-        draggedCardId={draggedCardId!}
+        //CardsArr={CardDataArr}
+       // deleteJobCard={deleteJobCard}
+        //changeCardstatus={changeCardstatus}
       />
       <AddAplicationPopup
         isPopupShowed={isPopupShowed}
         setPopupShowed={setPopupShowed}
-        handleForm={AddNewJobCard}
+        //handleForm={addNewJobCard}
         isFormLoading={isFormLoading}
       />
     </div>

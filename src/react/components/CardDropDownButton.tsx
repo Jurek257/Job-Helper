@@ -6,7 +6,9 @@ interface CardDropDownButtonProps {
   changeCardstatus: (targetCardId: string, targetStatus: CardStatus) => void;
 }
 
-export function CardDropDownButton( {changeCardstatus} : CardDropDownButtonProps) {
+export function CardDropDownButton({
+  changeCardstatus,
+}: CardDropDownButtonProps) {
   return (
     <div className="flex flex-col relative ">
       <Menu>
@@ -22,23 +24,20 @@ export function CardDropDownButton( {changeCardstatus} : CardDropDownButtonProps
           <MenuItem>
             <button
               className="flex justify-center items-center data-focus:bg-[radial-gradient(circle_at_center,_#3b82f6,_transparent)]  h-full text-center "
+              /* onClick={changeCardstatus} */
             >
               <div className="flex w-2 h-2 bg-blue-500 mr-2 shadow-[0_0_10px_8px_rgba(59,130,246,0.5)] rounded-full"></div>
               Applied
             </button>
           </MenuItem>
           <MenuItem>
-            <button
-              className="flex justify-center items-center data-focus:bg-[radial-gradient(circle_at_center,_#ef4444,_transparent)] h-full text-center "
-            >
+            <button className="flex justify-center items-center data-focus:bg-[radial-gradient(circle_at_center,_#ef4444,_transparent)] h-full text-center ">
               <div className="flex w-2 h-2 bg-red-500 mr-2 shadow-[0_0_10px_8px_rgba(239,68,68,0.5)] rounded-full"></div>
               Rejected
             </button>
           </MenuItem>
           <MenuItem>
-            <button
-              className="flex justify-center items-center data-focus:bg-[radial-gradient(circle_at_center,_#22c55e,_transparent)] h-full text-center "
-            >
+            <button className="flex justify-center items-center data-focus:bg-[radial-gradient(circle_at_center,_#22c55e,_transparent)] h-full text-center ">
               <div className="flex w-2 h-2 bg-green-500 mr-2 shadow-[0_0_10px_8px_rgba(34,197,94,0.5)] rounded-full"></div>
               Interview
             </button>
