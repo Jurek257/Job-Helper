@@ -1,4 +1,5 @@
 import IconLogo from "../../assets/puzzle-jigsaw-svgrepo-com.svg?react";
+import UserAvatar from "../../assets/avatar-girl-svgrepo-com.svg?react";
 
 export function Header({
   setPopupShowed,
@@ -21,9 +22,7 @@ export function Header({
           + <span className="hidden sm:inline ">Add new Aplication</span>
         </button>
 
-        <img
-          src="src/assets/avatar-girl-svgrepo-com.svg"
-          alt="user account avatar image"
+        <UserAvatar
           className="hidden sm:inline"
         />
       </div>
