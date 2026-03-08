@@ -1,22 +1,21 @@
 import "./App.css";
 import { Toaster } from "react-hot-toast";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { supabaseClient } from "./supabase";
-import { Header } from "./react/sections/header";
-import { Dashboard } from "./react/sections/dashboard";
-import { AddAplicationPopup } from "./react/components/addAplicationPopup";
-import { SignUpPage } from "./react/pages/SignUpPage";
 
 import { setUser } from "./store/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "./store/store";
 import { useCardActions } from "./hooks/useCardActions";
 
+import { Routes, Route, Navigate } from "react-router-dom";
+import { Canban } from "./react/pages/Canban";
+import { SignUpPage } from "./react/pages/SignUpPage";
+
 function App() {
   const dispatch = useDispatch();
   const { fetchCards } = useCardActions();
   const CardArr = useSelector((state: RootState) => state.Cards.cardDataArr);
-  const [isPopupShowed, setPopupShowed] = useState(false);
   const user = useSelector((state: RootState) => state.User.user);
 
   // ===================================
@@ -32,7 +31,6 @@ function App() {
     supabaseClient.auth.onAuthStateChange((_event, session) => {
       if (session) {
         dispatch(setUser(session.user));
-        //setUser(session.user);
         console.log(`user ${session.user.email} was logged in`);
       } else {
         console.error("user is not defined");
@@ -48,18 +46,20 @@ function App() {
     }
   }, [user]);
 
-  return user.id ? (
+  return (
     <div className="">
       <Toaster />
-      <Header setPopupShowed={setPopupShowed} />
-      <Dashboard />
-      <AddAplicationPopup
-        isPopupShowed={isPopupShowed}
-        setPopupShowed={setPopupShowed}
-      />
+      <Routes>
+        <Route
+          path="/login"
+          element={user.id ? <Navigate to="/" /> : <SignUpPage />}
+        />
+        <Route
+          path="/"
+          element={user.id ? <Canban /> : <Navigate to="/login" />}
+        />
+      </Routes>
     </div>
-  ) : (
-    <SignUpPage />
   );
 }
 export default App;
