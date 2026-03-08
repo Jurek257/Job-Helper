@@ -22,9 +22,7 @@ export function Header({
           + <span className="hidden sm:inline ">Add new Aplication</span>
         </button>
 
-        <UserAvatar
-          className="hidden sm:inline"
-        />
+        <UserAvatar className="hidden sm:inline" />
       </div>
     </header>
   );

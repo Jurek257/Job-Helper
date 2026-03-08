@@ -11,13 +11,10 @@ import {
 
 export function useCardActions() {
   const dispatch = useDispatch();
-  //const CardsArr = useSelector((state: RootState) => state.Cards.cardDataArr);
   const user = useSelector((state: RootState) => state.User.user);
 
   const addNewJobCard = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     try {
-      //e.preventDefault();
-      //setFormLoading(true);
 
       const formData = new FormData(e.currentTarget);
       const formJSObject = Object.fromEntries(formData);
@@ -43,9 +40,7 @@ export function useCardActions() {
       console.log("data return", data);
 
       dispatch(addCard(data));
-      // HandleCardDataArr((prev) => [...prev, data as CardValue]);
-      /*       setFormLoading(false);
-      setPopupShowed(false); */
+
     } catch (error) {
       /*  toast(
         error instanceof Error
@@ -69,9 +64,6 @@ export function useCardActions() {
 
       dispatch(deleteCard(card_id));
 
-      /*  HandleCardDataArr((prev) =>
-        prev.filter((item) => item.card_id !== card_id),
-      ); */
     } catch (error) {
       /*  toast(
         error instanceof Error
@@ -105,13 +97,7 @@ export function useCardActions() {
       dispatch(
         updateJobStatus({ card_id: targetCardId, status: targetStatus }),
       );
-      /*       HandleCardDataArr((prev) =>
-        prev.map((item) =>
-          item.card_id === targetCardId
-            ? { ...item, status: targetStatus }
-            : item,
-        ),
-      ); */
+
       return { success: true };
     } catch (error) {
       /*  toast(
@@ -150,19 +136,10 @@ export function useCardActions() {
         setCards(
           data.map((item) => ({
             ...item,
-            //id_time: item.id_time,
-            //card_id: item.card_id,
           })) as CardValue[],
         ),
       );
 
-      /*  HandleCardDataArr(
-        data.map((item) => ({
-          ...item,
-          id_time: new Date(item.id_time),
-          card_id: item.card_id,
-        })) as CardValue[],
-      ); */
     } catch (error) {
       /*       toast(
         error instanceof Error
