@@ -11,6 +11,7 @@ import { useCardActions } from "./hooks/useCardActions";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Canban } from "./react/pages/Canban";
 import { SignUpPage } from "./react/pages/SignUpPage";
+import { Profile } from "./react/pages/Profile";
 
 function App() {
   const dispatch = useDispatch();
@@ -58,6 +59,7 @@ function App() {
           path="/"
           element={user.id ? <Canban /> : <Navigate to="/login" />}
         />
+        <Route path="/profile" element={user.id ? <Profile /> : <Navigate to="/login" />} />
       </Routes>
     </div>
   );

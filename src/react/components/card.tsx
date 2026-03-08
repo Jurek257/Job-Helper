@@ -30,7 +30,7 @@ export function JobCard({
         e.preventDefault();
         console.log("Card DragOver");
       }}
-      className={`flex justify-between max-w-full mx-[5%] pt-3 min-h-35 bg-[var(--surface-color)] rounded-2xl border-t-3 border-t-blue-500   border border-[var(--border-color)] ${className || ""}`}
+      className={`flex justify-between max-w-full mx-[5%] pt-3 min-h-35 bg-[var(--surface-color)] py-3 rounded-2xl border-t-3 border-t-blue-500   border border-[var(--border-color)] ${className || ""}`}
     >
       <div className="flex flex-col">
         <div className="flex flex-col pl-3">
