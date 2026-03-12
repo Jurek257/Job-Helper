@@ -29,7 +29,7 @@ function App() {
   // ===================================
 
   useEffect(() => {
-    supabaseClient.auth.onAuthStateChange((_event, session) => {
+    supabaseClient.auth.onAuthStateChange((event, session) => {
       if (session) {
         dispatch(setUser(session.user));
         console.log(`user ${session.user.email} was logged in`);
@@ -59,7 +59,10 @@ function App() {
           path="/"
           element={user.id ? <Canban /> : <Navigate to="/login" />}
         />
-        <Route path="/profile" element={user.id ? <Profile /> : <Navigate to="/login" />} />
+        <Route
+          path="/profile"
+          element={user.id ? <Profile /> : <Navigate to="/login" />}
+        />
       </Routes>
     </div>
   );
