@@ -13,9 +13,9 @@ import { Button } from "@/components/ui/button";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export function Header({
-  setPopupShowed,
+  setPopupShowed = () => {},
 }: {
-  setPopupShowed: (state: boolean) => void;
+  setPopupShowed?: (state: boolean) => void;
 }) {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
