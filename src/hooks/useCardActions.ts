@@ -15,7 +15,6 @@ export function useCardActions() {
 
   const addNewJobCard = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     try {
-
       const formData = new FormData(e.currentTarget);
       const formJSObject = Object.fromEntries(formData);
       const status: CardStatus = "applied"; //temporary default value
@@ -40,7 +39,6 @@ export function useCardActions() {
       console.log("data return", data);
 
       dispatch(addCard(data));
-
     } catch (error) {
       /*  toast(
         error instanceof Error
@@ -63,7 +61,6 @@ export function useCardActions() {
         .eq("card_id", card_id);
 
       dispatch(deleteCard(card_id));
-
     } catch (error) {
       /*  toast(
         error instanceof Error
@@ -139,7 +136,6 @@ export function useCardActions() {
           })) as CardValue[],
         ),
       );
-
     } catch (error) {
       /*       toast(
         error instanceof Error

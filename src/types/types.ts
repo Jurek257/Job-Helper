@@ -14,3 +14,16 @@ export interface CardProps {
 }
 
 export type CardStatus = "applied" | "rejected" | "interview";
+
+export interface ProfileFormProps {
+  name: string;
+  occupation: string;
+  resumeStorageURL: string;
+}
+
+export interface jobFormProps {
+  companyName: string;
+  position: string;
+  PostURL: string;
+  jobDescription: string;
+}
