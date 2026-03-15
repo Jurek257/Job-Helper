@@ -29,7 +29,7 @@ function App() {
   // ===================================
 
   useEffect(() => {
-    supabaseClient.auth.onAuthStateChange((event, session) => {
+    supabaseClient.auth.onAuthStateChange((_event, session) => {
       if (session) {
         dispatch(setUser(session.user));
         console.log(`user ${session.user.email} was logged in`);
