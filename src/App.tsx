@@ -12,10 +12,11 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { Canban } from "./react/pages/Canban";
 import { SignUpPage } from "./react/pages/SignUpPage";
 import { Profile } from "./react/pages/Profile";
+import { ApplicateJobPage } from "./react/pages/ApplicateJob";
 
 function App() {
   const dispatch = useDispatch();
-  const { fetchCards } = useCardActions();
+  const { fetchCards , useError} = useCardActions();
   const CardArr = useSelector((state: RootState) => state.Cards.cardDataArr);
   const user = useSelector((state: RootState) => state.User.user);
 
@@ -62,6 +63,10 @@ function App() {
         <Route
           path="/profile"
           element={user.id ? <Profile /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/add-job"
+          element={user.id ? <ApplicateJobPage /> : <Navigate to="/login" />}
         />
       </Routes>
     </div>
