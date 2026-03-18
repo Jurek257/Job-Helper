@@ -16,7 +16,7 @@ import { ApplicateJobPage } from "./react/pages/ApplicateJob";
 
 function App() {
   const dispatch = useDispatch();
-  const { fetchCards , useError} = useCardActions();
+  const { fetchCards } = useCardActions();
   const CardArr = useSelector((state: RootState) => state.Cards.cardDataArr);
   const user = useSelector((state: RootState) => state.User.user);
 

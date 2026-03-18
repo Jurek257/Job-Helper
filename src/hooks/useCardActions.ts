@@ -11,12 +11,10 @@ import {
 } from "../store/jobsCardArraySlice";
 import { useState } from "react";
 
-
 export function useCardActions() {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.User.user);
-const [useError , setUseError] = useState<string | null>(null); 
-
+  const [useError, setUseError] = useState<string | null>(null);
 
   const addNewJobCard = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     try {
@@ -36,12 +34,13 @@ const [useError , setUseError] = useState<string | null>(null);
         .single();
 
       if (error) {
-      throw Error(error.message);
+        throw Error(error.message);
       }
 
       dispatch(addCard(data));
     } catch (error) {
-const errorMessage = error instanceof Error ? error.message : "addNewJobCard func error"
+      const errorMessage =
+        error instanceof Error ? error.message : "addNewJobCard func error";
       setUseError(errorMessage);
       console.error(errorMessage);
     }
@@ -49,7 +48,7 @@ const errorMessage = error instanceof Error ? error.message : "addNewJobCard fun
 
   const deleteJobCard = async (card_id: string) => {
     try {
-     const {error : backendError} = await supabaseClient
+      const { error: backendError } = await supabaseClient
         .from("job-helper-cards-database")
         .delete()
         .eq("card_id", card_id);
@@ -58,7 +57,8 @@ const errorMessage = error instanceof Error ? error.message : "addNewJobCard fun
 
       dispatch(deleteCard(card_id));
     } catch (error) {
-const errorMessage = error instanceof Error ? error.message : "deleteJobCard func error"
+      const errorMessage =
+        error instanceof Error ? error.message : "deleteJobCard func error";
       setUseError(errorMessage);
       console.error(errorMessage);
     }
@@ -68,21 +68,23 @@ const errorMessage = error instanceof Error ? error.message : "deleteJobCard fun
     targetCardId: string,
     targetStatus: CardStatus,
   ) => {
-   try {
-      if (!targetCardId) {throw new Error("targer card id not defined")};
+    try {
+      if (!targetCardId) {
+        throw new Error("targer card id not defined");
+      }
 
-     const {error : backendError} = await supabaseClient
+      const { error: backendError } = await supabaseClient
         .from("job-helper-cards-database")
         .update({ status: targetStatus })
         .eq("card_id", targetCardId);
 
-if (backendError) throw new Error(backendError.message);
+      if (backendError) throw new Error(backendError.message);
       dispatch(
         updateJobStatus({ card_id: targetCardId, status: targetStatus }),
       );
     } catch (error) {
-      
-        const errorMessage = error instanceof Error ? error.message : "changeCardstatus func error"
+      const errorMessage =
+        error instanceof Error ? error.message : "changeCardstatus func error";
       setUseError(errorMessage);
       console.error(errorMessage);
     }
@@ -110,11 +112,18 @@ if (backendError) throw new Error(backendError.message);
         ),
       );
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : "fetchCards func error"
+      const errorMessage =
+        error instanceof Error ? error.message : "fetchCards func error";
       setUseError(errorMessage);
       console.error(errorMessage);
     }
   };
 
-  return { addNewJobCard, deleteJobCard, changeCardstatus, fetchCards , useError };
+  return {
+    addNewJobCard,
+    deleteJobCard,
+    changeCardstatus,
+    fetchCards,
+    useError,
+  };
 }

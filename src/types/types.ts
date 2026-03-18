@@ -27,3 +27,10 @@ export interface jobFormProps {
   PostURL: string;
   jobDescription: string;
 }
+
+export interface GenerateCoverLetterParams {
+  resumeURL: string;
+  jobTitle: string;
+  companyName: string;
+  jobDescription: string;
+}
