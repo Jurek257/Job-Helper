@@ -3,6 +3,8 @@ import { useCardActions } from "../../hooks/useCardActions";
 import { LoadingButton } from "../components/loading";
 import { useState } from "react";
 import type { GenerateCoverLetterParams } from "@/types/types";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/store/store";
 
 interface Props {
   setCoverLetterData: (data: GenerateCoverLetterParams) => void;
@@ -11,23 +13,35 @@ interface Props {
 export function AddJobFormStep1({ setCoverLetterData }: Props) {
   const navigate = useNavigate();
   const { addNewJobCard } = useCardActions();
+  const URL = useSelector((state: RootState) => state.User.resumeURL);
+
   const [isFormLoading, setFormLoading] = useState<boolean>(false);
 
-  const extractFormData = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+  const extractFormData = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    const data = {
-      companyName: formData.get("company_name"),
-      jobTitle: formData.get("position"),
-      jobDescription: formData.get("job_description"),
+    return {
+      companyName: formData.get("company_name") as string,
+      jobTitle: formData.get("position") as string,
+      jobDescription: formData.get("job_description") as string,
     };
   };
 
-const = 
-  //setCoverLetterData(data);
-  
-      /* const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = extractFormData(e);
+    const resumeUrl = URL;
+    console.log(resumeUrl);
+
+    if (!resumeUrl) throw new Error("resumeUrl is null");
+    console.log({ ...formData, resumeURL: resumeUrl });
+
+    setCoverLetterData({ ...formData, resumeURL: resumeUrl });
+  };
+
+  /* const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
       e.preventDefault();
       setFormLoading(true);
   

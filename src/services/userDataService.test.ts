@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll } from "vitest";
+import { describe, it, expect } from "vitest";
 import { supabaseAdmin } from "@/supabaseAdmin";
 import { fetchResumeURLifExists } from "./userDataService";
 
@@ -30,7 +30,9 @@ describe("fetchResumeURL", () => {
   });
 
   it("must return null if user id is not exists", async () => {
-    const result = await fetchResumeURLifExists("00000000-0000-0000-0000-000000000000");
+    const result = await fetchResumeURLifExists(
+      "00000000-0000-0000-0000-000000000000",
+    );
 
     expect(result).toBeNull();
   });

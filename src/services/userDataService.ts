@@ -16,5 +16,6 @@ export const fetchResumeURLifExists = async (user_id: string) => {
     console.warn("user not found");
     return null;
   }
+  console.log(data.resume_url);
   return data.resume_url;
 };

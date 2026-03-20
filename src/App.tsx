@@ -3,7 +3,8 @@ import { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
 import { supabaseClient } from "./supabase";
 
-import { setResumeURL, setUser } from "./store/userSlice";
+import { fetchResumeURLifExists } from "./services/userDataService";
+import { setUser, setResumeURL } from "./store/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "./store/store";
 import { useCardActions } from "./hooks/useCardActions";
@@ -19,6 +20,15 @@ function App() {
   const { fetchCards } = useCardActions();
   //const CardArr = useSelector((state: RootState) => state.Cards.cardDataArr);
   const user = useSelector((state: RootState) => state.User.user);
+  const resumeUrl = useSelector((state: RootState) => state.User.resumeURL);
+
+  const loadResumeUrl = async () => {
+    const url = await fetchResumeURLifExists(user.id);
+    dispatch(setResumeURL(url));
+    console.log("resume url redux", resumeUrl);
+  };
+
+useEffect([resumeUrl])
 
   useEffect(() => {
     supabaseClient.auth.onAuthStateChange((_event, session) => {
@@ -34,6 +44,7 @@ function App() {
   useEffect(() => {
     if (user.id) {
       fetchCards();
+      loadResumeUrl();
     } else {
       console.error(" user id not defined");
     }
