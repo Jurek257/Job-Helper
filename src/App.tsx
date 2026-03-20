@@ -3,7 +3,7 @@ import { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
 import { supabaseClient } from "./supabase";
 
-import { setUser } from "./store/userSlice";
+import { setResumeURL, setUser } from "./store/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "./store/store";
 import { useCardActions } from "./hooks/useCardActions";
@@ -17,17 +17,8 @@ import { ApplicateJobPage } from "./react/pages/ApplicateJob";
 function App() {
   const dispatch = useDispatch();
   const { fetchCards } = useCardActions();
-  const CardArr = useSelector((state: RootState) => state.Cards.cardDataArr);
+  //const CardArr = useSelector((state: RootState) => state.Cards.cardDataArr);
   const user = useSelector((state: RootState) => state.User.user);
-
-  // ===================================
-  //  Loging
-  // ===================================
-
-  useEffect(() => {
-    console.log("date array of cards in app :", CardArr);
-  }, [CardArr]);
-  // ===================================
 
   useEffect(() => {
     supabaseClient.auth.onAuthStateChange((_event, session) => {
