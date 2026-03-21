@@ -13,7 +13,12 @@ export const generateCoverLetter = async (
   }
   const { data, error } = await supabaseClient.functions.invoke(
     "generate-cover-letter",
-    { body: params },
+    {
+      body: params,
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_SERVICE_ROLE_KEY}`,
+      },
+    },
   );
 
   if (error) throw error;

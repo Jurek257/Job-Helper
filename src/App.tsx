@@ -20,7 +20,7 @@ function App() {
   const { fetchCards } = useCardActions();
   //const CardArr = useSelector((state: RootState) => state.Cards.cardDataArr);
   const user = useSelector((state: RootState) => state.User.user);
-  const resumeUrl = useSelector((state: RootState) => state.User.resumeURL);
+  //const resumeUrl = useSelector((state: RootState) => state.User.resumeURL);
 
   const loadResumeUrl = async () => {
     const url = await fetchResumeURLifExists(user.id);

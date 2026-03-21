@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { generateCoverLetter } from "@/services/generateCoverLetter";
 import type { GenerateCoverLetterParams } from "@/types/types";
+//import { useCardActions } from "@/hooks/useCardActions";
 
 interface Props {
   data: GenerateCoverLetterParams;
@@ -13,6 +14,7 @@ export function GetInfoFromAiStep2({ data }: Props) {
   const [isAnswerLoading, setIsAnswerLoading] = useState<boolean>(false);
   //const [isAnswerGenerated, setIsAnswerGenerated] = useState(false);
   const [coverLetter, setCoverLetter] = useState<string>("");
+  //const { addNewJobCard } = useCardActions();
 
   const { resumeURL, jobTitle, companyName, jobDescription } = data;
 
@@ -20,13 +22,13 @@ export function GetInfoFromAiStep2({ data }: Props) {
     e.preventDefault();
     setIsAnswerLoading(true);
     try {
-
-  console.log('Sending params:', { // ✅ Посмотри что именно отправляешь
-    resumeURL,
-    jobTitle,
-    companyName,
-    jobDescription
-  });
+      console.log("Sending params:", {
+        // ✅ Посмотри что именно отправляешь
+        resumeURL,
+        jobTitle,
+        companyName,
+        jobDescription,
+      });
       const letter = await generateCoverLetter({
         resumeURL: resumeURL,
         jobTitle: jobTitle,
@@ -42,7 +44,22 @@ export function GetInfoFromAiStep2({ data }: Props) {
       setIsAnswerLoading(false);
     }
   };
+  /* 
+const handleAddNewJobCard = (e: React.SyntheticEvent<HTMLFormElement>) => {
 
+} */
+  /* const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      setFormLoading(true);
+  
+      try {
+        await addNewJobCard(e);
+        navigate("/");
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setFormLoading(false);
+      } */
   return (
     <div className="w-full sm:w-[800px] h-auto bg-[var(--surface-color)]  border border-[var(--border-color)] border-t-3 border-t-blue-500 rounded-2xl drop-shadow-x1 z-5">
       <div className="bg-blue-500/20 px-5 py-5 rounded-t-2xl border-b-3 border-b-[var(--border-color)]">
@@ -69,7 +86,7 @@ export function GetInfoFromAiStep2({ data }: Props) {
           ></textarea>
         </label>
         {coverLetter && (
-          <div className="flex flex-col px-5 py-2 w-full">
+          <div className="flex flex-col h-auto px-5 py-2 w-full">
             <textarea
               name="ai_answer"
               id=""
@@ -77,7 +94,8 @@ export function GetInfoFromAiStep2({ data }: Props) {
               onChange={(e) => {
                 setCoverLetter(e.target.value);
               }}
-              className="border focus:outline-none rounded-md border-white/20 pl-3 h-22"
+              rows={15}
+              className="border focus:outline-none rounded-md border-white/20 pl-3"
             ></textarea>
           </div>
         )}

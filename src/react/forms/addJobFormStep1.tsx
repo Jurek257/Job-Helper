@@ -5,6 +5,7 @@ import { useState } from "react";
 import type { GenerateCoverLetterParams } from "@/types/types";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store/store";
+import toast from "react-hot-toast";
 
 interface Props {
   setCoverLetterData: (data: GenerateCoverLetterParams) => void;
@@ -18,8 +19,6 @@ export function AddJobFormStep1({ setCoverLetterData }: Props) {
   const [isFormLoading, setFormLoading] = useState<boolean>(false);
 
   const extractFormData = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
     const formData = new FormData(e.currentTarget);
     return {
       companyName: formData.get("company_name") as string,
@@ -39,21 +38,23 @@ export function AddJobFormStep1({ setCoverLetterData }: Props) {
     if (!resumeUrl) throw new Error("resumeUrl is null");
 
     setCoverLetterData({ ...formData, resumeURL: resumeUrl });
+    await addCard(e);
     navigate("/add-job?step=2");
   };
 
-  /* const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      setFormLoading(true);
-  
-      try {
-        await addNewJobCard(e);
-        navigate("/");
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setFormLoading(false);
-      } */
+  const addCard = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+    setFormLoading(true);
+
+    try {
+      await addNewJobCard(e);
+      toast.success("New application card added");
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setFormLoading(false);
+    }
+  };
   return (
     <div className="w-full sm:w-[800px] h-auto bg-[var(--surface-color)]  border border-[var(--border-color)] border-t-3 border-t-blue-500 rounded-2xl drop-shadow-x1 z-5">
       <div className="bg-blue-500/20 px-5 py-5 rounded-t-2xl border-b-3 border-b-[var(--border-color)]">
