@@ -4,6 +4,13 @@ import type { GenerateCoverLetterParams } from "@/types/types";
 export const generateCoverLetter = async (
   params: GenerateCoverLetterParams,
 ) => {
+  const {
+    data: { session },
+  } = await supabaseClient.auth.getSession();
+
+  if (!session) {
+    throw new Error("User not authenticated");
+  }
   const { data, error } = await supabaseClient.functions.invoke(
     "generate-cover-letter",
     { body: params },

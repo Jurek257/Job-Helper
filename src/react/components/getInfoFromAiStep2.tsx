@@ -2,22 +2,45 @@ import { LoadingButton } from "./loading";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { generateCoverLetter } from "@/services/generateCoverLetter";
+import type { GenerateCoverLetterParams } from "@/types/types";
 
-export function GetInfoFromAiStep2() {
+interface Props {
+  data: GenerateCoverLetterParams;
+}
+
+export function GetInfoFromAiStep2({ data }: Props) {
   const navigate = useNavigate();
   const [isAnswerLoading, setIsAnswerLoading] = useState<boolean>(false);
-  const [isAnswerGenerated, setIsAnswerGenerated] = useState(false);
+  //const [isAnswerGenerated, setIsAnswerGenerated] = useState(false);
+  const [coverLetter, setCoverLetter] = useState<string>("");
 
-  const handleGenerateCoverLetter = async () => {
+  const { resumeURL, jobTitle, companyName, jobDescription } = data;
+
+  const handleGenerateCoverLetter = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
     setIsAnswerLoading(true);
     try {
+
+  console.log('Sending params:', { // ✅ Посмотри что именно отправляешь
+    resumeURL,
+    jobTitle,
+    companyName,
+    jobDescription
+  });
       const letter = await generateCoverLetter({
-        resumeURL: "fdfd",
-        jobTitle: {},
-        companyName: {},
-        jobDescription: {},
+        resumeURL: resumeURL,
+        jobTitle: jobTitle,
+        companyName: companyName,
+        jobDescription: jobDescription,
       });
-    } catch (error) {}
+
+      setCoverLetter(letter);
+      //setIsAnswerGenerated(true);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsAnswerLoading(false);
+    }
   };
 
   return (
@@ -33,7 +56,7 @@ export function GetInfoFromAiStep2() {
       </div>
 
       <form
-        /* onSubmit={handleSubmit} */
+        onSubmit={handleGenerateCoverLetter}
         className="w-full h-full flex flex-col justify-between"
         action=""
       >
@@ -45,11 +68,15 @@ export function GetInfoFromAiStep2() {
             className="border focus:outline-none rounded-md border-white/20 pl-3 h-22"
           ></textarea>
         </label>
-        {isAnswerGenerated && (
+        {coverLetter && (
           <div className="flex flex-col px-5 py-2 w-full">
             <textarea
               name="ai_answer"
               id=""
+              value={coverLetter}
+              onChange={(e) => {
+                setCoverLetter(e.target.value);
+              }}
               className="border focus:outline-none rounded-md border-white/20 pl-3 h-22"
             ></textarea>
           </div>

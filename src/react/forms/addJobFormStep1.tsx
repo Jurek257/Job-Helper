@@ -35,10 +35,11 @@ export function AddJobFormStep1({ setCoverLetterData }: Props) {
     const resumeUrl = URL;
     console.log(resumeUrl);
 
+    //TODO make a popup window to say user that for generating cover letter he need to upload his resume
     if (!resumeUrl) throw new Error("resumeUrl is null");
-    console.log({ ...formData, resumeURL: resumeUrl });
 
     setCoverLetterData({ ...formData, resumeURL: resumeUrl });
+    navigate("/add-job?step=2");
   };
 
   /* const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
@@ -113,13 +114,6 @@ export function AddJobFormStep1({ setCoverLetterData }: Props) {
             <LoadingButton />
           ) : (
             <>
-              <button
-                type="button"
-                onClick={() => navigate("/add-job?step=2")}
-                className="bg-[var(--surface-color)] border border-[var(--border-color)] cursor-pointer text-white px-6 py-2 rounded-lg"
-              >
-                to step 2
-              </button>
               <button
                 type="button"
                 onClick={() => navigate("/")}

@@ -25,11 +25,11 @@ function App() {
   const loadResumeUrl = async () => {
     const url = await fetchResumeURLifExists(user.id);
     dispatch(setResumeURL(url));
-    console.log("resume url redux", resumeUrl);
   };
-
-useEffect([resumeUrl])
-
+  /*   useEffect(() => {
+    console.log("resumeURL updated:", resumeUrl);
+  }, [resumeUrl]);
+ */
   useEffect(() => {
     supabaseClient.auth.onAuthStateChange((_event, session) => {
       if (session) {
