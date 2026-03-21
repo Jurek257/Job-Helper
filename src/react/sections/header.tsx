@@ -12,11 +12,7 @@ import { Button } from "@/components/ui/button";
 
 import { useNavigate, useLocation } from "react-router-dom";
 
-export function Header({
-  setPopupShowed = () => {},
-}: {
-  setPopupShowed?: (state: boolean) => void;
-}) {
+export function Header() {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const navigate = useNavigate();
