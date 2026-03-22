@@ -2,16 +2,19 @@ import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../store/store";
 import { supabaseClient } from "../supabase";
 import type { CardValue, CardStatus as CardStatus } from "../types/types";
+
 import {
   updateJobStatus,
   deleteCard,
   addCard,
   setCards,
 } from "../store/jobsCardArraySlice";
+import { useCallback, useState } from "react";
 
 export function useCardActions() {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.User.user);
+  const [useError, setUseError] = useState<string | null>(null);
 
   const addNewJobCard = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     try {
@@ -31,47 +34,33 @@ export function useCardActions() {
         .single();
 
       if (error) {
-        //toast(error.message);
-
-        console.error({ error });
-        return;
+        throw Error(error.message);
       }
-      console.log("data return", data);
 
       dispatch(addCard(data));
     } catch (error) {
-      /*  toast(
-        error instanceof Error
-          ? error.message
-          : "Error during insert card to database : App.tsx AddNewJobCard()",
-      ); */
-      console.error(
-        error instanceof Error
-          ? error.message
-          : "Error during insert card to database : App.tsx AddNewJobCard()",
-      );
+      const errorMessage =
+        error instanceof Error ? error.message : "addNewJobCard func error";
+      setUseError(errorMessage);
+      console.error(errorMessage);
     }
   };
 
   const deleteJobCard = async (card_id: string) => {
     try {
-      await supabaseClient
+      const { error: backendError } = await supabaseClient
         .from("job-helper-cards-database")
         .delete()
         .eq("card_id", card_id);
 
+      if (backendError) throw new Error(backendError.message);
+
       dispatch(deleteCard(card_id));
     } catch (error) {
-      /*  toast(
-        error instanceof Error
-          ? error.message
-          : "Error during deleting card from database : App.tsx DeleteJobCard()",
-      ); */
-      console.error(
-        error instanceof Error
-          ? error.message
-          : "Error during deleting card from database : App.tsx DeleteJobCard()",
-      );
+      const errorMessage =
+        error instanceof Error ? error.message : "deleteJobCard func error";
+      setUseError(errorMessage);
+      console.error(errorMessage);
     }
   };
 
@@ -79,40 +68,29 @@ export function useCardActions() {
     targetCardId: string,
     targetStatus: CardStatus,
   ) => {
-    console.log("changeCardstatus func working");
-    if (!targetCardId) {
-      // console.log("idCard of drag card undefined");
-      return { success: false, error: "idCard of drag card undefined" };
-    }
-
     try {
-      await supabaseClient
+      if (!targetCardId) {
+        throw new Error("targer card id not defined");
+      }
+
+      const { error: backendError } = await supabaseClient
         .from("job-helper-cards-database")
         .update({ status: targetStatus })
         .eq("card_id", targetCardId);
 
+      if (backendError) throw new Error(backendError.message);
       dispatch(
         updateJobStatus({ card_id: targetCardId, status: targetStatus }),
       );
-
-      return { success: true };
     } catch (error) {
-      /*  toast(
-        error instanceof Error
-          ? error.message
-          : "Error during card drop allign  : App.tsx changeCardstatus()",
-      ); */
-      return {
-        success: false,
-        error:
-          error instanceof Error
-            ? error.message
-            : "Error during card drop allign  : App.tsx changeCardstatus()",
-      };
+      const errorMessage =
+        error instanceof Error ? error.message : "changeCardstatus func error";
+      setUseError(errorMessage);
+      console.error(errorMessage);
     }
   };
 
-  const fetchCards = async () => {
+  const fetchCards = useCallback(async () => {
     try {
       const { data, error } = await supabaseClient
         .from("job-helper-cards-database")
@@ -120,14 +98,11 @@ export function useCardActions() {
         .eq("user_id", user.id);
 
       if (error) {
-        //toast(error.message);
-        console.warn(error.message);
-        return;
+        throw new Error(error.message);
       }
 
-      console.log("fetch data from database", data);
       if (!data) {
-        return console.error("no data from database");
+        throw new Error("no data from database");
       }
       dispatch(
         setCards(
@@ -137,18 +112,18 @@ export function useCardActions() {
         ),
       );
     } catch (error) {
-      /*       toast(
-        error instanceof Error
-          ? error.message
-          : "Error during loading cards from database : App.tsx useEffect",
-      ); */
-      console.warn(
-        error instanceof Error
-          ? error.message
-          : "Error during loading cards from database : App.tsx useEffect",
-      );
+      const errorMessage =
+        error instanceof Error ? error.message : "fetchCards func error";
+      setUseError(errorMessage);
+      console.error(errorMessage);
     }
-  };
+  }, [user.id, dispatch]);
 
-  return { addNewJobCard, deleteJobCard, changeCardstatus, fetchCards };
+  return {
+    addNewJobCard,
+    deleteJobCard,
+    changeCardstatus,
+    fetchCards,
+    useError,
+  };
 }

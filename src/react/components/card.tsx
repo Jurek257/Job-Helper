@@ -10,7 +10,7 @@ export function JobCard({
   card_id,
   //email : string,
   className,
-  DeleteCardFunc,
+  //DeleteCardFunc,
 }: CardValue & CardProps) {
   const dispatch = useDispatch();
 
@@ -18,7 +18,7 @@ export function JobCard({
     dispatch(setDraggedCardId(card_id));
   };
   const id_timeDateObject = new Date(id_time);
-  DeleteCardFunc;
+  //DeleteCardFunc;
   return (
     <div
       draggable={true}

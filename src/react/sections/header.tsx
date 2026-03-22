@@ -12,11 +12,7 @@ import { Button } from "@/components/ui/button";
 
 import { useNavigate, useLocation } from "react-router-dom";
 
-export function Header({
-  setPopupShowed = () => {},
-}: {
-  setPopupShowed?: (state: boolean) => void;
-}) {
+export function Header() {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const navigate = useNavigate();
@@ -35,7 +31,12 @@ export function Header({
       <div className="flex items-center gap-5">
         {isHomePage && (
           <button
-            onClick={() => setPopupShowed(true)}
+            type="button"
+            onClick={() => {
+              console.log("BUTTON CLICKED");
+              navigate("/add-job?step=1");
+            }}
+            /* onClick={() => setPopupShowed(true)} */
             className="text-white bg-blue-400 py-2 px-5 rounded-xl font-bold text-[18px] transiton duration-400 hover:scale-105 cursor-pointer"
           >
             + <span className="hidden sm:inline ">Add new Aplication</span>

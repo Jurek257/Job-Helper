@@ -118,7 +118,7 @@ export function ProfileForm() {
       }
 
       toast.success("Sucessfully");
-    } catch (error: any) {
+    } catch (error) {
       console.error(error);
     } finally {
       setFileUploading(false);
@@ -183,15 +183,13 @@ export function ProfileForm() {
           <Controller
             name="resumeFile"
             control={form.control}
-            render={({
-              field: { onChange, value, ...restField },
-              fieldState,
-            }) => (
+            render={({ field: { onChange, name, ref }, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
                 {" "}
                 <FieldLabel htmlFor="resumeStorageURL">Your CV</FieldLabel>{" "}
                 <Input
-                  {...restField}
+                  name={name}
+                  ref={ref}
                   id="resumeStorageURL"
                   type="file"
                   accept=".pdf , .doc , .docx"
