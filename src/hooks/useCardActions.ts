@@ -9,7 +9,7 @@ import {
   addCard,
   setCards,
 } from "../store/jobsCardArraySlice";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 export function useCardActions() {
   const dispatch = useDispatch();
@@ -90,7 +90,7 @@ export function useCardActions() {
     }
   };
 
-  const fetchCards = async () => {
+  const fetchCards = useCallback(async () => {
     try {
       const { data, error } = await supabaseClient
         .from("job-helper-cards-database")
@@ -117,7 +117,7 @@ export function useCardActions() {
       setUseError(errorMessage);
       console.error(errorMessage);
     }
-  };
+  }, [user.id, dispatch]);
 
   return {
     addNewJobCard,

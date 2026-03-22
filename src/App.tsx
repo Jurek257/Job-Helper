@@ -1,6 +1,6 @@
 import "./App.css";
 import { Toaster } from "react-hot-toast";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { supabaseClient } from "./supabase";
 
 import { fetchResumeURLifExists } from "./services/userDataService";
@@ -22,10 +22,10 @@ function App() {
   const user = useSelector((state: RootState) => state.User.user);
   //const resumeUrl = useSelector((state: RootState) => state.User.resumeURL);
 
-  const loadResumeUrl = async () => {
+  const loadResumeUrl = useCallback(async () => {
     const url = await fetchResumeURLifExists(user.id);
     dispatch(setResumeURL(url));
-  };
+  }, [user.id, dispatch]);
   /*   useEffect(() => {
     console.log("resumeURL updated:", resumeUrl);
   }, [resumeUrl]);
@@ -39,7 +39,7 @@ function App() {
         console.error("user is not defined");
       }
     });
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (user.id) {
@@ -48,7 +48,7 @@ function App() {
     } else {
       console.error(" user id not defined");
     }
-  }, [user]);
+  }, [user, fetchCards, loadResumeUrl]);
 
   return (
     <div className="">
