@@ -11,14 +11,27 @@ import {
 import { Button } from "@/components/ui/button";
 
 import { useNavigate, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "@/store/store";
+import { setUser, setIsGuest } from "@/store/userSlice";
+import { setCards } from "@/store/jobsCardArraySlice";
+import { supabaseClient } from "@/supabase";
+import type { User } from "@supabase/supabase-js";
 
 export function Header() {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const isGuest = useSelector((state: RootState) => state.User.isGuest);
+
+  const handleLogout = async () => {
+    await supabaseClient.auth.signOut();
+    dispatch(setUser({} as User));
+    dispatch(setIsGuest(false));
+    dispatch(setCards([]));
+    navigate("/login");
+  };
 
   return (
     <>
@@ -77,7 +90,7 @@ export function Header() {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem variant="destructive">Log out</DropdownMenuItem>
+              <DropdownMenuItem variant="destructive" onClick={handleLogout}>Log out</DropdownMenuItem>
             </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
