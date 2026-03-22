@@ -11,13 +11,28 @@ import {
 import { Button } from "@/components/ui/button";
 
 import { useNavigate, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/store/store";
 
 export function Header() {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const navigate = useNavigate();
+  const isGuest = useSelector((state: RootState) => state.User.isGuest);
 
   return (
+    <>
+    {isGuest && (
+      <div className="flex items-center justify-between px-6 py-2 bg-blue-600/20 border-b border-blue-500/30 text-sm">
+        <span className="text-blue-300">Demo mode — your data is saved locally and will be lost if you clear your browser.</span>
+        <button
+          onClick={() => navigate("/login")}
+          className="ml-4 text-white bg-blue-600 hover:bg-blue-500 px-4 py-1 rounded-lg font-semibold transition duration-200 cursor-pointer whitespace-nowrap"
+        >
+          Sign up to save
+        </button>
+      </div>
+    )}
     <header className="flex place-content-between px-10 items-center border-b border-b-[var(--border-color)] py-3 bg-[var(--main-color)]">
       <div
         onClick={() => navigate("/")}
@@ -70,5 +85,6 @@ export function Header() {
         {/* <UserAvatar className="hidden sm:inline" /> */}
       </div>
     </header>
+    </>
   );
 }

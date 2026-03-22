@@ -11,21 +11,48 @@ import {
 } from "../store/jobsCardArraySlice";
 import { useCallback, useState } from "react";
 
+const GUEST_CARDS_KEY = "jh_guest_cards";
+
+const getGuestCards = (): CardValue[] => {
+  try {
+    return JSON.parse(localStorage.getItem(GUEST_CARDS_KEY) || "[]");
+  } catch {
+    return [];
+  }
+};
+
+const saveGuestCards = (cards: CardValue[]) => {
+  localStorage.setItem(GUEST_CARDS_KEY, JSON.stringify(cards));
+};
+
 export function useCardActions() {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.User.user);
+  const isGuest = useSelector((state: RootState) => state.User.isGuest);
   const [useError, setUseError] = useState<string | null>(null);
 
   const addNewJobCard = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     try {
       const formData = new FormData(e.currentTarget);
       const formJSObject = Object.fromEntries(formData);
-      const status: CardStatus = "applied"; //temporary default value
+      const status: CardStatus = "applied";
       const newCard = {
         id_time: new Date().toISOString(),
         status: status,
         ...formJSObject,
-      } as CardValue;
+      } as Omit<CardValue, "card_id">;
+
+      if (isGuest) {
+        const guestCard: CardValue = {
+          ...newCard,
+          card_id: crypto.randomUUID(),
+        } as CardValue;
+        const cards = getGuestCards();
+        cards.push(guestCard);
+        saveGuestCards(cards);
+        dispatch(addCard(guestCard));
+        return;
+      }
 
       const { data, error } = await supabaseClient
         .from("job-helper-cards-database")
@@ -48,6 +75,13 @@ export function useCardActions() {
 
   const deleteJobCard = async (card_id: string) => {
     try {
+      if (isGuest) {
+        const cards = getGuestCards().filter((c) => c.card_id !== card_id);
+        saveGuestCards(cards);
+        dispatch(deleteCard(card_id));
+        return;
+      }
+
       const { error: backendError } = await supabaseClient
         .from("job-helper-cards-database")
         .delete()
@@ -73,6 +107,15 @@ export function useCardActions() {
         throw new Error("targer card id not defined");
       }
 
+      if (isGuest) {
+        const cards = getGuestCards().map((c) =>
+          c.card_id === targetCardId ? { ...c, status: targetStatus } : c,
+        );
+        saveGuestCards(cards);
+        dispatch(updateJobStatus({ card_id: targetCardId, status: targetStatus }));
+        return;
+      }
+
       const { error: backendError } = await supabaseClient
         .from("job-helper-cards-database")
         .update({ status: targetStatus })
@@ -92,6 +135,12 @@ export function useCardActions() {
 
   const fetchCards = useCallback(async () => {
     try {
+      if (isGuest && !user.id) {
+        const cards = getGuestCards();
+        dispatch(setCards(cards));
+        return;
+      }
+
       const { data, error } = await supabaseClient
         .from("job-helper-cards-database")
         .select("*")
@@ -117,7 +166,7 @@ export function useCardActions() {
       setUseError(errorMessage);
       console.error(errorMessage);
     }
-  }, [user.id, dispatch]);
+  }, [user.id, isGuest, dispatch]);
 
   return {
     addNewJobCard,
@@ -125,5 +174,6 @@ export function useCardActions() {
     changeCardstatus,
     fetchCards,
     useError,
+    getGuestCards,
   };
 }
