@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import type { RootState } from "@/store/store";
 import toast from "react-hot-toast";
 
+
 interface Props {
   setCoverLetterData: (data: GenerateCoverLetterParams) => void;
 }
@@ -15,6 +16,7 @@ export function AddJobFormStep1({ setCoverLetterData }: Props) {
   const navigate = useNavigate();
   const { addNewJobCard } = useCardActions();
   const URL = useSelector((state: RootState) => state.User.resumeURL);
+  const isGuest = useSelector((state: RootState) => state.User.isGuest);
 
   const [isFormLoading, setFormLoading] = useState<boolean>(false);
 
@@ -30,12 +32,18 @@ export function AddJobFormStep1({ setCoverLetterData }: Props) {
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (isGuest) {
+      await addCard(e);
+      return;
+    }
+
     const formData = extractFormData(e);
     const resumeUrl = URL;
-    console.log(resumeUrl);
 
-    //TODO make a popup window to say user that for generating cover letter he need to upload his resume
-    if (!resumeUrl) throw new Error("resumeUrl is null");
+    if (!resumeUrl) {
+      toast.error("Please upload your resume in Profile before adding a job");
+      return;
+    }
 
     setCoverLetterData({ ...formData, resumeURL: resumeUrl });
     await addCard(e);
