@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "type-check": "tsc --noEmit",
     "lint": "eslint .",
+    "check": "npm run type-check && npm run lint",
     "preview": "vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui"

@@ -31,7 +31,11 @@ export function Header() {
       <div className="flex items-center gap-5">
         {isHomePage && (
           <button
-            onClick={() => navigate("/add-job?step=1")}
+            type="button"
+            onClick={() => {
+              console.log("BUTTON CLICKED");
+              navigate("/add-job?step=1");
+            }}
             /* onClick={() => setPopupShowed(true)} */
             className="text-white bg-blue-400 py-2 px-5 rounded-xl font-bold text-[18px] transiton duration-400 hover:scale-105 cursor-pointer"
           >
