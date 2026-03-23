@@ -93,6 +93,7 @@ function App() {
         }
       } else {
         console.log("[AUTH] No session in onAuthStateChange");
+        dispatch(setIsGuest(true));
       }
     });
 
@@ -129,8 +130,6 @@ function App() {
     });
   }, [dispatch]);
 
-  const isAuthenticated = !!user.id || isGuest;
-
   if (!authInitialized) {
     return <div className="flex items-center justify-center h-screen text-white/50">Loading...</div>;
   }
@@ -143,18 +142,9 @@ function App() {
           path="/login"
           element={user.id ? <Navigate to="/" /> : <SignUpPage />}
         />
-        <Route
-          path="/"
-          element={isAuthenticated ? <Canban /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/profile"
-          element={isAuthenticated ? <Profile /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/add-job"
-          element={isAuthenticated ? <ApplicateJobPage /> : <Navigate to="/login" />}
-        />
+        <Route path="/" element={<Canban />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/add-job" element={<ApplicateJobPage />} />
       </Routes>
     </div>
   );
