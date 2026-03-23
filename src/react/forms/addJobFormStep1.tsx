@@ -77,8 +77,8 @@ export function AddJobFormStep1({ setCoverLetterData }: Props) {
         className="w-full h-full flex flex-col justify-between"
         action=""
       >
-        <div className="flex">
-          <label className="flex flex-col p-5 w-1/2" htmlFor="">
+        <div className="flex flex-col sm:flex-row">
+          <label className="flex flex-col p-5 w-full sm:w-1/2" htmlFor="">
             <span className="font-bold">
               COMPANY NAME<span className="text-red-400">*</span>
             </span>
@@ -89,7 +89,7 @@ export function AddJobFormStep1({ setCoverLetterData }: Props) {
               className="border focus:outline-none rounded-md border-white/20 h-10 pl-3"
             />
           </label>
-          <label className="flex flex-col p-5 w-1/2" htmlFor="">
+          <label className="flex flex-col p-5 w-full sm:w-1/2" htmlFor="">
             <span className="font-bold">POSITION</span>
             <input
               type="text"

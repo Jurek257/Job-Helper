@@ -51,8 +51,8 @@ export function Header() {
         onClick={() => navigate("/")}
         className="flex items-center gap-4 cursor-pointer"
       >
-        <IconLogo className="hidden sm:inline"></IconLogo>
-        <h1 className="text-[32px] font-bold">
+        <IconLogo className="inline sm:inline"></IconLogo>
+        <h1 className="hidden sm:block text-[32px] font-bold">
           Job<span className="text-[#2563EB]">Helper</span>
         </h1>
       </div>
