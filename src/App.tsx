@@ -17,6 +17,7 @@ import { SignUpPage } from "./react/pages/SignUpPage";
 import { Profile } from "./react/pages/Profile";
 import { ApplicateJobPage } from "./react/pages/ApplicateJob";
 
+import { Analytics } from '@vercel/analytics/react';
 const GUEST_CARDS_KEY = "jh_guest_cards";
 
 function App() {
@@ -136,6 +137,7 @@ function App() {
 
   return (
     <div className="">
+      <Analytics />
       <Toaster />
       <Routes>
         <Route
