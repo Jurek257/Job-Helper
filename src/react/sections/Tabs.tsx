@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store/store";
 import type { CardStatus } from "../../types/types";
 
 interface TabsProps {
@@ -6,6 +8,8 @@ interface TabsProps {
 }
 
 export function Tabs({ showedColumn, setShowedColumn }: TabsProps) {
+  const cards = useSelector((state: RootState) => state.Cards.cardDataArr);
+
   return (
     <div className="grid grid-cols-3">
       <div
@@ -18,7 +22,7 @@ export function Tabs({ showedColumn, setShowedColumn }: TabsProps) {
         </div>
 
         <div className="w-6 h-6 bg-[var(--surface-color)] rounded-md text-center text-white/50 border border-[var(--border-color)]">
-          7
+          {cards.filter((c) => c.status === "applied").length}
         </div>
       </div>
 
@@ -32,7 +36,7 @@ export function Tabs({ showedColumn, setShowedColumn }: TabsProps) {
         </div>
 
         <div className="w-6 h-6 bg-[var(--surface-color)] rounded-md text-center text-white/50 border border-[var(--border-color)]">
-          7
+          {cards.filter((c) => c.status === "rejected").length}
         </div>
       </div>
 
@@ -46,7 +50,7 @@ export function Tabs({ showedColumn, setShowedColumn }: TabsProps) {
         </div>
 
         <div className="w-6 h-6 bg-[var(--surface-color)] rounded-md text-center text-white/50 border border-[var(--border-color)]">
-          7
+          {cards.filter((c) => c.status === "interview").length}
         </div>
       </div>
     </div>
