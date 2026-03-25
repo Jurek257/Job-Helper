@@ -33,4 +33,6 @@ export interface GenerateCoverLetterParams {
   jobTitle: string;
   companyName: string;
   jobDescription: string;
+  companyInfo?: string;
+  additionalContext?: string;
 }

@@ -21,6 +21,7 @@ export function GetInfoFromAiStep2({ data }: Props) {
 
   const [isCompanyInfoLoading, setIsCompanyInfoLoading] = useState(false);
   const [companyInfo, setCompanyInfo] = useState<string>("");
+  const [additionalContext, setAdditionalContext] = useState<string>("");
 
   const handleGetCompanyInfo = async () => {
     setIsCompanyInfoLoading(true);
@@ -53,10 +54,12 @@ export function GetInfoFromAiStep2({ data }: Props) {
         jobDescription,
       });
       const letter = await generateCoverLetter({
-        resumeURL: resumeURL,
-        jobTitle: jobTitle,
-        companyName: companyName,
-        jobDescription: jobDescription,
+        resumeURL,
+        jobTitle,
+        companyName,
+        jobDescription,
+        companyInfo: companyInfo || undefined,
+        additionalContext: additionalContext || undefined,
       });
 
       setCoverLetter(letter);
@@ -128,11 +131,13 @@ const handleAddNewJobCard = (e: React.SyntheticEvent<HTMLFormElement>) => {
           )}
         </div>
 
-        <label className="flex flex-col px-5 py-2 w-full" htmlFor="">
+        <label className="flex flex-col px-5 py-2 w-full" htmlFor="additional_context">
           <span className="font-bold">ADDITIONAL CONTEXT (OPTIONAL)</span>
           <textarea
-            name="job_description"
-            id=""
+            name="additional_context"
+            id="additional_context"
+            value={additionalContext}
+            onChange={(e) => setAdditionalContext(e.target.value)}
             className="border focus:outline-none rounded-md border-white/20 pl-3 h-22"
           ></textarea>
         </label>
