@@ -2,6 +2,7 @@ import { LoadingButton } from "./loading";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { generateCoverLetter } from "@/services/generateCoverLetter";
+import { getCompanyInfo } from "@/services/getCompanyInfo";
 import type { GenerateCoverLetterParams } from "@/types/types";
 //import { useCardActions } from "@/hooks/useCardActions";
 
@@ -17,6 +18,28 @@ export function GetInfoFromAiStep2({ data }: Props) {
   //const { addNewJobCard } = useCardActions();
 
   const { resumeURL, jobTitle, companyName, jobDescription } = data;
+
+  const [isCompanyInfoLoading, setIsCompanyInfoLoading] = useState(false);
+  const [companyInfo, setCompanyInfo] = useState<string>("");
+
+  const handleGetCompanyInfo = async () => {
+    setIsCompanyInfoLoading(true);
+    try {
+      const info = await getCompanyInfo(companyName);
+      setCompanyInfo(info);
+    } catch (error: any) {
+      console.error("message:", error?.message);
+      try {
+        const body = await error?.context?.json();
+        console.error("response body:", JSON.stringify(body, null, 2));
+      } catch {
+        const text = await error?.context?.text?.();
+        console.error("response text:", text);
+      }
+    } finally {
+      setIsCompanyInfoLoading(false);
+    }
+  };
 
   const handleGenerateCoverLetter = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -77,6 +100,34 @@ const handleAddNewJobCard = (e: React.SyntheticEvent<HTMLFormElement>) => {
         className="w-full h-full flex flex-col justify-between"
         action=""
       >
+        <div className="flex flex-col px-5 py-2 w-full gap-2">
+          <span className="font-bold">COMPANY INFO</span>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              readOnly
+              value={companyName}
+              className="flex-1 border focus:outline-none rounded-md border-white/20 px-3 py-2 bg-white/5"
+            />
+            <button
+              type="button"
+              onClick={handleGetCompanyInfo}
+              disabled={isCompanyInfoLoading}
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer hover:-translate-y-1 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+            >
+              {isCompanyInfoLoading ? "Loading..." : "Get Info"}
+            </button>
+          </div>
+          {companyInfo && (
+            <textarea
+              readOnly
+              value={companyInfo}
+              rows={7}
+              className="border focus:outline-none rounded-md border-white/20 pl-3 pt-2 bg-white/5 resize-none"
+            />
+          )}
+        </div>
+
         <label className="flex flex-col px-5 py-2 w-full" htmlFor="">
           <span className="font-bold">ADDITIONAL CONTEXT (OPTIONAL)</span>
           <textarea
