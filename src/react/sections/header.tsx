@@ -76,11 +76,11 @@ export function Header() {
   return (
     <>
     {isGuest && (
-      <div className="flex items-center justify-between px-6 py-2 bg-blue-600/20 border-b border-blue-500/30 text-sm">
-        <span className="text-blue-300">{t("header.demo_banner")}</span>
+      <div className="flex sm:flex-row flex-col items-center justify-between px-6 py-2 bg-blue-600/20 border-b border-blue-500/30 text-sm gap-1 sm:gap-0">
+        <span className="text-blue-300 text-center sm:text-left">{t("header.demo_banner")}</span>
         <button
           onClick={() => navigate("/login")}
-          className="ml-4 text-white bg-blue-600 hover:bg-blue-500 px-4 py-1 rounded-lg font-semibold transition duration-200 cursor-pointer whitespace-nowrap"
+          className="sm:ml-4 text-white bg-blue-600 hover:bg-blue-500 px-4 py-1 rounded-lg font-semibold transition duration-200 cursor-pointer whitespace-nowrap"
         >
           {t("header.sign_up_to_save")}
         </button>
