@@ -1,0 +1,72 @@
+{
+  "common": {
+    "loading": "Memuat...",
+    "cancel": "Batal",
+    "submit": "Kirim",
+    "or": "atau",
+    "delete": "Hapus",
+    "download_pdf": "Unduh PDF",
+    "optional": "opsional"
+  },
+  "status": {
+    "applied": "Dilamar",
+    "rejected": "Ditolak",
+    "interview": "Wawancara"
+  },
+  "signup": {
+    "tagline": "Lacak setiap lamaran,",
+    "tagline2": "tetap terorganisir",
+    "description": "Berhenti kehilangan jejak lamaran Anda. JobHelper menyimpan semua lamaran Anda di satu tempat dengan pipeline visual yang jelas.",
+    "example": "Contoh",
+    "welcome": "Selamat Datang",
+    "sign_in_text": "Masuk untuk melanjutkan melacak lamaran kerja Anda",
+    "continue_google": "Lanjutkan dengan Google",
+    "terms": "Dengan melanjutkan, Anda menyetujui Syarat dan Kebijakan Privasi kami",
+    "continue_guest": "Lanjutkan tanpa registrasi"
+  },
+  "header": {
+    "demo_banner": "Mode demo — data Anda disimpan secara lokal dan akan hilang jika Anda menghapus cache browser.",
+    "sign_up_to_save": "Daftar untuk menyimpan",
+    "add_application": "+ Tambah lamaran baru",
+    "profile": "Profil",
+    "logout": "Keluar",
+    "demo_modal_title": "Mode Demo",
+    "demo_modal_text": "Pengaturan profil tidak tersedia dalam mode demo. Buat akun untuk menyimpan resume, informasi profil, dan surat lamaran Anda.",
+    "sign_up": "Daftar"
+  },
+  "add_job": {
+    "title": "Tambah Lamaran Kerja",
+    "subtitle": "Lacak peluang baru di pipeline Anda",
+    "company_name": "NAMA PERUSAHAAN",
+    "position": "POSISI",
+    "email": "EMAIL REKRUTMEN PERUSAHAAN",
+    "job_requirements": "PERSYARATAN PEKERJAAN",
+    "optional_hint": "opsional — disarankan untuk surat lamaran yang lebih personal",
+    "toast_success": "Kartu lamaran baru ditambahkan",
+    "toast_resume": "Harap unggah resume Anda di Profil sebelum menambahkan pekerjaan"
+  },
+  "cover_letter": {
+    "title": "Buat surat lamaran unik untuk lamaran ini",
+    "subtitle": "Melamar dengan surat lamaran meningkatkan peluang Anda diterima sebesar 50%.",
+    "company_info": "INFO PERUSAHAAN",
+    "get_info": "Dapatkan Info",
+    "additional_context": "KONTEKS TAMBAHAN (OPSIONAL)",
+    "skip": "Lewati",
+    "generate": "Buat"
+  },
+  "profile": {
+    "full_name": "Nama Lengkap",
+    "name_placeholder": "Contoh: Budi Santoso",
+    "occupation": "Pekerjaan Anda",
+    "occupation_placeholder": "Contoh: Fullstack Java Developer",
+    "current_position": "Posisi Anda saat ini",
+    "cv": "CV Anda",
+    "current_file": "File saat ini:",
+    "keep_file": "Biarkan kosong untuk mempertahankan file saat ini",
+    "save": "Simpan Profil",
+    "toast_success": "Berhasil disimpan",
+    "toast_resume_required": "Harap unggah resume Anda",
+    "toast_file_size": "File harus kurang dari 1 MB",
+    "toast_file_type": "Hanya file PDF, DOC, DOCX yang diizinkan"
+  }
+}

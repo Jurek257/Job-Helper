@@ -1,0 +1,72 @@
+{
+  "common": {
+    "loading": "加载中...",
+    "cancel": "取消",
+    "submit": "提交",
+    "or": "或",
+    "delete": "删除",
+    "download_pdf": "下载 PDF",
+    "optional": "可选"
+  },
+  "status": {
+    "applied": "已申请",
+    "rejected": "已拒绝",
+    "interview": "面试"
+  },
+  "signup": {
+    "tagline": "追踪每一份申请，",
+    "tagline2": "保持井井有条",
+    "description": "不再迷失申请记录。JobHelper 将您所有的求职申请集中在一处，提供清晰的可视化流程。",
+    "example": "示例",
+    "welcome": "欢迎",
+    "sign_in_text": "登录以继续追踪您的求职申请",
+    "continue_google": "使用 Google 继续",
+    "terms": "继续即表示您同意我们的服务条款和隐私政策",
+    "continue_guest": "无需注册继续使用"
+  },
+  "header": {
+    "demo_banner": "演示模式 — 您的数据保存在本地，清除浏览器缓存后将丢失。",
+    "sign_up_to_save": "注册以保存",
+    "add_application": "+ 添加新申请",
+    "profile": "个人资料",
+    "logout": "退出登录",
+    "demo_modal_title": "演示模式",
+    "demo_modal_text": "演示模式下无法使用个人资料设置。请创建账户以保存您的简历、个人资料和求职信。",
+    "sign_up": "注册"
+  },
+  "add_job": {
+    "title": "添加求职申请",
+    "subtitle": "在您的流程中追踪新机会",
+    "company_name": "公司名称",
+    "position": "职位",
+    "email": "公司招聘邮箱",
+    "job_requirements": "职位要求",
+    "optional_hint": "可选 — 建议填写以获得更个性化的求职信",
+    "toast_success": "新申请卡片已添加",
+    "toast_resume": "请在个人资料中上传简历后再添加职位"
+  },
+  "cover_letter": {
+    "title": "为此申请生成独特的求职信",
+    "subtitle": "附上求职信可将获聘机会提高 50%。",
+    "company_info": "公司信息",
+    "get_info": "获取信息",
+    "additional_context": "补充背景（可选）",
+    "skip": "跳过",
+    "generate": "生成"
+  },
+  "profile": {
+    "full_name": "全名",
+    "name_placeholder": "示例：张伟",
+    "occupation": "您的职业",
+    "occupation_placeholder": "示例：全栈 Java 开发工程师",
+    "current_position": "您目前的职位",
+    "cv": "您的简历",
+    "current_file": "当前文件：",
+    "keep_file": "留空以保留当前文件",
+    "save": "保存个人资料",
+    "toast_success": "保存成功",
+    "toast_resume_required": "请上传您的简历",
+    "toast_file_size": "文件必须小于 1 MB",
+    "toast_file_type": "仅支持 PDF、DOC、DOCX 文件"
+  }
+}

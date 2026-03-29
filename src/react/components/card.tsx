@@ -33,7 +33,7 @@ export function JobCard({
       className={`flex justify-between max-w-full mx-[5%] pt-3 min-h-35 bg-[var(--surface-color)] py-3 rounded-2xl border-t-3 border-t-blue-500   border border-[var(--border-color)] ${className || ""}`}
     >
       <div className="flex flex-col">
-        <div className="flex flex-col pl-3">
+        <div className="flex flex-col ps-3">
           <p className="font-bold text-[22px] w-full">{company_name}</p>
           <p className="text-white/50">{position}</p>
           <p className="pt-4 text-white/50">

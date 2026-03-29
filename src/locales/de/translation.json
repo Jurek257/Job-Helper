@@ -1,0 +1,72 @@
+{
+  "common": {
+    "loading": "Laden...",
+    "cancel": "Abbrechen",
+    "submit": "Absenden",
+    "or": "oder",
+    "delete": "Löschen",
+    "download_pdf": "PDF herunterladen",
+    "optional": "optional"
+  },
+  "status": {
+    "applied": "Beworben",
+    "rejected": "Abgelehnt",
+    "interview": "Vorstellungsgespräch"
+  },
+  "signup": {
+    "tagline": "Jede Bewerbung verfolgen,",
+    "tagline2": "organisiert bleiben",
+    "description": "Verlieren Sie nicht den Überblick. JobHelper hält alle Ihre Bewerbungen an einem Ort mit einer klaren visuellen Pipeline.",
+    "example": "Beispiel",
+    "welcome": "Willkommen",
+    "sign_in_text": "Melden Sie sich an, um Ihre Bewerbungen weiter zu verfolgen",
+    "continue_google": "Mit Google fortfahren",
+    "terms": "Mit der Fortsetzung stimmen Sie unseren Nutzungsbedingungen und der Datenschutzrichtlinie zu",
+    "continue_guest": "Ohne Registrierung fortfahren"
+  },
+  "header": {
+    "demo_banner": "Demo-Modus — Ihre Daten werden lokal gespeichert und gehen verloren, wenn Sie den Browser-Cache leeren.",
+    "sign_up_to_save": "Registrieren zum Speichern",
+    "add_application": "+ Neue Bewerbung hinzufügen",
+    "profile": "Profil",
+    "logout": "Abmelden",
+    "demo_modal_title": "Demo-Modus",
+    "demo_modal_text": "Profileinstellungen sind im Demo-Modus nicht verfügbar. Erstellen Sie ein Konto, um Ihren Lebenslauf, Profilinformationen und Anschreiben zu speichern.",
+    "sign_up": "Registrieren"
+  },
+  "add_job": {
+    "title": "Bewerbung hinzufügen",
+    "subtitle": "Verfolgen Sie eine neue Möglichkeit in Ihrer Pipeline",
+    "company_name": "FIRMENNAME",
+    "position": "POSITION",
+    "email": "RECRUITING-E-MAIL DES UNTERNEHMENS",
+    "job_requirements": "STELLENANFORDERUNGEN",
+    "optional_hint": "optional — empfohlen für ein personalisierteres Anschreiben",
+    "toast_success": "Neue Bewerbungskarte hinzugefügt",
+    "toast_resume": "Bitte laden Sie Ihren Lebenslauf im Profil hoch, bevor Sie eine Stelle hinzufügen"
+  },
+  "cover_letter": {
+    "title": "Einzigartiges Anschreiben für diese Bewerbung erstellen",
+    "subtitle": "Mit einem Anschreiben erhöhen Sie Ihre Einstellungschancen um 50%.",
+    "company_info": "FIRMENINFO",
+    "get_info": "Info abrufen",
+    "additional_context": "ZUSÄTZLICHER KONTEXT (OPTIONAL)",
+    "skip": "Überspringen",
+    "generate": "Generieren"
+  },
+  "profile": {
+    "full_name": "Vollständiger Name",
+    "name_placeholder": "Beispiel: Johann Müller",
+    "occupation": "Ihr Beruf",
+    "occupation_placeholder": "Beispiel: Fullstack Java Entwickler",
+    "current_position": "Ihre aktuelle Position",
+    "cv": "Ihr Lebenslauf",
+    "current_file": "Aktuelle Datei:",
+    "keep_file": "Leer lassen, um die aktuelle Datei beizubehalten",
+    "save": "Profil speichern",
+    "toast_success": "Erfolgreich gespeichert",
+    "toast_resume_required": "Bitte laden Sie Ihren Lebenslauf hoch",
+    "toast_file_size": "Datei muss kleiner als 1 MB sein",
+    "toast_file_type": "Nur PDF, DOC, DOCX-Dateien erlaubt"
+  }
+}

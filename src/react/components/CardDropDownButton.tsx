@@ -3,15 +3,17 @@ import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/react";
 //import type { CardStatus } from "../../types/types";
 import { useCardActions } from "../../hooks/useCardActions";
 import TrashLogo from "../../assets/trash-can-svgrepo-com.svg?react";
+import { useTranslation } from "react-i18next";
 
 export function CardDropDownButton({ card_id }: { card_id: string }) {
   const { changeCardstatus, deleteJobCard } = useCardActions();
+  const { t } = useTranslation();
 
   return (
     <div className="flex flex-col relative ">
       <Menu>
         <MenuButton className={"outline-none"}>
-          <MoreHorizontal className="opacity-50 mr-3"></MoreHorizontal>
+          <MoreHorizontal className="opacity-50 me-3"></MoreHorizontal>
         </MenuButton>
 
         <MenuItems
@@ -22,45 +24,37 @@ export function CardDropDownButton({ card_id }: { card_id: string }) {
           <MenuItem>
             <button
               className="flex justify-center items-center data-focus:bg-[radial-gradient(circle_at_center,_#3b82f6,_transparent)] hover:bg-[radial-gradient(circle_at_center,_#3b82f6,_transparent)] h-full text-center "
-              onClick={() => {
-                changeCardstatus(card_id, "applied");
-              }}
+              onClick={() => { changeCardstatus(card_id, "applied"); }}
             >
               <div className="flex w-2 h-2 bg-blue-500 mr-2 shadow-[0_0_10px_8px_rgba(59,130,246,0.5)] rounded-full"></div>
-              Applied
+              {t("status.applied")}
             </button>
           </MenuItem>
           <MenuItem>
             <button
-              onClick={() => {
-                changeCardstatus(card_id, "rejected");
-              }}
+              onClick={() => { changeCardstatus(card_id, "rejected"); }}
               className="flex justify-center items-center data-focus:bg-[radial-gradient(circle_at_center,_#ef4444,_transparent)] hover:bg-[radial-gradient(circle_at_center,_#ef4444,_transparent)] h-full text-center "
             >
               <div className="flex w-2 h-2 bg-red-500 mr-2 shadow-[0_0_10px_8px_rgba(239,68,68,0.5)] rounded-full"></div>
-              Rejected
+              {t("status.rejected")}
             </button>
           </MenuItem>
           <MenuItem>
             <button
-              onClick={() => {
-                changeCardstatus(card_id, "interview");
-              }}
+              onClick={() => { changeCardstatus(card_id, "interview"); }}
               className="flex justify-center items-center data-focus:bg-[radial-gradient(circle_at_center,_#22c55e,_transparent)] hover:bg-[radial-gradient(circle_at_center,_#22c55e,_transparent)] h-full text-center "
             >
               <div className="flex w-2 h-2 bg-green-500 mr-2 shadow-[0_0_10px_8px_rgba(34,197,94,0.5)] rounded-full"></div>
-              Interview
+              {t("status.interview")}
             </button>
           </MenuItem>
           <MenuItem>
             <button
-              onClick={() => {
-                deleteJobCard(card_id);
-              }}
+              onClick={() => { deleteJobCard(card_id); }}
               className="flex justify-center items-center data-focus:bg-red-500/50 hover:bg-red-500/50 h-full text-center "
             >
               <TrashLogo width={22} height={22} />
-              Delete
+              {t("common.delete")}
             </button>
           </MenuItem>
         </MenuItems>

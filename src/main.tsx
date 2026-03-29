@@ -3,6 +3,7 @@ import { StrictMode } from "react";
 import { Provider } from "react-redux";
 import { store } from "./store/store.ts";
 import "./index.css";
+import "./i18n"; // инициализация переводов до рендера приложения
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.tsx";

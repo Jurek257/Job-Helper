@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 import { useState } from "react";
+import { Globe } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "@/store/store";
@@ -18,6 +19,22 @@ import { setUser, setIsGuest } from "@/store/userSlice";
 import { setCards } from "@/store/jobsCardArraySlice";
 import { supabaseClient } from "@/supabase";
 import type { User } from "@supabase/supabase-js";
+import { useTranslation } from "react-i18next";
+
+// Доступные языки: код → отображаемое название
+const LANGUAGES = [
+  { code: "en", label: "English" },
+  { code: "de", label: "Deutsch" },
+  { code: "zh", label: "中文" },
+  { code: "hi", label: "हिन्दी" },
+  { code: "es", label: "Español" },
+  { code: "fr", label: "Français" },
+  { code: "ar", label: "العربية" },
+  { code: "bn", label: "বাংলা" },
+  { code: "ru", label: "Русский" },
+  { code: "pt", label: "Português" },
+  { code: "id", label: "Indonesia" },
+];
 
 export function Header() {
   const location = useLocation();
@@ -28,6 +45,17 @@ export function Header() {
   const user = useSelector((state: RootState) => state.User.user);
   const avatarUrl = user?.user_metadata?.avatar_url as string | undefined;
   const [showDemoModal, setShowDemoModal] = useState(false);
+  const [showLangModal, setShowLangModal] = useState(false);
+
+  // t — функция перевода, i18n — объект с текущим языком и методом changeLanguage
+  const { t, i18n } = useTranslation();
+
+  const handleLanguageChange = (code: string) => {
+    i18n.changeLanguage(code);
+    localStorage.setItem("lang", code);
+    // Арабский — RTL, все остальные — LTR
+    document.documentElement.dir = code === "ar" ? "rtl" : "ltr";
+  };
 
   const handleLogout = async () => {
     await supabaseClient.auth.signOut();
@@ -41,12 +69,12 @@ export function Header() {
     <>
     {isGuest && (
       <div className="flex items-center justify-between px-6 py-2 bg-blue-600/20 border-b border-blue-500/30 text-sm">
-        <span className="text-blue-300">Demo mode — your data is saved locally and will be lost if you clear your browser.</span>
+        <span className="text-blue-300">{t("header.demo_banner")}</span>
         <button
           onClick={() => navigate("/login")}
           className="ml-4 text-white bg-blue-600 hover:bg-blue-500 px-4 py-1 rounded-lg font-semibold transition duration-200 cursor-pointer whitespace-nowrap"
         >
-          Sign up to save
+          {t("header.sign_up_to_save")}
         </button>
       </div>
     )}
@@ -61,6 +89,27 @@ export function Header() {
         </h1>
       </div>
       <div className="flex items-center gap-3 sm:gap-5">
+        {/* Десктоп: select дропдаун */}
+        <select
+          value={i18n.language}
+          onChange={(e) => handleLanguageChange(e.target.value)}
+          className="hidden sm:block bg-[var(--surface-color)] border border-[var(--border-color)] text-white/70 text-sm rounded-lg px-2 py-1 cursor-pointer outline-none hover:border-white/40 transition-colors"
+        >
+          {LANGUAGES.map(({ code, label }) => (
+            <option key={code} value={code} className="bg-[#1a1a24]">
+              {label}
+            </option>
+          ))}
+        </select>
+
+        {/* Мобайл: иконка глобуса */}
+        <button
+          onClick={() => setShowLangModal(true)}
+          className="sm:hidden p-2 rounded-lg text-white/50 hover:text-white transition-colors cursor-pointer"
+        >
+          <Globe size={22} />
+        </button>
+
         {isHomePage && (
           <button
             type="button"
@@ -71,7 +120,7 @@ export function Header() {
             id="onboarding-add-btn"
             className="text-white bg-blue-400 py-[9px] px-3 sm:px-5 rounded-xl font-bold text-[15px] sm:text-[18px] transition duration-400 hover:scale-105 cursor-pointer"
           >
-            + Add new Application
+            {t("header.add_application")}
           </button>
         )}
 
@@ -96,41 +145,69 @@ export function Header() {
           <DropdownMenuContent className="w-32">
             <DropdownMenuGroup>
               <DropdownMenuItem onClick={() => isGuest ? setShowDemoModal(true) : navigate("/profile")}>
-                Profile
+                {t("header.profile")}
               </DropdownMenuItem>
-              {/*           <DropdownMenuItem>Billing</DropdownMenuItem>
-          <DropdownMenuItem>Settings</DropdownMenuItem> */}
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem variant="destructive" onClick={handleLogout}>Log out</DropdownMenuItem>
+              <DropdownMenuItem variant="destructive" onClick={handleLogout}>
+                {t("header.logout")}
+              </DropdownMenuItem>
             </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
         </div>
-
-        {/* <UserAvatar className="hidden sm:inline" /> */}
       </div>
     </header>
+      {/* Bottom sheet выбора языка на мобайле */}
+      {showLangModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-end bg-black/60 sm:hidden"
+          onClick={() => setShowLangModal(false)}
+        >
+          <div
+            className="w-full bg-[var(--surface-color)] border-t border-[var(--border-color)] rounded-t-2xl p-5 flex flex-col gap-3"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="w-10 h-1 bg-white/20 rounded-full mx-auto mb-2" />
+            <div className="grid grid-cols-2 gap-2">
+              {LANGUAGES.map(({ code, label }) => (
+                <button
+                  key={code}
+                  onClick={() => { handleLanguageChange(code); setShowLangModal(false); }}
+                  className={`py-3 px-4 rounded-xl text-sm font-medium transition-colors cursor-pointer text-start ${
+                    i18n.language === code
+                      ? "bg-blue-600 text-white"
+                      : "bg-white/5 text-white/70 hover:bg-white/10"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       {showDemoModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
           <div className="bg-[var(--surface-color)] border border-[var(--border-color)] rounded-2xl p-6 w-[90%] max-w-sm flex flex-col gap-4 shadow-xl">
-            <h2 className="text-xl font-bold">Demo mode</h2>
+            <h2 className="text-xl font-bold">{t("header.demo_modal_title")}</h2>
             <p className="text-white/60 text-sm">
-              Profile settings are not available in demo mode. Create an account to save your resume, profile info, and cover letters.
+              {t("header.demo_modal_text")}
             </p>
             <div className="flex gap-3 justify-end">
               <button
                 onClick={() => setShowDemoModal(false)}
                 className="px-4 py-2 rounded-lg border border-[var(--border-color)] text-white/70 hover:text-white transition cursor-pointer"
               >
-                Cancel
+                {t("common.cancel")}
               </button>
               <button
                 onClick={() => { setShowDemoModal(false); navigate("/login"); }}
                 className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold transition cursor-pointer"
               >
-                Sign up
+                {t("header.sign_up")}
               </button>
             </div>
           </div>

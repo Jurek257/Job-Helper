@@ -5,6 +5,7 @@ import { generateCoverLetter } from "@/services/generateCoverLetter";
 import { getCompanyInfo } from "@/services/getCompanyInfo";
 import type { GenerateCoverLetterParams } from "@/types/types";
 import jsPDF from "jspdf";
+import { useTranslation } from "react-i18next";
 //import { useCardActions } from "@/hooks/useCardActions";
 
 interface Props {
@@ -13,6 +14,7 @@ interface Props {
 
 export function GetInfoFromAiStep2({ data }: Props) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [isAnswerLoading, setIsAnswerLoading] = useState<boolean>(false);
   //const [isAnswerGenerated, setIsAnswerGenerated] = useState(false);
   const [coverLetter, setCoverLetter] = useState<string>("");
@@ -109,13 +111,8 @@ const handleAddNewJobCard = (e: React.SyntheticEvent<HTMLFormElement>) => {
   return (
     <div className="w-full sm:w-[800px] h-auto bg-[var(--surface-color)]  border border-[var(--border-color)] border-t-3 border-t-blue-500 rounded-2xl drop-shadow-x1 z-5">
       <div className="bg-blue-500/20 px-5 py-5 rounded-t-2xl border-b-3 border-b-[var(--border-color)]">
-        <h2 className="text-[28px] font-bold">
-          Generate a unique Cover letter for this application
-        </h2>
-        <p className="text-white/50">
-          Applying with a cover letter increases your chances of getting hired
-          by 50%.
-        </p>
+        <h2 className="text-[28px] font-bold">{t("cover_letter.title")}</h2>
+        <p className="text-white/50">{t("cover_letter.subtitle")}</p>
       </div>
 
       <form
@@ -124,7 +121,7 @@ const handleAddNewJobCard = (e: React.SyntheticEvent<HTMLFormElement>) => {
         action=""
       >
         <div className="flex flex-col px-5 py-2 w-full gap-2">
-          <span className="font-bold">COMPANY INFO</span>
+          <span className="font-bold">{t("cover_letter.company_info")}</span>
           <div className="flex gap-2 overflow-hidden">
             <input
               type="text"
@@ -138,7 +135,7 @@ const handleAddNewJobCard = (e: React.SyntheticEvent<HTMLFormElement>) => {
               disabled={isCompanyInfoLoading}
               className="bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer hover:-translate-y-1 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
             >
-              {isCompanyInfoLoading ? "Loading..." : "Get Info"}
+              {isCompanyInfoLoading ? t("common.loading") : t("cover_letter.get_info")}
             </button>
           </div>
           {companyInfo && (
@@ -152,7 +149,7 @@ const handleAddNewJobCard = (e: React.SyntheticEvent<HTMLFormElement>) => {
         </div>
 
         <label className="flex flex-col px-5 py-2 w-full" htmlFor="additional_context">
-          <span className="font-bold">ADDITIONAL CONTEXT (OPTIONAL)</span>
+          <span className="font-bold">{t("cover_letter.additional_context")}</span>
           <textarea
             name="additional_context"
             id="additional_context"
@@ -176,7 +173,7 @@ const handleAddNewJobCard = (e: React.SyntheticEvent<HTMLFormElement>) => {
               onClick={handleDownloadPDF}
               className="self-end bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:-translate-y-1"
             >
-              Download PDF
+              {t("common.download_pdf")}
             </button>
           </div>
         )}
@@ -190,13 +187,13 @@ const handleAddNewJobCard = (e: React.SyntheticEvent<HTMLFormElement>) => {
                 onClick={() => navigate("/")}
                 className="bg-[var(--surface-color)] border border-[var(--border-color)] cursor-pointer text-white px-6 py-2 rounded-lg"
               >
-                Skip
+                {t("cover_letter.skip")}
               </button>
               <button
                 type="submit"
                 className="bg-blue-500 shadow-2xl shadow-blue-500/50 text-white px-6 py-2 cursor-pointer rounded-lg hover:-translate-y-1 transition-all duration-200"
               >
-                Generate
+                {t("cover_letter.generate")}
               </button>
             </>
           )}
