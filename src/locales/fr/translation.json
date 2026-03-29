@@ -1,0 +1,72 @@
+{
+  "common": {
+    "loading": "Chargement...",
+    "cancel": "Annuler",
+    "submit": "Envoyer",
+    "or": "ou",
+    "delete": "Supprimer",
+    "download_pdf": "Télécharger PDF",
+    "optional": "optionnel"
+  },
+  "status": {
+    "applied": "Postulé",
+    "rejected": "Refusé",
+    "interview": "Entretien"
+  },
+  "signup": {
+    "tagline": "Suivez chaque candidature,",
+    "tagline2": "restez organisé",
+    "description": "Arrêtez de perdre le fil de vos candidatures. JobHelper centralise toutes vos candidatures dans un pipeline visuel clair.",
+    "example": "Exemple",
+    "welcome": "Bienvenue",
+    "sign_in_text": "Connectez-vous pour continuer à suivre vos candidatures",
+    "continue_google": "Continuer avec Google",
+    "terms": "En continuant, vous acceptez nos Conditions et notre Politique de confidentialité",
+    "continue_guest": "Continuer sans inscription"
+  },
+  "header": {
+    "demo_banner": "Mode démo — vos données sont enregistrées localement et seront perdues si vous videz le cache du navigateur.",
+    "sign_up_to_save": "S'inscrire pour sauvegarder",
+    "add_application": "+ Ajouter une candidature",
+    "profile": "Profil",
+    "logout": "Se déconnecter",
+    "demo_modal_title": "Mode démo",
+    "demo_modal_text": "Les paramètres de profil ne sont pas disponibles en mode démo. Créez un compte pour sauvegarder votre CV, vos informations de profil et vos lettres de motivation.",
+    "sign_up": "S'inscrire"
+  },
+  "add_job": {
+    "title": "Ajouter une candidature",
+    "subtitle": "Suivez une nouvelle opportunité dans votre pipeline",
+    "company_name": "NOM DE L'ENTREPRISE",
+    "position": "POSTE",
+    "email": "EMAIL DE RECRUTEMENT DE L'ENTREPRISE",
+    "job_requirements": "EXIGENCES DU POSTE",
+    "optional_hint": "optionnel — recommandé pour une lettre de motivation plus personnalisée",
+    "toast_success": "Nouvelle fiche de candidature ajoutée",
+    "toast_resume": "Veuillez télécharger votre CV dans le Profil avant d'ajouter un emploi"
+  },
+  "cover_letter": {
+    "title": "Générer une lettre de motivation unique pour cette candidature",
+    "subtitle": "Postuler avec une lettre de motivation augmente vos chances d'être embauché de 50%.",
+    "company_info": "INFORMATIONS SUR L'ENTREPRISE",
+    "get_info": "Obtenir des infos",
+    "additional_context": "CONTEXTE SUPPLÉMENTAIRE (OPTIONNEL)",
+    "skip": "Passer",
+    "generate": "Générer"
+  },
+  "profile": {
+    "full_name": "Nom complet",
+    "name_placeholder": "Exemple : Jean Dupont",
+    "occupation": "Votre métier",
+    "occupation_placeholder": "Exemple : Développeur Java Fullstack",
+    "current_position": "Votre poste actuel",
+    "cv": "Votre CV",
+    "current_file": "Fichier actuel :",
+    "keep_file": "Laisser vide pour conserver le fichier actuel",
+    "save": "Enregistrer le profil",
+    "toast_success": "Enregistré avec succès",
+    "toast_resume_required": "Veuillez télécharger votre CV",
+    "toast_file_size": "Le fichier doit être inférieur à 1 Mo",
+    "toast_file_type": "Seuls les fichiers PDF, DOC, DOCX sont autorisés"
+  }
+}

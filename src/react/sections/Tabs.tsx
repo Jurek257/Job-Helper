@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
 import type { CardStatus } from "../../types/types";
+import { useTranslation } from "react-i18next";
 
 interface TabsProps {
   showedColumn: CardStatus;
@@ -9,6 +10,7 @@ interface TabsProps {
 
 export function Tabs({ showedColumn, setShowedColumn }: TabsProps) {
   const cards = useSelector((state: RootState) => state.Cards.cardDataArr);
+  const { t } = useTranslation();
 
   return (
     <div id="onboarding-tabs" className="grid grid-cols-3">
@@ -18,7 +20,7 @@ export function Tabs({ showedColumn, setShowedColumn }: TabsProps) {
       >
         <div className="flex items-center gap-2">
           <div className="hidden sm:flex w-3 h-3 bg-blue-500 shadow-[0_0_10px_8px_rgba(59,130,246,0.5)] rounded-full"></div>
-          <p className="text-[#FFFFFF] text-[16px] font-bold">Applied</p>
+          <p className="text-[#FFFFFF] text-[16px] font-bold">{t("status.applied")}</p>
         </div>
 
         <div className="w-6 h-6 bg-[var(--surface-color)] rounded-md text-center text-white/50 border border-[var(--border-color)]">
@@ -32,7 +34,7 @@ export function Tabs({ showedColumn, setShowedColumn }: TabsProps) {
       >
         <div className="flex items-center gap-2">
           <div className="hidden sm:flex w-3 h-3 bg-red-500 shadow-[0_0_10px_8px_rgba(239,68,68,0.5)] rounded-full"></div>
-          <p className="text-[#FFFFFF] text-[16px] font-bold">Rejected</p>
+          <p className="text-[#FFFFFF] text-[16px] font-bold">{t("status.rejected")}</p>
         </div>
 
         <div className="w-6 h-6 bg-[var(--surface-color)] rounded-md text-center text-white/50 border border-[var(--border-color)]">
@@ -46,7 +48,7 @@ export function Tabs({ showedColumn, setShowedColumn }: TabsProps) {
       >
         <div className="flex items-center gap-2">
           <div className="hidden sm:flex w-3 h-3 bg-green-500 shadow-[0_0_10px_8px_rgba(34,197,94,0.5)] rounded-full"></div>
-          <p className="text-[#FFFFFF] text-[16px] font-bold">Interview</p>
+          <p className="text-[#FFFFFF] text-[16px] font-bold">{t("status.interview")}</p>
         </div>
 
         <div className="w-6 h-6 bg-[var(--surface-color)] rounded-md text-center text-white/50 border border-[var(--border-color)]">

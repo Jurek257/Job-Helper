@@ -1,0 +1,72 @@
+{
+  "common": {
+    "loading": "Carregando...",
+    "cancel": "Cancelar",
+    "submit": "Enviar",
+    "or": "ou",
+    "delete": "Excluir",
+    "download_pdf": "Baixar PDF",
+    "optional": "opcional"
+  },
+  "status": {
+    "applied": "Candidatado",
+    "rejected": "Rejeitado",
+    "interview": "Entrevista"
+  },
+  "signup": {
+    "tagline": "Acompanhe cada candidatura,",
+    "tagline2": "mantenha-se organizado",
+    "description": "Pare de perder o controle de onde você se candidatou. O JobHelper mantém todas as suas candidaturas em um lugar com um pipeline visual claro.",
+    "example": "Exemplo",
+    "welcome": "Bem-vindo",
+    "sign_in_text": "Entre para continuar acompanhando suas candidaturas",
+    "continue_google": "Continuar com o Google",
+    "terms": "Ao continuar, você concorda com nossos Termos e Política de Privacidade",
+    "continue_guest": "Continuar sem registro"
+  },
+  "header": {
+    "demo_banner": "Modo demo — seus dados são salvos localmente e serão perdidos se você limpar o cache do navegador.",
+    "sign_up_to_save": "Registre-se para salvar",
+    "add_application": "+ Adicionar nova candidatura",
+    "profile": "Perfil",
+    "logout": "Sair",
+    "demo_modal_title": "Modo demo",
+    "demo_modal_text": "As configurações de perfil não estão disponíveis no modo demo. Crie uma conta para salvar seu currículo, informações de perfil e cartas de apresentação.",
+    "sign_up": "Registrar-se"
+  },
+  "add_job": {
+    "title": "Adicionar candidatura",
+    "subtitle": "Acompanhe uma nova oportunidade no seu pipeline",
+    "company_name": "NOME DA EMPRESA",
+    "position": "CARGO",
+    "email": "EMAIL DE RECRUTAMENTO DA EMPRESA",
+    "job_requirements": "REQUISITOS DA VAGA",
+    "optional_hint": "opcional — recomendado para uma carta de apresentação mais personalizada",
+    "toast_success": "Novo card de candidatura adicionado",
+    "toast_resume": "Por favor, faça upload do seu currículo no Perfil antes de adicionar uma vaga"
+  },
+  "cover_letter": {
+    "title": "Gerar uma carta de apresentação única para esta candidatura",
+    "subtitle": "Candidatar-se com uma carta de apresentação aumenta suas chances de ser contratado em 50%.",
+    "company_info": "INFORMAÇÕES DA EMPRESA",
+    "get_info": "Obter informações",
+    "additional_context": "CONTEXTO ADICIONAL (OPCIONAL)",
+    "skip": "Pular",
+    "generate": "Gerar"
+  },
+  "profile": {
+    "full_name": "Nome completo",
+    "name_placeholder": "Exemplo: João Silva",
+    "occupation": "Sua ocupação",
+    "occupation_placeholder": "Exemplo: Desenvolvedor Java Fullstack",
+    "current_position": "Sua posição atual",
+    "cv": "Seu currículo",
+    "current_file": "Arquivo atual:",
+    "keep_file": "Deixe vazio para manter o arquivo atual",
+    "save": "Salvar perfil",
+    "toast_success": "Salvo com sucesso",
+    "toast_resume_required": "Por favor, faça upload do seu currículo",
+    "toast_file_size": "O arquivo deve ter menos de 1 MB",
+    "toast_file_type": "Apenas arquivos PDF, DOC, DOCX são permitidos"
+  }
+}

@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { supabaseClient } from "@/supabase";
 import toast from "react-hot-toast";
 import type { User } from "@supabase/supabase-js";
+import { useTranslation } from "react-i18next";
 
 const ALLOWED_TYPES = [
   "application/pdf",
@@ -38,6 +39,7 @@ type ExistingProfile = {
 export function ProfileForm() {
   const [isFileUploading, setFileUploading] = useState(false);
   const [existingProfile, setExistingProfile] = useState<ExistingProfile | null>(null);
+  const { t } = useTranslation();
 
   const form = useForm<ProfileFormProps>({
     resolver: zodResolver(profileSchema),
@@ -72,11 +74,11 @@ export function ProfileForm() {
       const { data: deletedFiles, error: deletingError } =
         await supabaseClient.storage.from("resume_storage").remove([oldPath]);
       if (deletingError) {
-        toast.error("Problem with deleting old resume");
+        toast.error(t("profile.toast_resume_required"));
         throw deletingError;
       }
       if (!deletedFiles || deletedFiles.length === 0) {
-        toast.error("Old resume was not deleted");
+        toast.error(t("profile.toast_resume_required"));
         throw new Error("Old resume was not deleted");
       }
     }
@@ -102,11 +104,11 @@ export function ProfileForm() {
         const file = files[0];
 
         if (file.size > 1048576) {
-          toast.error("File must be less than 1 MB");
+          toast.error(t("profile.toast_file_size"));
           return;
         }
         if (!ALLOWED_TYPES.includes(file.type)) {
-          toast.error("Only PDF, DOC, DOCX files allowed");
+          toast.error(t("profile.toast_file_type"));
           return;
         }
 
@@ -120,7 +122,7 @@ export function ProfileForm() {
           .from("resume_storage")
           .upload(filePath, file);
         if (uploadError) {
-          toast.error("Upload to storage Error");
+          toast.error(t("profile.toast_resume_required"));
           throw uploadError;
         }
 
@@ -138,12 +140,12 @@ export function ProfileForm() {
           { onConflict: "user_id" },
         );
         if (dbError) {
-          toast.error("Align url to database error");
+          toast.error(t("profile.toast_resume_required"));
           throw dbError;
         }
       } else {
         if (!existingProfile?.resume_url) {
-          toast.error("Please upload your resume");
+          toast.error(t("profile.toast_resume_required"));
           return;
         }
 
@@ -157,12 +159,12 @@ export function ProfileForm() {
           { onConflict: "user_id" },
         );
         if (dbError) {
-          toast.error("Align url to database error");
+          toast.error(t("profile.toast_resume_required"));
           throw dbError;
         }
       }
 
-      toast.success("Sucessfully");
+      toast.success(t("profile.toast_success"));
     } catch (error) {
       console.error(error);
     } finally {
@@ -189,12 +191,12 @@ export function ProfileForm() {
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
                 {" "}
-                <FieldLabel htmlFor="user-name">Full Name</FieldLabel>{" "}
+                <FieldLabel htmlFor="user-name">{t("profile.full_name")}</FieldLabel>{" "}
                 <Input
                   {...field}
                   id="user-name"
                   aria-invalid={fieldState.invalid}
-                  placeholder="Example : John Kamerman"
+                  placeholder={t("profile.name_placeholder")}
                 />{" "}
                 {fieldState.invalid && (
                   <FieldError errors={[fieldState.error]} />
@@ -212,15 +214,15 @@ export function ProfileForm() {
               <Field data-invalid={fieldState.invalid}>
                 {" "}
                 <FieldLabel htmlFor="occupation">
-                  Your Occupation
+                  {t("profile.occupation")}
                 </FieldLabel>{" "}
                 <Input
                   {...field}
                   id="occupation"
                   aria-invalid={fieldState.invalid}
-                  placeholder="Example : Fullstack Java Developer"
+                  placeholder={t("profile.occupation_placeholder")}
                 />{" "}
-                <FieldDescription>Your current position</FieldDescription>
+                <FieldDescription>{t("profile.current_position")}</FieldDescription>
                 {fieldState.invalid && (
                   <FieldError errors={[fieldState.error]} />
                 )}
@@ -235,10 +237,10 @@ export function ProfileForm() {
             render={({ field: { onChange, name, ref }, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
                 {" "}
-                <FieldLabel htmlFor="resumeStorageURL">Your CV</FieldLabel>{" "}
+                <FieldLabel htmlFor="resumeStorageURL">{t("profile.cv")}</FieldLabel>{" "}
                 {existingFileName && (
                   <p className="text-sm text-white/50 mb-1">
-                    Current file: <span className="text-white/70">{existingFileName}</span>
+                    {t("profile.current_file")} <span className="text-white/70">{existingFileName}</span>
                   </p>
                 )}
                 <Input
@@ -251,7 +253,7 @@ export function ProfileForm() {
                   onChange={(e) => onChange(e.target.files)}
                 />{" "}
                 {existingFileName && (
-                  <FieldDescription>Leave empty to keep the current file</FieldDescription>
+                  <FieldDescription>{t("profile.keep_file")}</FieldDescription>
                 )}
                 {fieldState.invalid && (
                   <FieldError errors={[fieldState.error]} />
@@ -260,7 +262,7 @@ export function ProfileForm() {
             )}
           />
           <Button type="submit" disabled={isFileUploading}>
-            {isFileUploading ? "Loading..." : "Save Profile"}
+            {isFileUploading ? t("common.loading") : t("profile.save")}
           </Button>
         </FieldGroup>
       </form>

@@ -1,0 +1,72 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "or": "or",
+    "delete": "Delete",
+    "download_pdf": "Download PDF",
+    "optional": "optional"
+  },
+  "status": {
+    "applied": "Applied",
+    "rejected": "Rejected",
+    "interview": "Interview"
+  },
+  "signup": {
+    "tagline": "Track every application ,",
+    "tagline2": "stay organised",
+    "description": "Stop losing track of where you applied. JobHelper keeps all your applications in one place with a clear visual pipeline.",
+    "example": "Example",
+    "welcome": "Welcome",
+    "sign_in_text": "Sign in to Continue tracking your Job applications",
+    "continue_google": "Continue with Google",
+    "terms": "By continue you agree our Terms and Privacy Policy",
+    "continue_guest": "Continue without registration"
+  },
+  "header": {
+    "demo_banner": "Demo mode — your data is saved locally and will be lost if you clear your browser.",
+    "sign_up_to_save": "Sign up to save",
+    "add_application": "+ Add new Application",
+    "profile": "Profile",
+    "logout": "Log out",
+    "demo_modal_title": "Demo mode",
+    "demo_modal_text": "Profile settings are not available in demo mode. Create an account to save your resume, profile info, and cover letters.",
+    "sign_up": "Sign up"
+  },
+  "add_job": {
+    "title": "Add Job Application",
+    "subtitle": "Track a new opportunity in your pipeline",
+    "company_name": "COMPANY NAME",
+    "position": "POSITION",
+    "email": "COMPANYS RECRUITING EMAIL",
+    "job_requirements": "JOB REQUIREMENTS",
+    "optional_hint": "optional — recommended for a more personalised cover letter",
+    "toast_success": "New application card added",
+    "toast_resume": "Please upload your resume in Profile before adding a job"
+  },
+  "cover_letter": {
+    "title": "Generate a unique Cover letter for this application",
+    "subtitle": "Applying with a cover letter increases your chances of getting hired by 50%.",
+    "company_info": "COMPANY INFO",
+    "get_info": "Get Info",
+    "additional_context": "ADDITIONAL CONTEXT (OPTIONAL)",
+    "skip": "Skip",
+    "generate": "Generate"
+  },
+  "profile": {
+    "full_name": "Full Name",
+    "name_placeholder": "Example : John Kamerman",
+    "occupation": "Your Occupation",
+    "occupation_placeholder": "Example : Fullstack Java Developer",
+    "current_position": "Your current position",
+    "cv": "Your CV",
+    "current_file": "Current file:",
+    "keep_file": "Leave empty to keep the current file",
+    "save": "Save Profile",
+    "toast_success": "Successfully saved",
+    "toast_resume_required": "Please upload your resume",
+    "toast_file_size": "File must be less than 1 MB",
+    "toast_file_type": "Only PDF, DOC, DOCX files allowed"
+  }
+}

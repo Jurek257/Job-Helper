@@ -6,6 +6,7 @@ import type { GenerateCoverLetterParams } from "@/types/types";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store/store";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 
 interface Props {
@@ -17,6 +18,7 @@ export function AddJobFormStep1({ setCoverLetterData }: Props) {
   const { addNewJobCard } = useCardActions();
   const URL = useSelector((state: RootState) => state.User.resumeURL);
   const isGuest = useSelector((state: RootState) => state.User.isGuest);
+  const { t } = useTranslation();
 
   const [isFormLoading, setFormLoading] = useState<boolean>(false);
 
@@ -41,7 +43,7 @@ export function AddJobFormStep1({ setCoverLetterData }: Props) {
     const resumeUrl = URL;
 
     if (!resumeUrl) {
-      toast.error("Please upload your resume in Profile before adding a job");
+      toast.error(t("add_job.toast_resume"));
       return;
     }
 
@@ -55,7 +57,7 @@ export function AddJobFormStep1({ setCoverLetterData }: Props) {
 
     try {
       await addNewJobCard(e);
-      toast.success("New application card added");
+      toast.success(t("add_job.toast_success"));
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -66,10 +68,8 @@ export function AddJobFormStep1({ setCoverLetterData }: Props) {
   return (
     <div className="w-full sm:w-[800px] h-auto bg-[var(--surface-color)]  border border-[var(--border-color)] border-t-3 border-t-blue-500 rounded-2xl drop-shadow-x1 z-5">
       <div className="bg-blue-500/20 px-5 py-5 rounded-t-2xl border-b-3 border-b-[var(--border-color)]">
-        <h2 className="text-[28px] font-bold">Add Job Aplication</h2>
-        <p className="text-white/50">
-          Track a new opportunity in your pipeline
-        </p>
+        <h2 className="text-[28px] font-bold">{t("add_job.title")}</h2>
+        <p className="text-white/50">{t("add_job.subtitle")}</p>
       </div>
 
       <form
@@ -80,7 +80,7 @@ export function AddJobFormStep1({ setCoverLetterData }: Props) {
         <div className="flex flex-col sm:flex-row">
           <label className="flex flex-col p-5 w-full sm:w-1/2" htmlFor="">
             <span className="font-bold">
-              COMPANY NAME<span className="text-red-400">*</span>
+              {t("add_job.company_name")}<span className="text-red-400">*</span>
             </span>
             <input
               type="text"
@@ -90,7 +90,7 @@ export function AddJobFormStep1({ setCoverLetterData }: Props) {
             />
           </label>
           <label className="flex flex-col p-5 w-full sm:w-1/2" htmlFor="">
-            <span className="font-bold">POSITION</span>
+            <span className="font-bold">{t("add_job.position")}</span>
             <input
               type="text"
               name="position"
@@ -100,8 +100,8 @@ export function AddJobFormStep1({ setCoverLetterData }: Props) {
         </div>
         <label className="flex flex-col px-5  w-full" htmlFor="">
           <span className="font-bold">
-            COMPANYS RECRUITING EMAIL
-            <span className="text-white/40 font-normal text-sm ml-1">(optional)</span>
+            {t("add_job.email")}
+            <span className="text-white/40 font-normal text-sm ml-1">({t("common.optional")})</span>
           </span>
           <input
             type="email"
@@ -111,8 +111,8 @@ export function AddJobFormStep1({ setCoverLetterData }: Props) {
         </label>
         <label className="flex flex-col px-5 py-2 w-full" htmlFor="">
           <div className="flex flex-wrap items-baseline gap-2">
-            <span className="font-bold">JOB REQUIREMENTS</span>
-            <span className="text-white/40 font-normal text-sm">(optional — recommended for a more personalised cover letter)</span>
+            <span className="font-bold">{t("add_job.job_requirements")}</span>
+            <span className="text-white/40 font-normal text-sm">({t("add_job.optional_hint")})</span>
           </div>
           <textarea
             name="job_description"
@@ -130,13 +130,13 @@ export function AddJobFormStep1({ setCoverLetterData }: Props) {
                 onClick={() => navigate("/")}
                 className="bg-[var(--surface-color)] border border-[var(--border-color)] cursor-pointer text-white px-6 py-2 rounded-lg"
               >
-                Cancel
+                {t("common.cancel")}
               </button>
               <button
                 type="submit"
                 className="bg-blue-500 shadow-2xl shadow-blue-500/50 text-white px-6 py-2 cursor-pointer rounded-lg hover:-translate-y-1 transition-all duration-200"
               >
-                Submit
+                {t("common.submit")}
               </button>
             </>
           )}
