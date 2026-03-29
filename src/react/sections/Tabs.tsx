@@ -11,7 +11,7 @@ export function Tabs({ showedColumn, setShowedColumn }: TabsProps) {
   const cards = useSelector((state: RootState) => state.Cards.cardDataArr);
 
   return (
-    <div className="grid grid-cols-3">
+    <div id="onboarding-tabs" className="grid grid-cols-3">
       <div
         onClick={() => setShowedColumn("applied")}
         className={`flex flex-col sm:flex-row  items-center border border-[var(--border-color)] ${showedColumn === "applied" ? "bg-blue-500/50" : "bg-transparent"} sm:bg-transparent justify-between px-6 py-3`}

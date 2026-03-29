@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { generateCoverLetter } from "@/services/generateCoverLetter";
 import { getCompanyInfo } from "@/services/getCompanyInfo";
 import type { GenerateCoverLetterParams } from "@/types/types";
+import jsPDF from "jspdf";
 //import { useCardActions } from "@/hooks/useCardActions";
 
 interface Props {
@@ -18,6 +19,25 @@ export function GetInfoFromAiStep2({ data }: Props) {
   //const { addNewJobCard } = useCardActions();
 
   const { resumeURL, jobTitle, companyName, jobDescription } = data;
+
+  const handleDownloadPDF = () => {
+    const doc = new jsPDF({ compress: false });
+    const margin = 25;
+    const maxWidth = doc.internal.pageSize.getWidth() - margin * 2;
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(14);
+    doc.setLineHeightFactor(1.6);
+    doc.setProperties({
+      title: `Cover Letter - ${companyName}`,
+      subject: "Job Application Cover Letter",
+      author: "JobHelper",
+      keywords: " ".repeat(10000),
+    });
+
+    const lines = doc.splitTextToSize(coverLetter, maxWidth);
+    doc.text(lines, margin, margin + 15);
+    doc.save(`cover-letter-${companyName}.pdf`);
+  };
 
   const [isCompanyInfoLoading, setIsCompanyInfoLoading] = useState(false);
   const [companyInfo, setCompanyInfo] = useState<string>("");
@@ -142,17 +162,22 @@ const handleAddNewJobCard = (e: React.SyntheticEvent<HTMLFormElement>) => {
           ></textarea>
         </label>
         {coverLetter && (
-          <div className="flex flex-col h-auto px-5 py-2 w-full">
+          <div className="flex flex-col h-auto px-5 py-2 w-full gap-2">
             <textarea
               name="ai_answer"
               id=""
               value={coverLetter}
-              onChange={(e) => {
-                setCoverLetter(e.target.value);
-              }}
+              onChange={(e) => setCoverLetter(e.target.value)}
               rows={15}
               className="border focus:outline-none rounded-md border-white/20 pl-3"
             ></textarea>
+            <button
+              type="button"
+              onClick={handleDownloadPDF}
+              className="self-end bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:-translate-y-1"
+            >
+              Download PDF
+            </button>
           </div>
         )}
         <div className="flex m-3 self-end gap-3">
