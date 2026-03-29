@@ -1,0 +1,72 @@
+{
+  "common": {
+    "loading": "Laddar...",
+    "cancel": "Avbryt",
+    "submit": "Skicka",
+    "or": "eller",
+    "delete": "Ta bort",
+    "download_pdf": "Ladda ner PDF",
+    "optional": "valfritt"
+  },
+  "status": {
+    "applied": "Ansökt",
+    "rejected": "Avvisad",
+    "interview": "Intervju"
+  },
+  "signup": {
+    "tagline": "Spåra varje ansökan,",
+    "tagline2": "håll dig organiserad",
+    "description": "Sluta tappa bort vart du har sökt. JobHelper samlar alla dina ansökningar på ett ställe med en tydlig visuell pipeline.",
+    "example": "Exempel",
+    "welcome": "Välkommen",
+    "sign_in_text": "Logga in för att fortsätta spåra dina jobbansökningar",
+    "continue_google": "Fortsätt med Google",
+    "terms": "Genom att fortsätta godkänner du våra Villkor och Integritetspolicy",
+    "continue_guest": "Fortsätt utan registrering"
+  },
+  "header": {
+    "demo_banner": "Demoläge — dina uppgifter sparas lokalt och förloras om du rensar webbläsarens cache.",
+    "sign_up_to_save": "Registrera dig för att spara",
+    "add_application": "+ Lägg till ny ansökan",
+    "profile": "Profil",
+    "logout": "Logga ut",
+    "demo_modal_title": "Demoläge",
+    "demo_modal_text": "Profilinställningar är inte tillgängliga i demoläge. Skapa ett konto för att spara ditt CV, profilinformation och personliga brev.",
+    "sign_up": "Registrera dig"
+  },
+  "add_job": {
+    "title": "Lägg till jobbansökan",
+    "subtitle": "Spåra en ny möjlighet i din pipeline",
+    "company_name": "FÖRETAGSNAMN",
+    "position": "TJÄNST",
+    "email": "FÖRETAGETS REKRYTERINGSMAIL",
+    "job_requirements": "JOBBKRAV",
+    "optional_hint": "valfritt — rekommenderas för ett mer personligt personligt brev",
+    "toast_success": "Nytt ansökningskort tillagt",
+    "toast_resume": "Ladda upp ditt CV i Profilen innan du lägger till ett jobb"
+  },
+  "cover_letter": {
+    "title": "Generera ett unikt personligt brev för denna ansökan",
+    "subtitle": "Att söka med ett personligt brev ökar dina chanser att bli anställd med 50%.",
+    "company_info": "FÖRETAGSINFORMATION",
+    "get_info": "Hämta info",
+    "additional_context": "YTTERLIGARE SAMMANHANG (VALFRITT)",
+    "skip": "Hoppa över",
+    "generate": "Generera"
+  },
+  "profile": {
+    "full_name": "Fullständigt namn",
+    "name_placeholder": "Exempel: Erik Svensson",
+    "occupation": "Ditt yrke",
+    "occupation_placeholder": "Exempel: Fullstack Java-utvecklare",
+    "current_position": "Din nuvarande position",
+    "cv": "Ditt CV",
+    "current_file": "Aktuell fil:",
+    "keep_file": "Lämna tomt för att behålla den aktuella filen",
+    "save": "Spara profil",
+    "toast_success": "Sparades framgångsrikt",
+    "toast_resume_required": "Ladda upp ditt CV",
+    "toast_file_size": "Filen måste vara mindre än 1 MB",
+    "toast_file_type": "Endast PDF-, DOC- och DOCX-filer är tillåtna"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "common": {
+    "loading": "Caricamento...",
+    "cancel": "Annulla",
+    "submit": "Invia",
+    "or": "o",
+    "delete": "Elimina",
+    "download_pdf": "Scarica PDF",
+    "optional": "opzionale"
+  },
+  "status": {
+    "applied": "Candidato",
+    "rejected": "Rifiutato",
+    "interview": "Colloquio"
+  },
+  "signup": {
+    "tagline": "Tieni traccia di ogni candidatura,",
+    "tagline2": "rimani organizzato",
+    "description": "Smetti di perdere il filo delle tue candidature. JobHelper raccoglie tutte le tue candidature in un unico posto con un pipeline visivo chiaro.",
+    "example": "Esempio",
+    "welcome": "Benvenuto",
+    "sign_in_text": "Accedi per continuare a monitorare le tue candidature di lavoro",
+    "continue_google": "Continua con Google",
+    "terms": "Continuando accetti i nostri Termini e la nostra Informativa sulla privacy",
+    "continue_guest": "Continua senza registrazione"
+  },
+  "header": {
+    "demo_banner": "Modalità demo — i tuoi dati sono salvati localmente e andranno persi se svuoti la cache del browser.",
+    "sign_up_to_save": "Registrati per salvare",
+    "add_application": "+ Aggiungi nuova candidatura",
+    "profile": "Profilo",
+    "logout": "Esci",
+    "demo_modal_title": "Modalità demo",
+    "demo_modal_text": "Le impostazioni del profilo non sono disponibili in modalità demo. Crea un account per salvare il tuo curriculum, le informazioni del profilo e le lettere di presentazione.",
+    "sign_up": "Registrati"
+  },
+  "add_job": {
+    "title": "Aggiungi candidatura",
+    "subtitle": "Tieni traccia di una nuova opportunità nel tuo pipeline",
+    "company_name": "NOME AZIENDA",
+    "position": "POSIZIONE",
+    "email": "EMAIL DI RECLUTAMENTO AZIENDALE",
+    "job_requirements": "REQUISITI DEL LAVORO",
+    "optional_hint": "opzionale — consigliato per una lettera di presentazione più personalizzata",
+    "toast_success": "Nuova scheda candidatura aggiunta",
+    "toast_resume": "Carica il tuo curriculum nel Profilo prima di aggiungere un lavoro"
+  },
+  "cover_letter": {
+    "title": "Genera una lettera di presentazione unica per questa candidatura",
+    "subtitle": "Candidarsi con una lettera di presentazione aumenta le possibilità di essere assunti del 50%.",
+    "company_info": "INFO AZIENDA",
+    "get_info": "Ottieni informazioni",
+    "additional_context": "CONTESTO AGGIUNTIVO (OPZIONALE)",
+    "skip": "Salta",
+    "generate": "Genera"
+  },
+  "profile": {
+    "full_name": "Nome completo",
+    "name_placeholder": "Esempio: Marco Rossi",
+    "occupation": "La tua occupazione",
+    "occupation_placeholder": "Esempio: Sviluppatore Java Fullstack",
+    "current_position": "La tua posizione attuale",
+    "cv": "Il tuo CV",
+    "current_file": "File attuale:",
+    "keep_file": "Lascia vuoto per mantenere il file attuale",
+    "save": "Salva profilo",
+    "toast_success": "Salvato con successo",
+    "toast_resume_required": "Carica il tuo curriculum",
+    "toast_file_size": "Il file deve essere inferiore a 1 MB",
+    "toast_file_type": "Sono consentiti solo file PDF, DOC, DOCX"
+  }
+}

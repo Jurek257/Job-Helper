@@ -1,0 +1,72 @@
+{
+  "common": {
+    "loading": "로딩 중...",
+    "cancel": "취소",
+    "submit": "제출",
+    "or": "또는",
+    "delete": "삭제",
+    "download_pdf": "PDF 다운로드",
+    "optional": "선택사항"
+  },
+  "status": {
+    "applied": "지원함",
+    "rejected": "불합격",
+    "interview": "면접"
+  },
+  "signup": {
+    "tagline": "모든 지원을 추적하고,",
+    "tagline2": "체계적으로 관리하세요",
+    "description": "지원한 곳을 놓치지 마세요. JobHelper는 모든 지원서를 한 곳에서 명확한 시각적 파이프라인으로 관리합니다.",
+    "example": "예시",
+    "welcome": "환영합니다",
+    "sign_in_text": "취업 지원 현황을 계속 추적하려면 로그인하세요",
+    "continue_google": "Google로 계속하기",
+    "terms": "계속하면 이용약관 및 개인정보 처리방침에 동의하는 것입니다",
+    "continue_guest": "회원가입 없이 계속하기"
+  },
+  "header": {
+    "demo_banner": "데모 모드 — 데이터는 로컬에 저장되며 브라우저 캐시를 지우면 사라집니다.",
+    "sign_up_to_save": "저장하려면 가입하세요",
+    "add_application": "+ 새 지원서 추가",
+    "profile": "프로필",
+    "logout": "로그아웃",
+    "demo_modal_title": "데모 모드",
+    "demo_modal_text": "데모 모드에서는 프로필 설정을 사용할 수 없습니다. 이력서, 프로필 정보, 자기소개서를 저장하려면 계정을 만드세요.",
+    "sign_up": "회원가입"
+  },
+  "add_job": {
+    "title": "채용 지원 추가",
+    "subtitle": "파이프라인에서 새로운 기회를 추적하세요",
+    "company_name": "회사명",
+    "position": "직무",
+    "email": "회사 채용 이메일",
+    "job_requirements": "채용 요건",
+    "optional_hint": "선택사항 — 더 맞춤화된 자기소개서를 위해 권장",
+    "toast_success": "새 지원서 카드가 추가되었습니다",
+    "toast_resume": "지원서를 추가하기 전에 프로필에서 이력서를 업로드하세요"
+  },
+  "cover_letter": {
+    "title": "이 지원을 위한 맞춤 자기소개서 생성",
+    "subtitle": "자기소개서와 함께 지원하면 채용 가능성이 50% 높아집니다.",
+    "company_info": "회사 정보",
+    "get_info": "정보 가져오기",
+    "additional_context": "추가 맥락 (선택사항)",
+    "skip": "건너뛰기",
+    "generate": "생성하기"
+  },
+  "profile": {
+    "full_name": "성명",
+    "name_placeholder": "예: 김민준",
+    "occupation": "직업",
+    "occupation_placeholder": "예: Fullstack Java 개발자",
+    "current_position": "현재 직책",
+    "cv": "이력서",
+    "current_file": "현재 파일:",
+    "keep_file": "현재 파일을 유지하려면 비워두세요",
+    "save": "프로필 저장",
+    "toast_success": "성공적으로 저장되었습니다",
+    "toast_resume_required": "이력서를 업로드해 주세요",
+    "toast_file_size": "파일은 1MB 미만이어야 합니다",
+    "toast_file_type": "PDF, DOC, DOCX 파일만 허용됩니다"
+  }
+}

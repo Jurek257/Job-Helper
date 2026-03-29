@@ -1,0 +1,72 @@
+{
+  "common": {
+    "loading": "Laster...",
+    "cancel": "Avbryt",
+    "submit": "Send",
+    "or": "eller",
+    "delete": "Slett",
+    "download_pdf": "Last ned PDF",
+    "optional": "valgfritt"
+  },
+  "status": {
+    "applied": "Søkt",
+    "rejected": "Avvist",
+    "interview": "Intervju"
+  },
+  "signup": {
+    "tagline": "Spor hver søknad,",
+    "tagline2": "hold deg organisert",
+    "description": "Slutt å miste oversikten over hvor du har søkt. JobHelper samler alle søknadene dine på ett sted med en klar visuell pipeline.",
+    "example": "Eksempel",
+    "welcome": "Velkommen",
+    "sign_in_text": "Logg inn for å fortsette å spore jobbsøknadene dine",
+    "continue_google": "Fortsett med Google",
+    "terms": "Ved å fortsette godtar du våre Vilkår og Personvernerklæring",
+    "continue_guest": "Fortsett uten registrering"
+  },
+  "header": {
+    "demo_banner": "Demomodus — dataene dine lagres lokalt og går tapt hvis du tømmer nettleserens hurtigbuffer.",
+    "sign_up_to_save": "Registrer deg for å lagre",
+    "add_application": "+ Legg til ny søknad",
+    "profile": "Profil",
+    "logout": "Logg ut",
+    "demo_modal_title": "Demomodus",
+    "demo_modal_text": "Profilinnstillinger er ikke tilgjengelige i demomodus. Opprett en konto for å lagre CV, profilinformasjon og søknadsbrev.",
+    "sign_up": "Registrer deg"
+  },
+  "add_job": {
+    "title": "Legg til jobbsøknad",
+    "subtitle": "Spor en ny mulighet i pipelinen din",
+    "company_name": "FIRMANAVN",
+    "position": "STILLING",
+    "email": "SELSKAPETS REKRUTTERINGSMAIL",
+    "job_requirements": "JOBBKRAV",
+    "optional_hint": "valgfritt — anbefales for et mer personlig søknadsbrev",
+    "toast_success": "Nytt søknadskort lagt til",
+    "toast_resume": "Last opp CV-en din i Profil før du legger til en jobb"
+  },
+  "cover_letter": {
+    "title": "Generer et unikt søknadsbrev for denne søknaden",
+    "subtitle": "Å søke med et søknadsbrev øker sjansene for å bli ansatt med 50%.",
+    "company_info": "FIRMAINFORMASJON",
+    "get_info": "Hent info",
+    "additional_context": "YTTERLIGERE KONTEKST (VALGFRITT)",
+    "skip": "Hopp over",
+    "generate": "Generer"
+  },
+  "profile": {
+    "full_name": "Fullt navn",
+    "name_placeholder": "Eksempel: Lars Hansen",
+    "occupation": "Ditt yrke",
+    "occupation_placeholder": "Eksempel: Fullstack Java-utvikler",
+    "current_position": "Din nåværende stilling",
+    "cv": "Din CV",
+    "current_file": "Gjeldende fil:",
+    "keep_file": "La stå tomt for å beholde gjeldende fil",
+    "save": "Lagre profil",
+    "toast_success": "Lagret",
+    "toast_resume_required": "Last opp CV-en din",
+    "toast_file_size": "Filen må være mindre enn 1 MB",
+    "toast_file_type": "Kun PDF-, DOC- og DOCX-filer er tillatt"
+  }
+}

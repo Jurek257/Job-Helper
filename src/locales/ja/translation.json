@@ -1,0 +1,72 @@
+{
+  "common": {
+    "loading": "読み込み中...",
+    "cancel": "キャンセル",
+    "submit": "送信",
+    "or": "または",
+    "delete": "削除",
+    "download_pdf": "PDFをダウンロード",
+    "optional": "任意"
+  },
+  "status": {
+    "applied": "応募済み",
+    "rejected": "不採用",
+    "interview": "面接"
+  },
+  "signup": {
+    "tagline": "すべての応募を追跡し、",
+    "tagline2": "整理された状態を保つ",
+    "description": "応募先を見失わないようにしましょう。JobHelperはすべての応募を1か所にまとめ、明確なビジュアルパイプラインで管理します。",
+    "example": "例",
+    "welcome": "ようこそ",
+    "sign_in_text": "就職活動の追跡を続けるためにサインインしてください",
+    "continue_google": "Googleで続ける",
+    "terms": "続行することで、利用規約とプライバシーポリシーに同意したことになります",
+    "continue_guest": "登録せずに続ける"
+  },
+  "header": {
+    "demo_banner": "デモモード — データはローカルに保存され、ブラウザのキャッシュをクリアすると失われます。",
+    "sign_up_to_save": "保存するには登録",
+    "add_application": "+ 新しい応募を追加",
+    "profile": "プロフィール",
+    "logout": "ログアウト",
+    "demo_modal_title": "デモモード",
+    "demo_modal_text": "デモモードではプロフィール設定を利用できません。履歴書、プロフィール情報、カバーレターを保存するにはアカウントを作成してください。",
+    "sign_up": "登録する"
+  },
+  "add_job": {
+    "title": "求人応募を追加",
+    "subtitle": "パイプラインで新しい機会を追跡する",
+    "company_name": "会社名",
+    "position": "職種",
+    "email": "採用担当者のメールアドレス",
+    "job_requirements": "求人要件",
+    "optional_hint": "任意 — より個性的なカバーレターのために推奨",
+    "toast_success": "新しい応募カードを追加しました",
+    "toast_resume": "求人を追加する前にプロフィールで履歴書をアップロードしてください"
+  },
+  "cover_letter": {
+    "title": "この応募に合ったユニークなカバーレターを作成",
+    "subtitle": "カバーレター付きで応募すると採用の可能性が50%アップします。",
+    "company_info": "企業情報",
+    "get_info": "情報を取得",
+    "additional_context": "追加コンテキスト（任意）",
+    "skip": "スキップ",
+    "generate": "生成する"
+  },
+  "profile": {
+    "full_name": "氏名",
+    "name_placeholder": "例：田中太郎",
+    "occupation": "職業",
+    "occupation_placeholder": "例：Fullstack Javaエンジニア",
+    "current_position": "現在のポジション",
+    "cv": "履歴書",
+    "current_file": "現在のファイル：",
+    "keep_file": "現在のファイルを保持するには空白のまま",
+    "save": "プロフィールを保存",
+    "toast_success": "正常に保存されました",
+    "toast_resume_required": "履歴書をアップロードしてください",
+    "toast_file_size": "ファイルは1MB未満である必要があります",
+    "toast_file_type": "PDF、DOC、DOCXファイルのみ許可されています"
+  }
+}

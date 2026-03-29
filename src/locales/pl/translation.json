@@ -1,0 +1,72 @@
+{
+  "common": {
+    "loading": "Ładowanie...",
+    "cancel": "Anuluj",
+    "submit": "Wyślij",
+    "or": "lub",
+    "delete": "Usuń",
+    "download_pdf": "Pobierz PDF",
+    "optional": "opcjonalnie"
+  },
+  "status": {
+    "applied": "Aplikowano",
+    "rejected": "Odrzucono",
+    "interview": "Rozmowa"
+  },
+  "signup": {
+    "tagline": "Śledź każdą aplikację,",
+    "tagline2": "pozostań zorganizowany",
+    "description": "Przestań tracić z oczu swoje aplikacje. JobHelper przechowuje wszystkie aplikacje w jednym miejscu z przejrzystym wizualnym pipeline'em.",
+    "example": "Przykład",
+    "welcome": "Witaj",
+    "sign_in_text": "Zaloguj się, aby kontynuować śledzenie swoich aplikacji",
+    "continue_google": "Kontynuuj z Google",
+    "terms": "Kontynuując, akceptujesz nasze Warunki i Politykę prywatności",
+    "continue_guest": "Kontynuuj bez rejestracji"
+  },
+  "header": {
+    "demo_banner": "Tryb demo — Twoje dane są zapisywane lokalnie i zostaną utracone po wyczyszczeniu pamięci podręcznej przeglądarki.",
+    "sign_up_to_save": "Zarejestruj się, aby zapisać",
+    "add_application": "+ Dodaj nową aplikację",
+    "profile": "Profil",
+    "logout": "Wyloguj się",
+    "demo_modal_title": "Tryb demo",
+    "demo_modal_text": "Ustawienia profilu nie są dostępne w trybie demo. Utwórz konto, aby zapisać swoje CV, informacje profilowe i listy motywacyjne.",
+    "sign_up": "Zarejestruj się"
+  },
+  "add_job": {
+    "title": "Dodaj aplikację o pracę",
+    "subtitle": "Śledź nową szansę w swoim pipeline",
+    "company_name": "NAZWA FIRMY",
+    "position": "STANOWISKO",
+    "email": "EMAIL REKRUTACYJNY FIRMY",
+    "job_requirements": "WYMAGANIA STANOWISKA",
+    "optional_hint": "opcjonalnie — zalecane dla bardziej spersonalizowanego listu motywacyjnego",
+    "toast_success": "Dodano nową kartę aplikacji",
+    "toast_resume": "Proszę przesłać CV w Profilu przed dodaniem oferty pracy"
+  },
+  "cover_letter": {
+    "title": "Wygeneruj unikalny list motywacyjny dla tej aplikacji",
+    "subtitle": "Aplikowanie z listem motywacyjnym zwiększa szanse na zatrudnienie o 50%.",
+    "company_info": "INFORMACJE O FIRMIE",
+    "get_info": "Pobierz informacje",
+    "additional_context": "DODATKOWY KONTEKST (OPCJONALNIE)",
+    "skip": "Pomiń",
+    "generate": "Generuj"
+  },
+  "profile": {
+    "full_name": "Imię i nazwisko",
+    "name_placeholder": "Przykład: Jan Kowalski",
+    "occupation": "Twój zawód",
+    "occupation_placeholder": "Przykład: Programista Java Fullstack",
+    "current_position": "Twoje obecne stanowisko",
+    "cv": "Twoje CV",
+    "current_file": "Aktualny plik:",
+    "keep_file": "Zostaw puste, aby zachować aktualny plik",
+    "save": "Zapisz profil",
+    "toast_success": "Zapisano pomyślnie",
+    "toast_resume_required": "Proszę przesłać swoje CV",
+    "toast_file_size": "Plik musi być mniejszy niż 1 MB",
+    "toast_file_type": "Dozwolone są tylko pliki PDF, DOC, DOCX"
+  }
+}
