@@ -101,17 +101,19 @@ export function AddJobFormStep1({ setCoverLetterData }: Props) {
         <label className="flex flex-col px-5  w-full" htmlFor="">
           <span className="font-bold">
             COMPANYS RECRUITING EMAIL
-            <span className="text-red-400">*</span>
+            <span className="text-white/40 font-normal text-sm ml-1">(optional)</span>
           </span>
           <input
             type="email"
             name="email"
-            required
             className="border focus:outline-none rounded-md border-white/20 h-10 pl-3"
           />
         </label>
         <label className="flex flex-col px-5 py-2 w-full" htmlFor="">
-          <span className="font-bold">SHORT JOB DESCRIPTION</span>
+          <div className="flex flex-wrap items-baseline gap-2">
+            <span className="font-bold">JOB REQUIREMENTS</span>
+            <span className="text-white/40 font-normal text-sm">(optional — recommended for a more personalised cover letter)</span>
+          </div>
           <textarea
             name="job_description"
             id=""

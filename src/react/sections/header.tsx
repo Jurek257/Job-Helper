@@ -50,17 +50,17 @@ export function Header() {
         </button>
       </div>
     )}
-    <header className="flex place-content-between px-10 items-center border-b border-b-[var(--border-color)] py-3 bg-[var(--main-color)]">
+    <header className="flex justify-between px-3 sm:px-10 items-center border-b border-b-[var(--border-color)] py-3 bg-[var(--main-color)]">
       <div
         onClick={() => navigate("/")}
         className="flex items-center gap-4 cursor-pointer"
       >
-        <IconLogo className="inline sm:inline"></IconLogo>
+        <IconLogo className="w-[42px] h-[42px] sm:w-auto sm:h-auto"></IconLogo>
         <h1 className="hidden sm:block text-[32px] font-bold">
           Job<span className="text-[#2563EB]">Helper</span>
         </h1>
       </div>
-      <div className="flex items-center gap-5">
+      <div className="flex items-center gap-3 sm:gap-5">
         {isHomePage && (
           <button
             type="button"
@@ -68,11 +68,10 @@ export function Header() {
               console.log("BUTTON CLICKED");
               navigate("/add-job?step=1");
             }}
-            /* onClick={() => setPopupShowed(true)} */
             id="onboarding-add-btn"
-            className="text-white bg-blue-400 py-[9px] px-5 rounded-xl font-bold text-[18px] transiton duration-400 hover:scale-105 cursor-pointer"
+            className="text-white bg-blue-400 py-[9px] px-3 sm:px-5 rounded-xl font-bold text-[15px] sm:text-[18px] transition duration-400 hover:scale-105 cursor-pointer"
           >
-            + <span className="hidden sm:inline ">Add new Aplication</span>
+            + Add new Application
           </button>
         )}
 
