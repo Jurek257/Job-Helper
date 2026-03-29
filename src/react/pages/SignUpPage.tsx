@@ -13,7 +13,10 @@ export function SignUpPage() {
   const handelGoogleSignIn = async () => {
     supabaseClient.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: window.location.origin },
+      options: {
+        redirectTo: window.location.origin,
+        queryParams: { prompt: "select_account" },
+      },
     });
   };
 

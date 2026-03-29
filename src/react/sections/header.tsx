@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "@/store/store";
@@ -24,6 +25,7 @@ export function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isGuest = useSelector((state: RootState) => state.User.isGuest);
+  const [showDemoModal, setShowDemoModal] = useState(false);
 
   const handleLogout = async () => {
     await supabaseClient.auth.signOut();
@@ -82,7 +84,7 @@ export function Header() {
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-32">
             <DropdownMenuGroup>
-              <DropdownMenuItem onClick={() => navigate("/profile")}>
+              <DropdownMenuItem onClick={() => isGuest ? setShowDemoModal(true) : navigate("/profile")}>
                 Profile
               </DropdownMenuItem>
               {/*           <DropdownMenuItem>Billing</DropdownMenuItem>
@@ -98,6 +100,30 @@ export function Header() {
         {/* <UserAvatar className="hidden sm:inline" /> */}
       </div>
     </header>
+      {showDemoModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+          <div className="bg-[var(--surface-color)] border border-[var(--border-color)] rounded-2xl p-6 w-[90%] max-w-sm flex flex-col gap-4 shadow-xl">
+            <h2 className="text-xl font-bold">Demo mode</h2>
+            <p className="text-white/60 text-sm">
+              Profile settings are not available in demo mode. Create an account to save your resume, profile info, and cover letters.
+            </p>
+            <div className="flex gap-3 justify-end">
+              <button
+                onClick={() => setShowDemoModal(false)}
+                className="px-4 py-2 rounded-lg border border-[var(--border-color)] text-white/70 hover:text-white transition cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => { setShowDemoModal(false); navigate("/login"); }}
+                className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold transition cursor-pointer"
+              >
+                Sign up
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
