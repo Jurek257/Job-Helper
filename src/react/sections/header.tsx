@@ -25,6 +25,8 @@ export function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isGuest = useSelector((state: RootState) => state.User.isGuest);
+  const user = useSelector((state: RootState) => state.User.user);
+  const avatarUrl = user?.user_metadata?.avatar_url as string | undefined;
   const [showDemoModal, setShowDemoModal] = useState(false);
 
   const handleLogout = async () => {
@@ -68,7 +70,7 @@ export function Header() {
             }}
             /* onClick={() => setPopupShowed(true)} */
             id="onboarding-add-btn"
-            className="text-white bg-blue-400 py-2 px-5 rounded-xl font-bold text-[18px] transiton duration-400 hover:scale-105 cursor-pointer"
+            className="text-white bg-blue-400 py-[9px] px-5 rounded-xl font-bold text-[18px] transiton duration-400 hover:scale-105 cursor-pointer"
           >
             + <span className="hidden sm:inline ">Add new Aplication</span>
           </button>
@@ -77,10 +79,18 @@ export function Header() {
         <div id="onboarding-avatar">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="destructive" size="icon" className="rounded-full">
+            <Button variant="destructive" size="icon" className="rounded-full w-[42px] h-[42px]">
               <Avatar size="lg">
-                <AvatarImage src="https://github.com/shadcn.png" alt="shadcn" />
-                <AvatarFallback>CN</AvatarFallback>
+                {isGuest ? (
+                  <AvatarFallback className="bg-white/10 text-white/50 text-lg">?</AvatarFallback>
+                ) : (
+                  <>
+                    <AvatarImage src={avatarUrl} alt="avatar" />
+                    <AvatarFallback className="bg-blue-600 text-white text-sm font-bold">
+                      {user?.email?.[0]?.toUpperCase() ?? "U"}
+                    </AvatarFallback>
+                  </>
+                )}
               </Avatar>
             </Button>
           </DropdownMenuTrigger>

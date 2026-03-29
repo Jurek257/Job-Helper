@@ -125,12 +125,12 @@ const handleAddNewJobCard = (e: React.SyntheticEvent<HTMLFormElement>) => {
       >
         <div className="flex flex-col px-5 py-2 w-full gap-2">
           <span className="font-bold">COMPANY INFO</span>
-          <div className="flex gap-2">
+          <div className="flex gap-2 overflow-hidden">
             <input
               type="text"
               readOnly
               value={companyName}
-              className="flex-1 border focus:outline-none rounded-md border-white/20 px-3 py-2 bg-white/5"
+              className="flex-1 min-w-0 border focus:outline-none rounded-md border-white/20 px-3 py-2 bg-white/5"
             />
             <button
               type="button"
