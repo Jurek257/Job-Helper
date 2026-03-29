@@ -67,12 +67,14 @@ export function Header() {
               navigate("/add-job?step=1");
             }}
             /* onClick={() => setPopupShowed(true)} */
+            id="onboarding-add-btn"
             className="text-white bg-blue-400 py-2 px-5 rounded-xl font-bold text-[18px] transiton duration-400 hover:scale-105 cursor-pointer"
           >
             + <span className="hidden sm:inline ">Add new Aplication</span>
           </button>
         )}
 
+        <div id="onboarding-avatar">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="destructive" size="icon" className="rounded-full">
@@ -96,6 +98,7 @@ export function Header() {
             </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
+        </div>
 
         {/* <UserAvatar className="hidden sm:inline" /> */}
       </div>

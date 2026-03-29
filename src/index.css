@@ -124,6 +124,43 @@ body {
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* driver.js mobile overrides */
+@media (max-width: 640px) {
+  .driver-popover {
+    max-width: 90vw !important;
+    padding: 20px !important;
+    border-radius: 16px !important;
+  }
+
+  .driver-popover-title {
+    font-size: 18px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .driver-popover-description {
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+  }
+
+  .driver-popover-footer {
+    margin-top: 16px !important;
+    gap: 10px !important;
+  }
+
+  .driver-popover-next-btn,
+  .driver-popover-prev-btn,
+  .driver-popover-done-btn {
+    font-size: 15px !important;
+    padding: 10px 20px !important;
+    border-radius: 10px !important;
+    min-height: 44px !important;
+  }
+
+  .driver-popover-progress-text {
+    font-size: 13px !important;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
