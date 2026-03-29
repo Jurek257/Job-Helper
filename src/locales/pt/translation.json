@@ -54,6 +54,17 @@
     "skip": "Pular",
     "generate": "Gerar"
   },
+  "onboarding": {
+    "next": "Próximo →",
+    "back": "← Voltar",
+    "done": "Entendido!",
+    "step1_title": "Adicionar candidatura",
+    "step1_desc": "Clique aqui para adicionar uma nova vaga. Preencha a empresa, cargo e descrição.",
+    "step2_title": "Acompanhar o estado",
+    "step2_desc": "Alterne entre as abas Aplicado, Rejeitado e Entrevista para ver suas candidaturas por estado.",
+    "step3_title": "Seu perfil",
+    "step3_desc": "Carregue seu CV aqui — ele será usado para gerar cartas de apresentação personalizadas automaticamente."
+  },
   "profile": {
     "full_name": "Nome completo",
     "name_placeholder": "Exemplo: João Silva",

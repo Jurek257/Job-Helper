@@ -54,6 +54,17 @@
     "skip": "Omitir",
     "generate": "Generar"
   },
+  "onboarding": {
+    "next": "Siguiente →",
+    "back": "← Atrás",
+    "done": "¡Entendido!",
+    "step1_title": "Agregar nueva solicitud",
+    "step1_desc": "Haz clic aquí para agregar un nuevo trabajo. Rellena la empresa, el puesto y la descripción.",
+    "step2_title": "Seguir el estado",
+    "step2_desc": "Cambia entre las pestañas Aplicado, Rechazado y Entrevista para ver tus solicitudes por estado.",
+    "step3_title": "Tu perfil",
+    "step3_desc": "Sube tu CV aquí — se usará para generar cartas de presentación personalizadas automáticamente."
+  },
   "profile": {
     "full_name": "Nombre completo",
     "name_placeholder": "Ejemplo: Juan García",

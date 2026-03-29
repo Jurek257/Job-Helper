@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
+import i18n from "../i18n";
 
 const ONBOARDING_KEY = "jh_onboarding_done";
 
@@ -8,20 +9,22 @@ export function useOnboarding() {
   useEffect(() => {
     if (localStorage.getItem(ONBOARDING_KEY)) return;
 
+    const t = (key: string) => i18n.t(key);
+
     const driverObj = driver({
       showProgress: true,
       animate: true,
       overlayColor: "#000",
       overlayOpacity: 0.7,
-      nextBtnText: "Next →",
-      prevBtnText: "← Back",
-      doneBtnText: "Got it!",
+      nextBtnText: t("onboarding.next"),
+      prevBtnText: t("onboarding.back"),
+      doneBtnText: t("onboarding.done"),
       steps: [
         {
           element: "#onboarding-add-btn",
           popover: {
-            title: "Add a new application",
-            description: "Click here to add a new job you applied to. Fill in the company, position and job description.",
+            title: t("onboarding.step1_title"),
+            description: t("onboarding.step1_desc"),
             side: "bottom",
             align: "end",
           },
@@ -29,8 +32,8 @@ export function useOnboarding() {
         {
           element: "#onboarding-tabs",
           popover: {
-            title: "Track your status",
-            description: "Switch between Applied, Rejected and Interview tabs to see your applications by status.",
+            title: t("onboarding.step2_title"),
+            description: t("onboarding.step2_desc"),
             side: "bottom",
             align: "center",
           },
@@ -38,8 +41,8 @@ export function useOnboarding() {
         {
           element: "#onboarding-avatar",
           popover: {
-            title: "Your profile",
-            description: "Upload your CV here — it will be used to generate personalised cover letters automatically.",
+            title: t("onboarding.step3_title"),
+            description: t("onboarding.step3_desc"),
             side: "bottom",
             align: "end",
           },

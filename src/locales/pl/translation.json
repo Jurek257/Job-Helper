@@ -54,6 +54,17 @@
     "skip": "Pomiń",
     "generate": "Generuj"
   },
+  "onboarding": {
+    "next": "Dalej →",
+    "back": "← Wstecz",
+    "done": "Rozumiem!",
+    "step1_title": "Dodaj nową aplikację",
+    "step1_desc": "Kliknij tutaj, aby dodać nową ofertę pracy. Wypełnij firmę, stanowisko i opis.",
+    "step2_title": "Śledź swój status",
+    "step2_desc": "Przełączaj się między zakładkami Aplikowano, Odrzucono i Rozmowa, aby przeglądać aplikacje według statusu.",
+    "step3_title": "Twój profil",
+    "step3_desc": "Prześlij tutaj swoje CV — zostanie użyte do automatycznego generowania spersonalizowanych listów motywacyjnych."
+  },
   "profile": {
     "full_name": "Imię i nazwisko",
     "name_placeholder": "Przykład: Jan Kowalski",

@@ -54,6 +54,17 @@
     "skip": "Skip",
     "generate": "Generate"
   },
+  "onboarding": {
+    "next": "Next →",
+    "back": "← Back",
+    "done": "Got it!",
+    "step1_title": "Add a new application",
+    "step1_desc": "Click here to add a new job you applied to. Fill in the company, position and job description.",
+    "step2_title": "Track your status",
+    "step2_desc": "Switch between Applied, Rejected and Interview tabs to see your applications by status.",
+    "step3_title": "Your profile",
+    "step3_desc": "Upload your CV here — it will be used to generate personalised cover letters automatically."
+  },
   "profile": {
     "full_name": "Full Name",
     "name_placeholder": "Example : John Kamerman",

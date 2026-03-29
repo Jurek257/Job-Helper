@@ -54,6 +54,17 @@
     "skip": "跳过",
     "generate": "生成"
   },
+  "onboarding": {
+    "next": "下一步 →",
+    "back": "← 返回",
+    "done": "明白了！",
+    "step1_title": "添加新申请",
+    "step1_desc": "点击此处添加新职位。填写公司、职位和职位描述。",
+    "step2_title": "跟踪状态",
+    "step2_desc": "在已申请、已拒绝和面试标签之间切换，按状态查看申请。",
+    "step3_title": "您的个人资料",
+    "step3_desc": "在此上传您的简历——将用于自动生成个性化求职信。"
+  },
   "profile": {
     "full_name": "全名",
     "name_placeholder": "示例：张伟",

@@ -54,6 +54,17 @@
     "skip": "Hopp over",
     "generate": "Generer"
   },
+  "onboarding": {
+    "next": "Neste →",
+    "back": "← Tilbake",
+    "done": "Forstått!",
+    "step1_title": "Legg til ny søknad",
+    "step1_desc": "Klikk her for å legge til en ny stilling. Fyll ut selskap, stilling og beskrivelse.",
+    "step2_title": "Spor statusen din",
+    "step2_desc": "Bytt mellom fanene Søkt, Avvist og Intervju for å se søknader etter status.",
+    "step3_title": "Din profil",
+    "step3_desc": "Last opp CV-en din her — den vil brukes til å generere personlige søknadsbrev automatisk."
+  },
   "profile": {
     "full_name": "Fullt navn",
     "name_placeholder": "Eksempel: Lars Hansen",

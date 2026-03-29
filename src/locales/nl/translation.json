@@ -54,6 +54,17 @@
     "skip": "Overslaan",
     "generate": "Genereren"
   },
+  "onboarding": {
+    "next": "Volgende →",
+    "back": "← Terug",
+    "done": "Begrepen!",
+    "step1_title": "Nieuwe sollicitatie toevoegen",
+    "step1_desc": "Klik hier om een nieuwe vacature toe te voegen. Vul het bedrijf, de functie en de beschrijving in.",
+    "step2_title": "Status bijhouden",
+    "step2_desc": "Schakel tussen de tabbladen Gesolliciteerd, Afgewezen en Sollicitatiegesprek om sollicitaties op status te bekijken.",
+    "step3_title": "Jouw profiel",
+    "step3_desc": "Upload hier je CV — het wordt gebruikt om automatisch gepersonaliseerde sollicitatiebrieven te genereren."
+  },
   "profile": {
     "full_name": "Volledige naam",
     "name_placeholder": "Voorbeeld: Jan de Vries",

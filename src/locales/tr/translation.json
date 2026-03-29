@@ -54,6 +54,17 @@
     "skip": "Atla",
     "generate": "Oluştur"
   },
+  "onboarding": {
+    "next": "İleri →",
+    "back": "← Geri",
+    "done": "Anladım!",
+    "step1_title": "Yeni başvuru ekle",
+    "step1_desc": "Yeni bir iş eklemek için buraya tıklayın. Şirket, pozisyon ve açıklamayı doldurun.",
+    "step2_title": "Durumunu takip et",
+    "step2_desc": "Başvuruları duruma göre görmek için Başvuruldu, Reddedildi ve Mülakat sekmeleri arasında geçiş yapın.",
+    "step3_title": "Profilin",
+    "step3_desc": "CV'ni buraya yükle — kişiselleştirilmiş ön yazılar otomatik olarak oluşturmak için kullanılacak."
+  },
   "profile": {
     "full_name": "Ad Soyad",
     "name_placeholder": "Örnek: Ahmet Yılmaz",

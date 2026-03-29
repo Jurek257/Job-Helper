@@ -54,6 +54,17 @@
     "skip": "Salta",
     "generate": "Genera"
   },
+  "onboarding": {
+    "next": "Avanti →",
+    "back": "← Indietro",
+    "done": "Capito!",
+    "step1_title": "Aggiungi una candidatura",
+    "step1_desc": "Clicca qui per aggiungere una nuova posizione. Compila azienda, ruolo e descrizione.",
+    "step2_title": "Monitora lo stato",
+    "step2_desc": "Passa tra le schede Candidato, Rifiutato e Colloquio per vedere le candidature per stato.",
+    "step3_title": "Il tuo profilo",
+    "step3_desc": "Carica qui il tuo CV — verrà usato per generare automaticamente lettere di presentazione personalizzate."
+  },
   "profile": {
     "full_name": "Nome completo",
     "name_placeholder": "Esempio: Marco Rossi",

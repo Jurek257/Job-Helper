@@ -54,6 +54,17 @@
     "skip": "Lewati",
     "generate": "Buat"
   },
+  "onboarding": {
+    "next": "Berikutnya →",
+    "back": "← Kembali",
+    "done": "Mengerti!",
+    "step1_title": "Tambah lamaran baru",
+    "step1_desc": "Klik di sini untuk menambahkan pekerjaan baru. Isi perusahaan, posisi, dan deskripsi pekerjaan.",
+    "step2_title": "Lacak statusmu",
+    "step2_desc": "Beralih antara tab Dilamar, Ditolak, dan Wawancara untuk melihat lamaran berdasarkan status.",
+    "step3_title": "Profilmu",
+    "step3_desc": "Upload CV-mu di sini — akan digunakan untuk membuat surat lamaran yang dipersonalisasi secara otomatis."
+  },
   "profile": {
     "full_name": "Nama Lengkap",
     "name_placeholder": "Contoh: Budi Santoso",
