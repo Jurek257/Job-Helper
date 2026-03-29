@@ -54,6 +54,17 @@
     "skip": "Hoppa över",
     "generate": "Generera"
   },
+  "onboarding": {
+    "next": "Nästa →",
+    "back": "← Tillbaka",
+    "done": "Fattat!",
+    "step1_title": "Lägg till ny ansökan",
+    "step1_desc": "Klicka här för att lägga till ett nytt jobb. Fyll i företag, position och beskrivning.",
+    "step2_title": "Spåra din status",
+    "step2_desc": "Växla mellan flikarna Ansökt, Avvisad och Intervju för att se ansökningar per status.",
+    "step3_title": "Din profil",
+    "step3_desc": "Ladda upp ditt CV här — det används för att automatiskt generera personliga personliga brev."
+  },
   "profile": {
     "full_name": "Fullständigt namn",
     "name_placeholder": "Exempel: Erik Svensson",

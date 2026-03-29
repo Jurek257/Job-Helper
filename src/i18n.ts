@@ -21,7 +21,9 @@ import no from "./locales/no/translation.json";
 import tr from "./locales/tr/translation.json";
 import pl from "./locales/pl/translation.json";
 
-const savedLang = localStorage.getItem("lang") || "en";
+const browserLang = navigator.language.split("-")[0];
+const supportedLangs = ["en","de","zh","hi","es","fr","ar","bn","ru","pt","id","ja","ko","it","nl","sv","no","tr","pl"];
+const savedLang = localStorage.getItem("lang") || (supportedLangs.includes(browserLang) ? browserLang : "en");
 
 i18n.use(initReactI18next).init({
   resources: {

@@ -54,6 +54,17 @@
     "skip": "Überspringen",
     "generate": "Generieren"
   },
+  "onboarding": {
+    "next": "Weiter →",
+    "back": "← Zurück",
+    "done": "Verstanden!",
+    "step1_title": "Neue Bewerbung hinzufügen",
+    "step1_desc": "Klicke hier, um eine neue Stelle hinzuzufügen. Fülle Unternehmen, Position und Stellenbeschreibung aus.",
+    "step2_title": "Status verfolgen",
+    "step2_desc": "Wechsle zwischen den Tabs Beworben, Abgelehnt und Interview, um deine Bewerbungen nach Status zu sehen.",
+    "step3_title": "Dein Profil",
+    "step3_desc": "Lade hier deinen Lebenslauf hoch — er wird verwendet, um personalisierte Anschreiben automatisch zu generieren."
+  },
   "profile": {
     "full_name": "Vollständiger Name",
     "name_placeholder": "Beispiel: Johann Müller",

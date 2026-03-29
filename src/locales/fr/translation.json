@@ -54,6 +54,17 @@
     "skip": "Passer",
     "generate": "Générer"
   },
+  "onboarding": {
+    "next": "Suivant →",
+    "back": "← Retour",
+    "done": "Compris !",
+    "step1_title": "Ajouter une candidature",
+    "step1_desc": "Cliquez ici pour ajouter un nouveau poste. Renseignez l'entreprise, le poste et la description.",
+    "step2_title": "Suivre votre statut",
+    "step2_desc": "Passez entre les onglets Postulé, Refusé et Entretien pour voir vos candidatures par statut.",
+    "step3_title": "Votre profil",
+    "step3_desc": "Téléchargez votre CV ici — il sera utilisé pour générer automatiquement des lettres de motivation personnalisées."
+  },
   "profile": {
     "full_name": "Nom complet",
     "name_placeholder": "Exemple : Jean Dupont",
