@@ -34,6 +34,14 @@ const LANGUAGES = [
   { code: "ru", label: "Русский" },
   { code: "pt", label: "Português" },
   { code: "id", label: "Indonesia" },
+  { code: "ja", label: "日本語" },
+  { code: "ko", label: "한국어" },
+  { code: "it", label: "Italiano" },
+  { code: "nl", label: "Nederlands" },
+  { code: "sv", label: "Svenska" },
+  { code: "no", label: "Norsk" },
+  { code: "tr", label: "Türkçe" },
+  { code: "pl", label: "Polski" },
 ];
 
 export function Header() {

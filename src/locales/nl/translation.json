@@ -1,0 +1,72 @@
+{
+  "common": {
+    "loading": "Laden...",
+    "cancel": "Annuleren",
+    "submit": "Verzenden",
+    "or": "of",
+    "delete": "Verwijderen",
+    "download_pdf": "PDF downloaden",
+    "optional": "optioneel"
+  },
+  "status": {
+    "applied": "Gesolliciteerd",
+    "rejected": "Afgewezen",
+    "interview": "Sollicitatiegesprek"
+  },
+  "signup": {
+    "tagline": "Volg elke sollicitatie,",
+    "tagline2": "blijf georganiseerd",
+    "description": "Stop met het bijhouden van waar je hebt gesolliciteerd. JobHelper bewaart al je sollicitaties op één plek met een duidelijke visuele pipeline.",
+    "example": "Voorbeeld",
+    "welcome": "Welkom",
+    "sign_in_text": "Log in om uw sollicitaties te blijven bijhouden",
+    "continue_google": "Doorgaan met Google",
+    "terms": "Door verder te gaan ga je akkoord met onze Algemene voorwaarden en het Privacybeleid",
+    "continue_guest": "Doorgaan zonder registratie"
+  },
+  "header": {
+    "demo_banner": "Demomodus — uw gegevens worden lokaal opgeslagen en gaan verloren als u de browsercache wist.",
+    "sign_up_to_save": "Registreer om op te slaan",
+    "add_application": "+ Nieuwe sollicitatie toevoegen",
+    "profile": "Profiel",
+    "logout": "Uitloggen",
+    "demo_modal_title": "Demomodus",
+    "demo_modal_text": "Profielinstellingen zijn niet beschikbaar in de demomodus. Maak een account aan om je cv, profielinformatie en motivatiebrieven op te slaan.",
+    "sign_up": "Registreren"
+  },
+  "add_job": {
+    "title": "Sollicitatie toevoegen",
+    "subtitle": "Volg een nieuwe kans in uw pipeline",
+    "company_name": "BEDRIJFSNAAM",
+    "position": "FUNCTIE",
+    "email": "WERVINGS-E-MAIL BEDRIJF",
+    "job_requirements": "FUNCTIE-EISEN",
+    "optional_hint": "optioneel — aanbevolen voor een meer gepersonaliseerde motivatiebrief",
+    "toast_success": "Nieuwe sollicitatiekaart toegevoegd",
+    "toast_resume": "Upload uw cv in het Profiel voordat u een vacature toevoegt"
+  },
+  "cover_letter": {
+    "title": "Genereer een unieke motivatiebrief voor deze sollicitatie",
+    "subtitle": "Solliciteren met een motivatiebrief verhoogt uw kansen op aanwerving met 50%.",
+    "company_info": "BEDRIJFSINFORMATIE",
+    "get_info": "Info ophalen",
+    "additional_context": "EXTRA CONTEXT (OPTIONEEL)",
+    "skip": "Overslaan",
+    "generate": "Genereren"
+  },
+  "profile": {
+    "full_name": "Volledige naam",
+    "name_placeholder": "Voorbeeld: Jan de Vries",
+    "occupation": "Uw beroep",
+    "occupation_placeholder": "Voorbeeld: Fullstack Java-ontwikkelaar",
+    "current_position": "Uw huidige functie",
+    "cv": "Uw cv",
+    "current_file": "Huidig bestand:",
+    "keep_file": "Laat leeg om het huidige bestand te behouden",
+    "save": "Profiel opslaan",
+    "toast_success": "Succesvol opgeslagen",
+    "toast_resume_required": "Upload uw cv",
+    "toast_file_size": "Bestand moet kleiner zijn dan 1 MB",
+    "toast_file_type": "Alleen PDF-, DOC- en DOCX-bestanden zijn toegestaan"
+  }
+}

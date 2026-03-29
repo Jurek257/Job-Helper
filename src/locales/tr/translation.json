@@ -1,0 +1,72 @@
+{
+  "common": {
+    "loading": "Yükleniyor...",
+    "cancel": "İptal",
+    "submit": "Gönder",
+    "or": "veya",
+    "delete": "Sil",
+    "download_pdf": "PDF İndir",
+    "optional": "isteğe bağlı"
+  },
+  "status": {
+    "applied": "Başvuruldu",
+    "rejected": "Reddedildi",
+    "interview": "Mülakat"
+  },
+  "signup": {
+    "tagline": "Her başvuruyu takip et,",
+    "tagline2": "düzenli kal",
+    "description": "Nereye başvurduğunuzu takip etmeyi bırakmayın. JobHelper tüm başvurularınızı net bir görsel pipeline ile tek bir yerde tutar.",
+    "example": "Örnek",
+    "welcome": "Hoş Geldiniz",
+    "sign_in_text": "İş başvurularınızı takip etmeye devam etmek için giriş yapın",
+    "continue_google": "Google ile devam et",
+    "terms": "Devam ederek Şartlarımızı ve Gizlilik Politikamızı kabul etmiş olursunuz",
+    "continue_guest": "Kayıt olmadan devam et"
+  },
+  "header": {
+    "demo_banner": "Demo modu — verileriniz yerel olarak kaydedilir ve tarayıcı önbelleğini temizlerseniz kaybolur.",
+    "sign_up_to_save": "Kaydetmek için kaydolun",
+    "add_application": "+ Yeni Başvuru Ekle",
+    "profile": "Profil",
+    "logout": "Çıkış Yap",
+    "demo_modal_title": "Demo Modu",
+    "demo_modal_text": "Demo modunda profil ayarları kullanılamaz. Özgeçmişinizi, profil bilgilerinizi ve ön yazılarınızı kaydetmek için bir hesap oluşturun.",
+    "sign_up": "Kaydol"
+  },
+  "add_job": {
+    "title": "İş Başvurusu Ekle",
+    "subtitle": "Pipeline'ınızda yeni bir fırsatı takip edin",
+    "company_name": "ŞİRKET ADI",
+    "position": "POZİSYON",
+    "email": "ŞİRKET İŞE ALIM E-POSTASI",
+    "job_requirements": "İŞ GEREKSİNİMLERİ",
+    "optional_hint": "isteğe bağlı — daha kişiselleştirilmiş bir ön yazı için önerilir",
+    "toast_success": "Yeni başvuru kartı eklendi",
+    "toast_resume": "İş eklemeden önce lütfen Profil'e özgeçmişinizi yükleyin"
+  },
+  "cover_letter": {
+    "title": "Bu başvuru için benzersiz bir ön yazı oluşturun",
+    "subtitle": "Ön yazıyla başvurmak işe alınma şansınızı %50 artırır.",
+    "company_info": "ŞİRKET BİLGİSİ",
+    "get_info": "Bilgi Al",
+    "additional_context": "EK BAĞLAM (İSTEĞE BAĞLI)",
+    "skip": "Atla",
+    "generate": "Oluştur"
+  },
+  "profile": {
+    "full_name": "Ad Soyad",
+    "name_placeholder": "Örnek: Ahmet Yılmaz",
+    "occupation": "Mesleğiniz",
+    "occupation_placeholder": "Örnek: Fullstack Java Geliştirici",
+    "current_position": "Mevcut pozisyonunuz",
+    "cv": "Özgeçmişiniz",
+    "current_file": "Mevcut dosya:",
+    "keep_file": "Mevcut dosyayı korumak için boş bırakın",
+    "save": "Profili Kaydet",
+    "toast_success": "Başarıyla kaydedildi",
+    "toast_resume_required": "Lütfen özgeçmişinizi yükleyin",
+    "toast_file_size": "Dosya 1 MB'tan küçük olmalıdır",
+    "toast_file_type": "Yalnızca PDF, DOC, DOCX dosyalarına izin verilir"
+  }
+}
