@@ -1,11 +1,12 @@
 import { LoadingButton } from "./loading";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { generateCoverLetter } from "@/services/generateCoverLetter";
 import { getCompanyInfo } from "@/services/getCompanyInfo";
 import type { GenerateCoverLetterParams } from "@/types/types";
 import jsPDF from "jspdf";
 import { useTranslation } from "react-i18next";
+import { supabaseClient } from "@/supabase";
 //import { useCardActions } from "@/hooks/useCardActions";
 
 interface Props {
@@ -21,6 +22,25 @@ export function GetInfoFromAiStep2({ data }: Props) {
   //const { addNewJobCard } = useCardActions();
 
   const { resumeURL, jobTitle, companyName, jobDescription } = data;
+
+  const [fileName, setFileName] = useState(`cover-letter-${companyName}`);
+
+  useEffect(() => {
+    supabaseClient.auth.getUser().then(({ data: { user } }) => {
+      if (!user) return;
+      supabaseClient
+        .from("profiles")
+        .select("name")
+        .eq("user_id", user.id)
+        .single()
+        .then(({ data }) => {
+          if (data?.name) {
+            const lastName = data.name.trim().split(" ").pop();
+            setFileName(`cover-letter-${companyName}-${lastName}`);
+          }
+        });
+    });
+  }, [companyName]);
 
   const handleDownloadPDF = () => {
     const doc = new jsPDF({ compress: false });
@@ -38,7 +58,7 @@ export function GetInfoFromAiStep2({ data }: Props) {
 
     const lines = doc.splitTextToSize(coverLetter, maxWidth);
     doc.text(lines, margin, margin + 15);
-    doc.save(`cover-letter-${companyName}.pdf`);
+    doc.save(`${fileName}.pdf`);
   };
 
   const [isCompanyInfoLoading, setIsCompanyInfoLoading] = useState(false);
@@ -168,13 +188,21 @@ const handleAddNewJobCard = (e: React.SyntheticEvent<HTMLFormElement>) => {
               rows={15}
               className="border focus:outline-none rounded-md border-white/20 pl-3"
             ></textarea>
-            <button
-              type="button"
-              onClick={handleDownloadPDF}
-              className="self-end bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:-translate-y-1"
-            >
-              {t("common.download_pdf")}
-            </button>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+              <input
+                type="text"
+                value={fileName}
+                onChange={(e) => setFileName(e.target.value)}
+                className="flex-1 border focus:outline-none rounded-md border-white/20 px-3 py-2 bg-white/5 text-white text-sm"
+              />
+              <button
+                type="button"
+                onClick={handleDownloadPDF}
+                className="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:-translate-y-1 whitespace-nowrap"
+              >
+                {t("common.download_pdf")}
+              </button>
+            </div>
           </div>
         )}
         <div className="flex m-3 self-end gap-3">
