@@ -51,8 +51,12 @@
     "company_info": "معلومات الشركة",
     "get_info": "الحصول على معلومات",
     "additional_context": "سياق إضافي (اختياري)",
+    "additional_context_placeholder": "مثال: إبراز مهارات القيادة، ذكر العمل عن بُعد...",
     "skip": "تخطي",
-    "generate": "إنشاء"
+    "generate": "إنشاء",
+    "refine_title": "تحسين بالذكاء الاصطناعي",
+    "refine_placeholder": "مثال: اجعلها أقصر، أضف المزيد من الحماس...",
+    "refine_btn": "تحسين"
   },
   "onboarding": {
     "next": "التالي →",

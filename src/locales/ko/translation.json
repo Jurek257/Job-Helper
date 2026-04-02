@@ -51,8 +51,12 @@
     "company_info": "회사 정보",
     "get_info": "정보 가져오기",
     "additional_context": "추가 맥락 (선택사항)",
+    "additional_context_placeholder": "예: 리더십 강조, 원격 근무 선호 언급...",
     "skip": "건너뛰기",
-    "generate": "생성하기"
+    "generate": "생성하기",
+    "refine_title": "AI로 개선",
+    "refine_placeholder": "예: 더 짧게, 열정적으로...",
+    "refine_btn": "개선"
   },
   "onboarding": {
     "next": "다음 →",

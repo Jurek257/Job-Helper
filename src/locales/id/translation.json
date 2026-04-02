@@ -51,8 +51,12 @@
     "company_info": "INFO PERUSAHAAN",
     "get_info": "Dapatkan Info",
     "additional_context": "KONTEKS TAMBAHAN (OPSIONAL)",
+    "additional_context_placeholder": "misal: tonjolkan kemampuan kepemimpinan, sebutkan kerja jarak jauh...",
     "skip": "Lewati",
-    "generate": "Buat"
+    "generate": "Buat",
+    "refine_title": "Perbaiki dengan AI",
+    "refine_placeholder": "misal: persingkat, tambah antusiasme...",
+    "refine_btn": "Perbaiki"
   },
   "onboarding": {
     "next": "Berikutnya →",
