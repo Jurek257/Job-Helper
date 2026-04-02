@@ -51,8 +51,12 @@
     "company_info": "FIRMAINFORMASJON",
     "get_info": "Hent info",
     "additional_context": "YTTERLIGERE KONTEKST (VALGFRITT)",
+    "additional_context_placeholder": "f.eks. fremhev lederegenskaper, nevn fjernarbeid...",
     "skip": "Hopp over",
-    "generate": "Generer"
+    "generate": "Generer",
+    "refine_title": "Forbedre med AI",
+    "refine_placeholder": "f.eks. kortere, mer entusiasme...",
+    "refine_btn": "Forbedre"
   },
   "onboarding": {
     "next": "Neste →",

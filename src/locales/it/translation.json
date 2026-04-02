@@ -51,8 +51,12 @@
     "company_info": "INFO AZIENDA",
     "get_info": "Ottieni informazioni",
     "additional_context": "CONTESTO AGGIUNTIVO (OPZIONALE)",
+    "additional_context_placeholder": "es. evidenziare leadership, menzionare lavoro da remoto...",
     "skip": "Salta",
-    "generate": "Genera"
+    "generate": "Genera",
+    "refine_title": "Migliora con AI",
+    "refine_placeholder": "es. rendila più breve, aggiungi entusiasmo...",
+    "refine_btn": "Migliora"
   },
   "onboarding": {
     "next": "Avanti →",

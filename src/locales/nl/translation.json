@@ -51,8 +51,12 @@
     "company_info": "BEDRIJFSINFORMATIE",
     "get_info": "Info ophalen",
     "additional_context": "EXTRA CONTEXT (OPTIONEEL)",
+    "additional_context_placeholder": "bijv. leiderschapsvaardigheden benadrukken, thuiswerken vermelden...",
     "skip": "Overslaan",
-    "generate": "Genereren"
+    "generate": "Genereren",
+    "refine_title": "Verfijn met AI",
+    "refine_placeholder": "bijv. korter maken, meer enthousiasme...",
+    "refine_btn": "Verfijn"
   },
   "onboarding": {
     "next": "Volgende →",

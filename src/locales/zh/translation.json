@@ -51,8 +51,12 @@
     "company_info": "公司信息",
     "get_info": "获取信息",
     "additional_context": "补充背景（可选）",
+    "additional_context_placeholder": "例如：突出领导能力，提及远程工作意愿...",
     "skip": "跳过",
-    "generate": "生成"
+    "generate": "生成",
+    "refine_title": "用AI优化",
+    "refine_placeholder": "例如：缩短内容，增加热情...",
+    "refine_btn": "优化"
   },
   "onboarding": {
     "next": "下一步 →",

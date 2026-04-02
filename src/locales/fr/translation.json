@@ -51,8 +51,12 @@
     "company_info": "INFORMATIONS SUR L'ENTREPRISE",
     "get_info": "Obtenir des infos",
     "additional_context": "CONTEXTE SUPPLÉMENTAIRE (OPTIONNEL)",
+    "additional_context_placeholder": "ex. mettre en avant le leadership, mentionner le télétravail...",
     "skip": "Passer",
-    "generate": "Générer"
+    "generate": "Générer",
+    "refine_title": "Affiner avec l'IA",
+    "refine_placeholder": "ex. raccourcir, ajouter plus d'enthousiasme...",
+    "refine_btn": "Affiner"
   },
   "onboarding": {
     "next": "Suivant →",

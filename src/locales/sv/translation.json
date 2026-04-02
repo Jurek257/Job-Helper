@@ -51,8 +51,12 @@
     "company_info": "FÖRETAGSINFORMATION",
     "get_info": "Hämta info",
     "additional_context": "YTTERLIGARE SAMMANHANG (VALFRITT)",
+    "additional_context_placeholder": "t.ex. betona ledarskap, nämna distansarbete...",
     "skip": "Hoppa över",
-    "generate": "Generera"
+    "generate": "Generera",
+    "refine_title": "Förfina med AI",
+    "refine_placeholder": "t.ex. kortare, mer entusiasm...",
+    "refine_btn": "Förfina"
   },
   "onboarding": {
     "next": "Nästa →",

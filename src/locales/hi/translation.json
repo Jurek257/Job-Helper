@@ -51,8 +51,12 @@
     "company_info": "कंपनी जानकारी",
     "get_info": "जानकारी प्राप्त करें",
     "additional_context": "अतिरिक्त संदर्भ (वैकल्पिक)",
+    "additional_context_placeholder": "उदा. नेतृत्व कौशल पर जोर दें, दूरस्थ कार्य का उल्लेख करें...",
     "skip": "छोड़ें",
-    "generate": "बनाएं"
+    "generate": "बनाएं",
+    "refine_title": "AI से सुधारें",
+    "refine_placeholder": "उदा. छोटा करें, अधिक उत्साह जोड़ें...",
+    "refine_btn": "सुधारें"
   },
   "onboarding": {
     "next": "अगला →",

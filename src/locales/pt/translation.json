@@ -51,8 +51,12 @@
     "company_info": "INFORMAÇÕES DA EMPRESA",
     "get_info": "Obter informações",
     "additional_context": "CONTEXTO ADICIONAL (OPCIONAL)",
+    "additional_context_placeholder": "ex. destacar habilidades de liderança, mencionar trabalho remoto...",
     "skip": "Pular",
-    "generate": "Gerar"
+    "generate": "Gerar",
+    "refine_title": "Refinar com IA",
+    "refine_placeholder": "ex. encurtar, adicionar mais entusiasmo...",
+    "refine_btn": "Refinar"
   },
   "onboarding": {
     "next": "Próximo →",

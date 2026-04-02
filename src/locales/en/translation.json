@@ -51,8 +51,12 @@
     "company_info": "COMPANY INFO",
     "get_info": "Get Info",
     "additional_context": "ADDITIONAL CONTEXT (OPTIONAL)",
+    "additional_context_placeholder": "e.g. highlight leadership skills, mention remote work preference...",
     "skip": "Skip",
-    "generate": "Generate"
+    "generate": "Generate",
+    "refine_title": "Refine with AI",
+    "refine_placeholder": "e.g. make it shorter, add more enthusiasm...",
+    "refine_btn": "Refine"
   },
   "onboarding": {
     "next": "Next →",

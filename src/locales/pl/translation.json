@@ -51,8 +51,12 @@
     "company_info": "INFORMACJE O FIRMIE",
     "get_info": "Pobierz informacje",
     "additional_context": "DODATKOWY KONTEKST (OPCJONALNIE)",
+    "additional_context_placeholder": "np. podkreśl umiejętności przywódcze, wspomnij o pracy zdalnej...",
     "skip": "Pomiń",
-    "generate": "Generuj"
+    "generate": "Generuj",
+    "refine_title": "Ulepsz z AI",
+    "refine_placeholder": "np. skróć, dodaj więcej entuzjazmu...",
+    "refine_btn": "Ulepsz"
   },
   "onboarding": {
     "next": "Dalej →",

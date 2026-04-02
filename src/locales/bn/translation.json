@@ -51,8 +51,12 @@
     "company_info": "কোম্পানির তথ্য",
     "get_info": "তথ্য পান",
     "additional_context": "অতিরিক্ত প্রসঙ্গ (ঐচ্ছিক)",
+    "additional_context_placeholder": "যেমন: নেতৃত্বের দক্ষতা তুলে ধরুন, দূরবর্তী কাজ উল্লেখ করুন...",
     "skip": "এড়িয়ে যান",
-    "generate": "তৈরি করুন"
+    "generate": "তৈরি করুন",
+    "refine_title": "AI দিয়ে পরিমার্জন করুন",
+    "refine_placeholder": "যেমন: ছোট করুন, আরও উৎসাহ যোগ করুন...",
+    "refine_btn": "পরিমার্জন"
   },
   "onboarding": {
     "next": "পরবর্তী →",

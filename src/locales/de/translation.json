@@ -51,8 +51,12 @@
     "company_info": "FIRMENINFO",
     "get_info": "Info abrufen",
     "additional_context": "ZUSÄTZLICHER KONTEXT (OPTIONAL)",
+    "additional_context_placeholder": "z.B. Führungskompetenzen hervorheben, Fernarbeit erwähnen...",
     "skip": "Überspringen",
-    "generate": "Generieren"
+    "generate": "Generieren",
+    "refine_title": "Mit KI verfeinern",
+    "refine_placeholder": "z.B. kürzer machen, mehr Begeisterung...",
+    "refine_btn": "Verfeinern"
   },
   "onboarding": {
     "next": "Weiter →",

@@ -51,8 +51,12 @@
     "company_info": "企業情報",
     "get_info": "情報を取得",
     "additional_context": "追加コンテキスト（任意）",
+    "additional_context_placeholder": "例：リーダーシップを強調、リモートワーク希望を記載...",
     "skip": "スキップ",
-    "generate": "生成する"
+    "generate": "生成する",
+    "refine_title": "AIで改善",
+    "refine_placeholder": "例：短くする、熱意を加える...",
+    "refine_btn": "改善"
   },
   "onboarding": {
     "next": "次へ →",

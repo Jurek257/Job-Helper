@@ -51,8 +51,12 @@
     "company_info": "ŞİRKET BİLGİSİ",
     "get_info": "Bilgi Al",
     "additional_context": "EK BAĞLAM (İSTEĞE BAĞLI)",
+    "additional_context_placeholder": "örn. liderlik becerilerini vurgula, uzaktan çalışmayı belirt...",
     "skip": "Atla",
-    "generate": "Oluştur"
+    "generate": "Oluştur",
+    "refine_title": "AI ile İyileştir",
+    "refine_placeholder": "örn. kısalt, daha fazla coşku ekle...",
+    "refine_btn": "İyileştir"
   },
   "onboarding": {
     "next": "İleri →",
