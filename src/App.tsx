@@ -135,9 +135,16 @@ function App() {
     return <div className="flex items-center justify-center h-screen text-white/50">Loading...</div>;
   }
 
+  // Шаг 1: читаем параметр ?debug=true из URL
+  const isDebugMode = new URLSearchParams(window.location.search).get("debug") === "true";
+  // Шаг 2: проверяем, локальная ли среда
+  const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+  // Шаг 3: аналитика включена только если НЕ debug и НЕ localhost
+  const analyticsEnabled = !isDebugMode && !isLocalhost;
+
   return (
     <div className="">
-      <Analytics />
+      {analyticsEnabled && <Analytics />}
       <Toaster />
       <Routes>
         <Route
