@@ -2,7 +2,7 @@
 
 A full-stack job application tracker with an AI-powered cover letter assistant. Built to solve a real problem — keeping track of applications and writing tailored cover letters fast.
 
-**Live demo:** [jobhelper.vercel.app](https://jobhelper.vercel.app) &nbsp;·&nbsp; Guest mode available — no sign-up required to try it out.
+**Live demo:** [jobhelper.vercel.app](https://job-helper-alpha.vercel.app/) &nbsp;·&nbsp; Guest mode available — no sign-up required to try it out.
 
 ---
 
