@@ -1,7 +1,8 @@
 import { supabaseClient } from "@/supabase";
+import type { ChatMessage } from "@/types/types";
 
 export const refineCoverLetter = async (
-  currentLetter: string,
+  messages: ChatMessage[],
   instruction: string,
 ): Promise<string> => {
   const {
@@ -13,7 +14,7 @@ export const refineCoverLetter = async (
   const { data, error } = await supabaseClient.functions.invoke(
     "refine-cover-letter",
     {
-      body: { currentLetter, instruction },
+      body: { messages, instruction },
       headers: {
         Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_SERVICE_ROLE_KEY}`,
       },
