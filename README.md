@@ -1,73 +1,133 @@
-# React + TypeScript + Vite
+# JobHelper
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack job application tracker with an AI-powered cover letter assistant. Built to solve a real problem — keeping track of applications and writing tailored cover letters fast.
 
-Currently, two official plugins are available:
+**Live demo:** [jobhelper.vercel.app](https://jobhelper.vercel.app) &nbsp;·&nbsp; Guest mode available — no sign-up required to try it out.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Kanban Board**
+- Track applications across three stages: Applied → Interview → Rejected
+- Drag & drop cards between columns
+- Guest mode with localStorage — data migrates automatically on sign-up
 
-## Expanding the ESLint configuration
+**AI Cover Letter Chat**
+- Conversational chat powered by Google Gemini 2.5 Flash
+- AI reads your resume (PDF) and the job description to write a tailored letter
+- Full chat history — come back to any previous conversation and keep refining
+- Edit AI messages directly in the chat
+- Export the final letter to PDF
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**Other**
+- OAuth authentication via Supabase (Google, GitHub)
+- Resume upload to Supabase Storage
+- 19 UI languages including RTL (Arabic)
+- Vercel Analytics (disabled in debug mode and localhost)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Layer | Technology |
+|---|---|
+| Frontend | React 19, TypeScript, Vite |
+| Styling | Tailwind CSS v4, shadcn/ui, Radix UI |
+| State | Redux Toolkit |
+| Routing | React Router v7 |
+| Forms | React Hook Form + Zod |
+| Backend | Supabase (Auth, PostgreSQL, Storage, Edge Functions) |
+| AI | Google Gemini 2.5 Flash |
+| Deployment | Vercel |
+| i18n | i18next (19 languages) |
+
+---
+
+## Architecture
+
+```
+src/
+├── react/
+│   ├── pages/          # Route-level components
+│   ├── forms/          # Form components
+│   ├── components/     # Reusable UI pieces
+│   └── sections/       # Layout sections (header, etc.)
+├── services/           # API calls (Supabase + Edge Functions)
+├── store/              # Redux slices
+├── hooks/              # Custom hooks
+└── playground/         # Supabase Edge Functions source
+    ├── cover-letter-chat/       # General AI chat (Gemini multi-turn)
+    ├── generate-cover-letter/   # Initial letter generation from PDF resume
+    └── refine-cover-letter/     # Letter refinement with chat history
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+**Edge Functions** run on Deno (Supabase) and call the Gemini API. The cover letter chat function maintains conversation context by passing the full message history and resume PDF on each request, giving the AI complete context for every reply.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+**Row Level Security** on all Supabase tables — users can only access their own data.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## Local Setup
+
+**Prerequisites:** Node.js 18+, a Supabase project, a Gemini API key.
+
+```bash
+git clone https://github.com/your-username/job-helper.git
+cd job-helper
+npm install
 ```
+
+Create `.env.local`:
+
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_anon_key
+VITE_SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+```
+
+Set `GEMINI_API_KEY` as a secret in your Supabase project dashboard.
+
+Run the SQL migration from `src/playground/cover_letter_chats_migration.sql` in the Supabase SQL editor, then:
+
+```bash
+npm run dev
+```
+
+---
+
+## Database Schema
+
+```sql
+-- Job application cards
+job-helper-cards-database
+  card_id    uuid PK
+  user_id    uuid FK → auth.users
+  company_name, position, email, status, id_time
+
+-- AI chat sessions
+cover_letter_chats
+  id         uuid PK
+  user_id    uuid FK → auth.users
+  job_title, company_name, job_description, resume_url
+  messages   jsonb   -- [{role: "user"|"ai", content: string}]
+  created_at, updated_at
+```
+
+---
+
+## Scripts
+
+```bash
+npm run dev          # Start dev server
+npm run build        # Type-check + production build
+npm run type-check   # TypeScript check only
+npm run test         # Vitest unit tests
+npm run lint         # ESLint
+```
+
+---
+
+## License
+
+MIT
