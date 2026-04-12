@@ -1,6 +1,36 @@
 import { supabaseClient } from "@/supabase";
 import type { ChatMessage, CoverLetterChat } from "@/types/types";
 
+// Отправляет сообщение в общий чат (cover-letter-chat edge function)
+export const sendChatMessage = async (params: {
+  messages: ChatMessage[];
+  jobTitle: string;
+  companyName: string;
+  jobDescription: string;
+  resumeURL: string;
+}): Promise<string> => {
+  const { data: { session } } = await supabaseClient.auth.getSession();
+  if (!session) throw new Error("Not authenticated");
+
+  const { data, error } = await supabaseClient.functions.invoke("cover-letter-chat", {
+    body: {
+      messages: params.messages,
+      jobTitle: params.jobTitle,
+      companyName: params.companyName,
+      jobDescription: params.jobDescription,
+      resumeURL: params.resumeURL,
+    },
+    headers: {
+      Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_SERVICE_ROLE_KEY}`,
+    },
+  });
+
+  if (error) throw error;
+  if (!data.success) throw new Error(data.error || "Chat request failed");
+
+  return data.message as string;
+};
+
 // Создаёт новую запись чата в таблице cover_letter_chats, возвращает id
 export const createChat = async (params: {
   jobTitle: string;

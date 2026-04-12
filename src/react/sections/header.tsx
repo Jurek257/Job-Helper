@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Globe } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { getUserChats } from "@/services/coverLetterChatService";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "@/store/store";
 import { setUser, setIsGuest } from "@/store/userSlice";
@@ -63,6 +64,19 @@ export function Header() {
     localStorage.setItem("lang", code);
     // Арабский — RTL, все остальные — LTR
     document.documentElement.dir = code === "ar" ? "rtl" : "ltr";
+  };
+
+  const handleOpenChat = async () => {
+    try {
+      const chats = await getUserChats();
+      if (chats.length > 0) {
+        navigate(`/cover-letter/${chats[0].id}`);
+      } else {
+        navigate("/add-job");
+      }
+    } catch {
+      navigate("/add-job");
+    }
   };
 
   const handleLogout = async () => {
@@ -154,6 +168,9 @@ export function Header() {
             <DropdownMenuGroup>
               <DropdownMenuItem onClick={() => isGuest ? setShowDemoModal(true) : navigate("/profile")}>
                 {t("header.profile")}
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => isGuest ? setShowDemoModal(true) : handleOpenChat()}>
+                AI Chat
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

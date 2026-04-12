@@ -1,13 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Header } from "@/react/sections/header";
-import { generateCoverLetter } from "@/services/generateCoverLetter";
-import { refineCoverLetter } from "@/services/refineCoverLetter";
 import {
   getChat,
   getUserChats,
   updateChatMessages,
   deleteChat,
+  sendChatMessage,
 } from "@/services/coverLetterChatService";
 import type { ChatMessage, CoverLetterChat } from "@/types/types";
 import jsPDF from "jspdf";
@@ -17,7 +16,6 @@ import { supabaseClient } from "@/supabase";
 export function CoverLetterChatPage() {
   const { chatId } = useParams<{ chatId: string }>();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const [currentChat, setCurrentChat] = useState<CoverLetterChat | null>(null);
   const [allChats, setAllChats] = useState<CoverLetterChat[]>([]);
@@ -28,7 +26,7 @@ export function CoverLetterChatPage() {
   const [fileName, setFileName] = useState("cover-letter");
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [editingText, setEditingText] = useState("");
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(() => window.innerWidth >= 640);
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   const lastAiIndex = [...messages].map((m) => m.role).lastIndexOf("ai");
@@ -49,10 +47,6 @@ export function CoverLetterChatPage() {
         setAllChats(chats);
         setFileName(`cover-letter-${chat.company_name}`);
 
-        // Авто-генерация если чат только создан (нет сообщений)
-        if (location.state?.autoGenerate && (!chat.messages || chat.messages.length === 0)) {
-          triggerGenerate(chat, "");
-        }
       })
       .catch(console.error)
       .finally(() => setIsInitializing(false));
@@ -95,47 +89,26 @@ export function CoverLetterChatPage() {
     );
   };
 
-  // Генерация первого письма (или перегенерация)
-  const triggerGenerate = async (chat: CoverLetterChat, additionalContext: string) => {
-    setIsLoading(true);
-    try {
-      const letter = await generateCoverLetter({
-        resumeURL: chat.resume_url,
-        jobTitle: chat.job_title,
-        companyName: chat.company_name,
-        jobDescription: chat.job_description,
-        additionalContext: additionalContext || undefined,
-      });
-      const newMessages: ChatMessage[] = [{ role: "ai", content: letter }];
-      setMessages(newMessages);
-      await saveMessages(newMessages);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleGenerate = async () => {
-    if (!currentChat || isLoading) return;
-    await triggerGenerate(currentChat, inputText);
-    setInputText("");
-  };
-
-  // Отправка инструкции для уточнения
+  // Единственная функция отправки — использует cover-letter-chat edge function
   const handleSendMessage = async () => {
-    if (!inputText.trim() || isLoading || !hasCoverLetter) return;
-    const instruction = inputText.trim();
+    if (!inputText.trim() || isLoading || !currentChat) return;
+    const userText = inputText.trim();
     setInputText("");
 
     // Сразу добавляем сообщение юзера — видно мгновенно
-    const withUserMsg: ChatMessage[] = [...messages, { role: "user", content: instruction }];
+    const withUserMsg: ChatMessage[] = [...messages, { role: "user", content: userText }];
     setMessages(withUserMsg);
     setIsLoading(true);
 
     try {
-      const refined = await refineCoverLetter(withUserMsg, instruction);
-      const finalMessages: ChatMessage[] = [...withUserMsg, { role: "ai", content: refined }];
+      const reply = await sendChatMessage({
+        messages: withUserMsg,
+        jobTitle: currentChat.job_title,
+        companyName: currentChat.company_name,
+        jobDescription: currentChat.job_description,
+        resumeURL: currentChat.resume_url,
+      });
+      const finalMessages: ChatMessage[] = [...withUserMsg, { role: "ai", content: reply }];
       setMessages(finalMessages);
       await saveMessages(finalMessages);
     } catch (error) {
@@ -148,7 +121,7 @@ export function CoverLetterChatPage() {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey && !isLoading) {
       e.preventDefault();
-      hasCoverLetter ? handleSendMessage() : handleGenerate();
+      handleSendMessage();
     }
   };
 
@@ -302,9 +275,23 @@ export function CoverLetterChatPage() {
           {/* Сообщения */}
           <div className="flex-1 overflow-y-auto p-5 space-y-5">
             {messages.length === 0 && !isLoading && (
-              <div className="flex flex-col items-center justify-center h-full gap-3 text-white/25 select-none">
-                <MessageSquare size={40} />
-                <p className="text-sm">Press Generate to create your cover letter</p>
+              <div className="flex flex-col items-center justify-center h-full gap-3 select-none">
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <button
+                    onClick={() => setInputText("Write me a professional cover letter based on my resume")}
+                    className="flex items-start gap-3 px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all cursor-pointer text-left max-w-[220px]"
+                  >
+                    <span className="text-blue-400 text-lg leading-none mt-0.5">✦</span>
+                    <span className="text-sm text-white/70">Write me a cover letter based on my resume</span>
+                  </button>
+                  <button
+                    onClick={() => setInputText(`Find information about ${currentChat?.company_name} and tell me what to highlight in my application`)}
+                    className="flex items-start gap-3 px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all cursor-pointer text-left max-w-[220px]"
+                  >
+                    <span className="text-blue-400 text-lg leading-none mt-0.5">✦</span>
+                    <span className="text-sm text-white/70">Find info about the company for my application</span>
+                  </button>
+                </div>
               </div>
             )}
 
@@ -480,14 +467,13 @@ export function CoverLetterChatPage() {
               >
                 Home
               </button>
-              {/* Одна кнопка: Send если есть письмо + текст, иначе Generate */}
               <button
                 type="button"
-                onClick={hasCoverLetter && inputText.trim() ? handleSendMessage : handleGenerate}
-                disabled={isLoading || (hasCoverLetter && !inputText.trim())}
+                onClick={handleSendMessage}
+                disabled={!inputText.trim() || isLoading}
                 className="bg-blue-500 shadow-lg shadow-blue-500/30 text-white px-4 py-2 rounded-lg text-sm cursor-pointer hover:-translate-y-0.5 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
               >
-                {hasCoverLetter ? "Send ↑" : "Generate"}
+                Send ↑
               </button>
             </div>
           </div>
