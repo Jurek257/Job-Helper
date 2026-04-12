@@ -2,21 +2,20 @@ import { useNavigate } from "react-router-dom";
 import { useCardActions } from "../../hooks/useCardActions";
 import { LoadingButton } from "../components/loading";
 import { useState } from "react";
-import type { GenerateCoverLetterParams } from "@/types/types";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store/store";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
-
+import { createChat } from "@/services/coverLetterChatService";
 
 interface Props {
-  setCoverLetterData: (data: GenerateCoverLetterParams) => void;
+  setCoverLetterData?: (data: unknown) => void;
 }
 
-export function AddJobFormStep1({ setCoverLetterData }: Props) {
+export function AddJobFormStep1({ setCoverLetterData: _ }: Props) {
   const navigate = useNavigate();
   const { addNewJobCard } = useCardActions();
-  const URL = useSelector((state: RootState) => state.User.resumeURL);
+  const resumeURL = useSelector((state: RootState) => state.User.resumeURL);
   const isGuest = useSelector((state: RootState) => state.User.isGuest);
   const { t } = useTranslation();
 
@@ -33,34 +32,41 @@ export function AddJobFormStep1({ setCoverLetterData }: Props) {
 
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (isGuest) {
-      await addCard(e);
-      return;
-    }
-
-    const formData = extractFormData(e);
-    const resumeUrl = URL;
-
-    if (!resumeUrl) {
-      toast.error(t("add_job.toast_resume"));
-      return;
-    }
-
-    setCoverLetterData({ ...formData, resumeURL: resumeUrl });
-    await addCard(e);
-    navigate("/add-job?step=2");
-  };
-
-  const addCard = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     setFormLoading(true);
 
     try {
-      await addNewJobCard(e);
+      // Для гостей — просто добавляем карточку и уходим на главную
+      if (isGuest) {
+        await addNewJobCard(e);
+        toast.success(t("add_job.toast_success"));
+        navigate("/");
+        return;
+      }
+
+      if (!resumeURL) {
+        toast.error(t("add_job.toast_resume"));
+        return;
+      }
+
+      const formData = extractFormData(e);
+
+      // Добавляем карточку в канбан и создаём чат параллельно
+      const [, chatId] = await Promise.all([
+        addNewJobCard(e),
+        createChat({
+          jobTitle: formData.jobTitle,
+          companyName: formData.companyName,
+          jobDescription: formData.jobDescription,
+          resumeUrl: resumeURL,
+        }),
+      ]);
+
       toast.success(t("add_job.toast_success"));
-      navigate("/");
+      // Переходим на страницу чата; autoGenerate запускает генерацию сразу
+      navigate(`/cover-letter/${chatId}`, { state: { autoGenerate: true } });
     } catch (error) {
       console.error(error);
+      navigate("/");
     } finally {
       setFormLoading(false);
     }

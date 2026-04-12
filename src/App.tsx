@@ -16,6 +16,7 @@ import { Canban } from "./react/pages/Canban";
 import { SignUpPage } from "./react/pages/SignUpPage";
 import { Profile } from "./react/pages/Profile";
 import { ApplicateJobPage } from "./react/pages/ApplicateJob";
+import { CoverLetterChatPage } from "./react/pages/CoverLetterChatPage";
 
 import { Analytics } from '@vercel/analytics/react';
 const GUEST_CARDS_KEY = "jh_guest_cards";
@@ -154,6 +155,7 @@ function App() {
         <Route path="/" element={<Canban />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/add-job" element={<ApplicateJobPage />} />
+        <Route path="/cover-letter/:chatId" element={<CoverLetterChatPage />} />
       </Routes>
     </div>
   );

@@ -36,3 +36,22 @@ export interface GenerateCoverLetterParams {
   companyInfo?: string;
   additionalContext?: string;
 }
+
+// Одно сообщение в чате
+export interface ChatMessage {
+  role: "user" | "ai";
+  content: string;
+}
+
+// Запись чата в Supabase
+export interface CoverLetterChat {
+  id: string;
+  user_id: string;
+  job_title: string;
+  company_name: string;
+  job_description: string;
+  resume_url: string;
+  messages: ChatMessage[];
+  created_at: string;
+  updated_at: string;
+}
