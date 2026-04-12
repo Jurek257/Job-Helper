@@ -10,8 +10,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 
-import { useState } from "react";
-import { Globe } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Globe, Search, X } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { getUserChats } from "@/services/coverLetterChatService";
 import { useSelector, useDispatch } from "react-redux";
@@ -52,9 +52,38 @@ export function Header() {
   const dispatch = useDispatch();
   const isGuest = useSelector((state: RootState) => state.User.isGuest);
   const user = useSelector((state: RootState) => state.User.user);
+  const cards = useSelector((state: RootState) => state.Cards.cardDataArr);
   const avatarUrl = user?.user_metadata?.avatar_url as string | undefined;
   const [showDemoModal, setShowDemoModal] = useState(false);
   const [showLangModal, setShowLangModal] = useState(false);
+
+  // Поиск по карточкам
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  const searchResults = searchQuery.trim()
+    ? cards.filter((c) =>
+        c.company_name?.toLowerCase().includes(searchQuery.toLowerCase()),
+      )
+    : [];
+
+  // Закрываем поиск при клике вне
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setSearchOpen(false);
+        setSearchQuery("");
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const formatDate = (iso: string) => {
+    const d = new Date(iso);
+    return d.toLocaleDateString(undefined, { day: "2-digit", month: "short", year: "numeric" });
+  };
 
   // t — функция перевода, i18n — объект с текущим языком и методом changeLanguage
   const { t, i18n } = useTranslation();
@@ -110,6 +139,54 @@ export function Header() {
           Job<span className="text-[#2563EB]">Helper</span>
         </h1>
       </div>
+
+      {/* Поиск по карточкам */}
+      <div ref={searchRef} className="relative flex-1 max-w-xs mx-4">
+        {searchOpen ? (
+          <div className="flex items-center gap-2 bg-[var(--surface-color)] border border-white/20 rounded-lg px-3 py-1.5">
+            <Search size={15} className="text-white/40 shrink-0" />
+            <input
+              autoFocus
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search companies…"
+              className="flex-1 bg-transparent text-white text-sm focus:outline-none placeholder:text-white/30 min-w-0"
+            />
+            <button onClick={() => { setSearchOpen(false); setSearchQuery(""); }} className="text-white/40 hover:text-white cursor-pointer">
+              <X size={15} />
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={() => setSearchOpen(true)}
+            className="p-2 rounded-lg text-white/50 hover:text-white hover:bg-white/5 transition-colors cursor-pointer"
+          >
+            <Search size={20} />
+          </button>
+        )}
+
+        {/* Дропдаун с результатами */}
+        {searchOpen && searchQuery.trim() && (
+          <div className="absolute top-full left-0 right-0 mt-1 bg-[var(--surface-color)] border border-[var(--border-color)] rounded-xl shadow-xl overflow-hidden z-50">
+            {searchResults.length === 0 ? (
+              <p className="px-4 py-3 text-sm text-white/40">No companies found</p>
+            ) : (
+              searchResults.map((card) => (
+                <button
+                  key={card.card_id}
+                  onClick={() => { navigate("/"); setSearchOpen(false); setSearchQuery(""); }}
+                  className="w-full flex items-center justify-between px-4 py-2.5 hover:bg-white/5 transition-colors cursor-pointer text-left"
+                >
+                  <span className="text-sm text-white font-medium truncate">{card.company_name}</span>
+                  <span className="text-xs text-white/35 ml-3 shrink-0">{formatDate(card.id_time)}</span>
+                </button>
+              ))
+            )}
+          </div>
+        )}
+      </div>
+
       <div className="flex items-center gap-3 sm:gap-5">
         {/* Десктоп: select дропдаун */}
         <select
