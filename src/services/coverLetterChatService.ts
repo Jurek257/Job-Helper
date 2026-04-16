@@ -8,6 +8,7 @@ export const sendChatMessage = async (params: {
   companyName: string;
   jobDescription: string;
   resumeURL: string;
+  model: "gemini-2.5-flash" | "gemini-2.0-flash";
 }): Promise<string> => {
   const { data: { session } } = await supabaseClient.auth.getSession();
   if (!session) throw new Error("Not authenticated");
@@ -19,6 +20,7 @@ export const sendChatMessage = async (params: {
       companyName: params.companyName,
       jobDescription: params.jobDescription,
       resumeURL: params.resumeURL,
+      model: params.model,
     },
     headers: {
       Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_SERVICE_ROLE_KEY}`,

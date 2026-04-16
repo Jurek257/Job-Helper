@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import { Header } from "@/react/sections/header";
 import {
   getChat,
@@ -27,6 +28,7 @@ export function CoverLetterChatPage() {
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [editingText, setEditingText] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(() => window.innerWidth >= 640);
+  const [selectedModel, setSelectedModel] = useState<"gemini-2.5-flash" | "gemini-2.0-flash">("gemini-2.5-flash");
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   const lastAiIndex = [...messages].map((m) => m.role).lastIndexOf("ai");
@@ -107,12 +109,20 @@ export function CoverLetterChatPage() {
         companyName: currentChat.company_name,
         jobDescription: currentChat.job_description,
         resumeURL: currentChat.resume_url,
+        model: selectedModel,
       });
       const finalMessages: ChatMessage[] = [...withUserMsg, { role: "ai", content: reply }];
       setMessages(finalMessages);
       await saveMessages(finalMessages);
-    } catch (error) {
-      console.error(error);
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : String(error);
+      if (msg.includes("503") || msg.includes("Service Unavailable")) {
+        toast.error(`${selectedModel} is currently overloaded. Try switching to another model.`, { duration: 5000 });
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
+      // Убираем сообщение юзера из чата если AI не ответил
+      setMessages(messages);
     } finally {
       setIsLoading(false);
     }
@@ -459,22 +469,42 @@ export function CoverLetterChatPage() {
               />
             </div>
 
-            <div className="flex justify-end gap-2">
-              <button
-                type="button"
-                onClick={() => navigate("/")}
-                className="bg-[var(--surface-color)] border border-[var(--border-color)] text-white px-4 py-2 rounded-lg text-sm cursor-pointer hover:border-white/30 transition-colors"
-              >
-                Home
-              </button>
-              <button
-                type="button"
-                onClick={handleSendMessage}
-                disabled={!inputText.trim() || isLoading}
-                className="bg-blue-500 shadow-lg shadow-blue-500/30 text-white px-4 py-2 rounded-lg text-sm cursor-pointer hover:-translate-y-0.5 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                Send ↑
-              </button>
+            <div className="flex items-center justify-between gap-2">
+              {/* Переключатель модели */}
+              <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-lg p-1">
+                {(["gemini-2.5-flash", "gemini-2.0-flash"] as const).map((m) => (
+                  <button
+                    key={m}
+                    type="button"
+                    onClick={() => setSelectedModel(m)}
+                    className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all cursor-pointer ${
+                      selectedModel === m
+                        ? "bg-blue-500 text-white shadow-sm"
+                        : "text-white/40 hover:text-white/70"
+                    }`}
+                  >
+                    {m === "gemini-2.5-flash" ? "2.5 Flash" : "2.0 Flash"}
+                  </button>
+                ))}
+              </div>
+
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => navigate("/")}
+                  className="bg-[var(--surface-color)] border border-[var(--border-color)] text-white px-4 py-2 rounded-lg text-sm cursor-pointer hover:border-white/30 transition-colors"
+                >
+                  Home
+                </button>
+                <button
+                  type="button"
+                  onClick={handleSendMessage}
+                  disabled={!inputText.trim() || isLoading}
+                  className="bg-blue-500 shadow-lg shadow-blue-500/30 text-white px-4 py-2 rounded-lg text-sm cursor-pointer hover:-translate-y-0.5 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  Send ↑
+                </button>
+              </div>
             </div>
           </div>
         </div>
